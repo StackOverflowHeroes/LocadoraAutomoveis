@@ -6,4 +6,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LocadoraAutomoveis.Aplicacao\LocadoraAutomoveis.Aplicacao.csproj" />
+    <ProjectReference Include="..\LocadoraAutomoveis.Infra.Arquivos\LocadoraAutomoveis.Infra.Arquivos.csproj" />
+    <ProjectReference Include="..\LocadoraAutomoveis.Infra.Orm\LocadoraAutomoveis.Infra.Orm.csproj" />
+    <ProjectReference Include="..\LocadoraAutomoveis\LocadoraAutomoveis.Dominio.csproj" />
+  </ItemGroup>
+
 </Project>

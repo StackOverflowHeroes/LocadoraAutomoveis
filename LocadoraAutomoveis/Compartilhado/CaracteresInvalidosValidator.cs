@@ -1,7 +1,4 @@
-﻿using FluentValidation;
-using FluentValidation.Validators;
-
-namespace LocadoraAutomoveis.Dominio.Compartilhado
+﻿namespace LocadoraAutomoveis.Dominio.Compartilhado
 {
     public class NaoPodeCaracteresEspeciaisValidator<T> : PropertyValidator<T, string>
     {

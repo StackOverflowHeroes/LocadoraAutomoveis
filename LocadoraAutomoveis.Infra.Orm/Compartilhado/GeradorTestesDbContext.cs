@@ -1,8 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using Serilog;
-using System.Reflection;
-
-namespace GeradorTestes.Infra.Orm.Compartilhado
+﻿namespace GeradorTestes.Infra.Orm.Compartilhado
 {
     public class GeradorTestesDbContext : DbContext
     {

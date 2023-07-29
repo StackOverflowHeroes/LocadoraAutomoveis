@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms;
-
-namespace LocadoraAutomoveis.WinApp
+﻿namespace LocadoraAutomoveis.WinApp
 {
     public abstract class ControladorBase
     {

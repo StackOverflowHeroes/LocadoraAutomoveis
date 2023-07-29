@@ -1,6 +1,4 @@
-﻿using GeradorTestes.Dominio;
-
-namespace LocadoraAutomoveis.WinApp.Compartilhado
+﻿namespace LocadoraAutomoveis.WinApp.Compartilhado
 {
 
     public delegate Result GravarRegistroDelegate<TEntidade>(TEntidade disciplina)

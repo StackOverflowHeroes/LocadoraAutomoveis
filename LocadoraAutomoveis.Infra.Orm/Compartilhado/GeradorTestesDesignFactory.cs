@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.Extensions.Configuration;
-
-namespace GeradorTestes.Infra.Orm.Compartilhado
+﻿namespace GeradorTestes.Infra.Orm.Compartilhado
 {
     internal class GeradorTestesDesignFactory : IDesignTimeDbContextFactory<GeradorTestesDbContext>
     {

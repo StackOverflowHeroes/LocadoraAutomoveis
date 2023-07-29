@@ -1,8 +1,4 @@
-﻿using GeradorTestes.Dominio;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace LocadoraAutomoveis.Infra.Arquivos
+﻿namespace LocadoraAutomoveis.Infra.Arquivos
 {
     public abstract class RepositorioEmArquivoBase<T> where T : EntidadeBase<T>
     {

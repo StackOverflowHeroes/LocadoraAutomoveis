@@ -1,2 +1,2 @@
 ﻿global using FluentResults;
-global using System;
+global using LocadoraAutomoveis.Dominio;

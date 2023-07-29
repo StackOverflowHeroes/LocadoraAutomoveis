@@ -1,3 +1,10 @@
 ﻿global using GeradorTestes.Infra.Orm.Compartilhado;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using Microsoft.Extensions.Logging;
+global using Serilog;
+global using System.Reflection;
+global using Microsoft.EntityFrameworkCore.Design;
+global using Microsoft.Extensions.Configuration;
+global using LocadoraAutomoveis.Dominio;
+global using Microsoft.EntityFrameworkCore;

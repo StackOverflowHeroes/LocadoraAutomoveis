@@ -1,6 +1,4 @@
-﻿using FluentValidation.Results;
-
-namespace LocadoraAutomoveis.Dominio.Compartilhado
+﻿namespace LocadoraAutomoveis.Dominio.Compartilhado
 {
     public interface IValidador<T> where T : EntidadeBase<T>
     {

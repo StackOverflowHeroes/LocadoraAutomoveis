@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-
-namespace LocadoraAutomoveis.Dominio.Compartilhado
+﻿namespace LocadoraAutomoveis.Dominio.Compartilhado
 {
     public static class ValidatorExtensions
     {

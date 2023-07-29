@@ -1,7 +1,4 @@
-﻿using System.IO;
-using System.Text.Json;
-
-namespace LocadoraAutomoveis.Infra.Arquivos
+﻿namespace LocadoraAutomoveis.Infra.Arquivos
 {
     internal class SerializadorDadosEmJson : ISerializador
     {

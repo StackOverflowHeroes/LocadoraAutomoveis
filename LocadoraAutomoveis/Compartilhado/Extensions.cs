@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-
-namespace LocadoraAutomoveis.Dominio
+﻿namespace LocadoraAutomoveis.Dominio
 {
     public static class IEnumerableExtensions
     {

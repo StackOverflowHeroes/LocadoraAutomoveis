@@ -1,7 +1,4 @@
-﻿using GeradorTestes.Dominio;
-using Microsoft.EntityFrameworkCore;
-
-namespace GeradorTestes.Infra.Orm.Compartilhado
+﻿namespace GeradorTestes.Infra.Orm.Compartilhado
 {
     public class RepositorioBaseEmOrm<T> : IRepositorio<T>
         where T : EntidadeBase<T>
