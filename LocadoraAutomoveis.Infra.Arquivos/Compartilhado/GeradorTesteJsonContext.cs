@@ -1,13 +1,4 @@
-﻿using GeradorTestes.Dominio;
-using GeradorTestes.Dominio.ModuloDisciplina;
-using GeradorTestes.Dominio.ModuloMateria;
-using GeradorTestes.Dominio.ModuloQuestao;
-using GeradorTestes.Dominio.ModuloTeste;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace LocadoraAutomoveis.Infra.Arquivos
+﻿namespace LocadoraAutomoveis.Infra.Arquivos
 {
     [Serializable]
     public class GeradorTesteJsonContext : IContextoPersistencia
@@ -16,13 +7,13 @@ namespace LocadoraAutomoveis.Infra.Arquivos
 
         public GeradorTesteJsonContext()
         {
-            Disciplinas = new List<Disciplina>();
+            //Disciplinas = new List<Disciplina>();
 
-            Materias = new List<Materia>();
+            //Materias = new List<Materia>();
 
-            Testes = new List<Teste>();
+            //Testes = new List<Teste>();
 
-            Questoes = new List<Questao>();
+            //Questoes = new List<Questao>();
         }
 
 
@@ -33,13 +24,13 @@ namespace LocadoraAutomoveis.Infra.Arquivos
             CarregarDados();
         }
 
-        public List<Materia> Materias { get; set; }
+        //public List<Materia> Materias { get; set; }
 
-        public List<Disciplina> Disciplinas { get; set; }
+        //public List<Disciplina> Disciplinas { get; set; }
 
-        public List<Teste> Testes { get; set; }
+        //public List<Teste> Testes { get; set; }
 
-        public List<Questao> Questoes { get; set; }
+        //public List<Questao> Questoes { get; set; }
 
         public void DesfazerAlteracoes()
         {
@@ -55,17 +46,17 @@ namespace LocadoraAutomoveis.Infra.Arquivos
         {
             var ctx = serializador.CarregarDadosDoArquivo();
 
-            if (ctx.Disciplinas.Any())
-                this.Disciplinas.AddRange(ctx.Disciplinas);
+            //if (ctx.Disciplinas.Any())
+            //    this.Disciplinas.AddRange(ctx.Disciplinas);
 
-            if (ctx.Materias.Any())
-                this.Materias.AddRange(ctx.Materias);
+            //if (ctx.Materias.Any())
+            //    this.Materias.AddRange(ctx.Materias);
 
-            if (ctx.Questoes.Any())
-                this.Questoes.AddRange(ctx.Questoes);
+            //if (ctx.Questoes.Any())
+            //    this.Questoes.AddRange(ctx.Questoes);
 
-            if (ctx.Testes.Any())
-                this.Testes.AddRange(ctx.Testes);
+            //if (ctx.Testes.Any())
+            //    this.Testes.AddRange(ctx.Testes);
         }
     }
 }

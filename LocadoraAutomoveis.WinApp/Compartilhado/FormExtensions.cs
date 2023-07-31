@@ -15,7 +15,7 @@
 
         private static void Form_FormClosing(object? sender, FormClosingEventArgs e)
         {
-            TelaPrincipalForm.Instancia.AtualizarRodape();
+            //TelaPrincipalForm.Instancia.AtualizarRodape();
         }
     }
 }
