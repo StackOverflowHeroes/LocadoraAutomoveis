@@ -84,7 +84,7 @@
                {
                     bool parceiroExiste = repositorioParceiro.Existe(parceiro);
 
-                    if (parceiroExiste!)
+                    if (parceiroExiste == false)
                     {
                          Log.Warning("Parceiro {@id : @nome} não encontrado para excluir.", parceiro.Id, parceiro.Nome);
                          return Result.Fail("Parceiro não encontrado.");

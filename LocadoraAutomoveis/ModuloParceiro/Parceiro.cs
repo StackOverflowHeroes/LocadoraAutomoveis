@@ -3,7 +3,7 @@
      public class Parceiro : EntidadeBase<Parceiro>
      {
           public string Nome { get; set; }
-          public Parceiro(string nome)
+          public Parceiro(string nome) : this()
           {
                Nome = nome;
           }

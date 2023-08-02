@@ -186,5 +186,41 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação
                resultado.Should().BeSuccess();
                repositorioParceiroMoq.Verify(x => x.Excluir(parceiro), Times.Once());
           }
+
+          [TestMethod]
+          public void Nao_deve_excluir_parceiro_caso_nao_esteja_cadastrado()
+          {
+               var parceiro = new Parceiro("Descontao");
+
+               repositorioParceiroMoq.Setup(x => x.Existe(parceiro))
+                  .Returns(() =>
+                  {
+                       return false;
+                  });
+
+               var resultado = servicoParceiro.Excluir(parceiro);
+
+               resultado.Should().BeFailure();
+               repositorioParceiroMoq.Verify(x => x.Excluir(parceiro), Times.Never());
+          }
+
+          [TestMethod]
+          public void Deve_tratar_erro_caso_ocorra_falha_ao_excluir_parceiro()
+          {
+               var parceiro = new Parceiro("Descontao");
+
+               repositorioParceiroMoq.Setup(x => x.Existe(parceiro))
+                 .Throws(() =>
+                 {
+                      return SqlExceptionCreator.NewSqlException();
+                 });
+
+               //action
+               Result resultado = servicoParceiro.Excluir(parceiro);
+
+               //assert 
+               resultado.Should().BeFailure();
+               resultado.Reasons[0].Message.Should().Be("Falha ao tentar excluir parceiro.");
+          }
      }
 }
