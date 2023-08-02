@@ -8,7 +8,7 @@
 
         protected override string GetDefaultMessageTemplate(string errorCode)
         {            
-            return $"'{nomePropriedade}' deve ser composto por letras e números.";
+            return $"'{nomePropriedade}' não deve conter caracteres especiais.";
         }
 
         public override bool IsValid(ValidationContext<T> contextoValidacao, string texto)
