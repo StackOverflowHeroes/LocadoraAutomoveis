@@ -33,7 +33,34 @@ namespace LocadoraAutomoveis.WinApp.ModuloParceiro
 
           public override void Excluir()
           {
-               throw new NotImplementedException();
+               Guid id = tabelaParceiro.ObtemIdSelecionado();
+
+               Parceiro parceiroSelecionado = repositorioParceiro.SelecionarPorId(id);
+
+               if (parceiroSelecionado == null)
+               {
+                    MessageBox.Show("Selecione um parceiro primeiro.",
+                    "Exclusão de Parceiros", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+               }
+
+               DialogResult opcaoEscolhida = MessageBox.Show("Deseja realmente excluir o parceiro?",
+                  "Exclusão de Parceiros", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+               if (opcaoEscolhida == DialogResult.OK)
+               {
+                    Result resultado = servicoParceiro.Excluir(parceiroSelecionado);
+
+                    if (resultado.IsFailed)
+                    {
+                         MessageBox.Show(resultado.Errors[0].Message, "Exclusão de Parceiros",
+                             MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                         return;
+                    }
+
+                    CarregarRegistros();
+               }
           }
 
           public override void Inserir()
@@ -54,7 +81,29 @@ namespace LocadoraAutomoveis.WinApp.ModuloParceiro
 
           public override void Editar()
           {
-               
+               Guid id = tabelaParceiro.ObtemIdSelecionado();
+
+               Parceiro parceiroSelecionado = repositorioParceiro.SelecionarPorId(id);
+
+               if (parceiroSelecionado == null)
+               {
+                    MessageBox.Show("Selecione um parceiro primeiro.",
+                    "Edição de Parceiros", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+               }
+
+               TelaParceiroForm telaParceiro = new TelaParceiroForm();
+
+               telaParceiro.onGravarRegistro += servicoParceiro.Editar;
+
+               telaParceiro.ConfigurarTelaParceiro(parceiroSelecionado);
+
+               DialogResult resultado = telaParceiro.ShowDialog();
+
+               if (resultado == DialogResult.OK)
+               {
+                    CarregarRegistros();
+               }
           }
 
           public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
