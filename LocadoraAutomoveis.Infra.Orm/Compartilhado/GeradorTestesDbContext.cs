@@ -50,7 +50,7 @@
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             /* Registro dos mapeadores de forma manual
-            modelBuilder.ApplyConfiguration(new MapeadorDisciplinaOrm());
+            modelBuilder.ApplyConfiguration(new MapeadorParceiroOrm());
 
             modelBuilder.ApplyConfiguration(new MapeadorMateriaOrm());
 

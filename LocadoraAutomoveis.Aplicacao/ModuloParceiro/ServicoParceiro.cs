@@ -37,19 +37,19 @@
                List<string> erros = ValidarParceiro(parceiro);
 
                if (erros.Count() > 0)
-                    return Result.Fail(erros); //2
+                    return Result.Fail(erros);
 
                try
                {
                     repositorioParceiro.Inserir(parceiro);
                     Log.Debug("Parceiro {@id : @nome} inserido com sucesso!", parceiro.Id, parceiro.Nome);
-                    return Result.Ok(); //1
+                    return Result.Ok();
                }
                catch (Exception excecao)
                {
                     string msgErro = "Falha ao tentar inserir parceiro.";
                     Log.Error(excecao, msgErro + "{@p}", parceiro);
-                    return Result.Fail(msgErro); //3
+                    return Result.Fail(msgErro);
                }
           }
 
@@ -107,12 +107,12 @@
 
           public bool NomeDuplicado(Parceiro parceiro)
           {
-              Parceiro parceiroEncontrado = repositorioParceiro.SelecionarPorNome(parceiro.Nome);
+               Parceiro parceiroEncontrado = repositorioParceiro.SelecionarPorNome(parceiro.Nome);
 
-               if (parceiroEncontrado != null )
-                    if(parceiroEncontrado.Id != parceiro.Id && parceiroEncontrado.Nome == parceiro.Nome)               
-                    return true;
-               
+               if (parceiroEncontrado != null)
+                    if (parceiroEncontrado.Id != parceiro.Id && parceiroEncontrado.Nome == parceiro.Nome)
+                         return true;
+
                return false;
           }
      }

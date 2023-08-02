@@ -7,7 +7,7 @@
 
         public GeradorTesteJsonContext()
         {
-            //Disciplinas = new List<Disciplina>();
+            //Parceiros = new List<Parceiro>();
 
             //Materias = new List<Materia>();
 
@@ -26,7 +26,7 @@
 
         //public List<Materia> Materias { get; set; }
 
-        //public List<Disciplina> Disciplinas { get; set; }
+        //public List<Parceiro> Parceiros { get; set; }
 
         //public List<Teste> Testes { get; set; }
 
@@ -46,8 +46,8 @@
         {
             var ctx = serializador.CarregarDadosDoArquivo();
 
-            //if (ctx.Disciplinas.Any())
-            //    this.Disciplinas.AddRange(ctx.Disciplinas);
+            //if (ctx.Parceiros.Any())
+            //    this.Parceiros.AddRange(ctx.Parceiros);
 
             //if (ctx.Materias.Any())
             //    this.Materias.AddRange(ctx.Materias);

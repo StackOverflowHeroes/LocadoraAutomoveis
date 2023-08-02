@@ -1,65 +1,64 @@
 ﻿using FizzWare.NBuilder;
+using GeradorTestes.Infra.Orm.Compartilhado;
+using LocadoraAutomoveis.Dominio.ModuloParceiro;
+using LocadoraAutomoveis.Infra.Orm.ModuloParceiro;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace GeradorTestes.TestesIntegracao.Compartilhado
+namespace LocadoraAutomoveis.TestesIntegracao.Compartilhado
 {
-    public class TestesIntegracaoBase
-    {
-        //protected IRepositorioDisciplina repositorioDisciplina;
-        //protected IRepositorioMateria repositorioMateria;
-        //protected IRepositorioQuestao repositorioQuestao;
+     [TestClass]
+     public class TestesIntegracaoBase
+     {
+          protected IRepositorioParceiro repositorioParceiro;
 
-        public TestesIntegracaoBase()
-        {
-            LimparTabelas();
+          public TestesIntegracaoBase()
+          {
+               LimparTabelas();
 
-            string connectionString = ObterConnectionString();
+               string connectionString = ObterConnectionString();
 
-            //repositorioDisciplina = new RepositorioDisciplinaEmSql(connectionString);
-            //repositorioMateria = new RepositorioMateriaEmSql(connectionString);
-            //repositorioQuestao = new RepositorioQuestaoEmSql(connectionString);
+               var optionsBuilder = new DbContextOptionsBuilder<GeradorTestesDbContext>();
 
-            //BuilderSetup.SetCreatePersistenceMethod<Disciplina>(repositorioDisciplina.Inserir);
-            //BuilderSetup.SetCreatePersistenceMethod<Materia>(repositorioMateria.Inserir);
-            //BuilderSetup.SetCreatePersistenceMethod<Questao>(repositorioQuestao.Inserir);
-        }
+               optionsBuilder.UseSqlServer(connectionString);
 
-        protected static void LimparTabelas()
-        {
-            //string? connectionString = ObterConnectionString();
+               var dbContext = new GeradorTestesDbContext(optionsBuilder.Options);
 
-            //SqlConnection sqlConnection = new SqlConnection(connectionString);
+               repositorioParceiro = new RepositorioParceiroEmOrm(dbContext);
 
-            //string sqlLimpezaTabela =
-            //    @"
-            //    DELETE FROM [DBO].[TBQUESTAO]
-            //    DBCC CHECKIDENT ('[TBQUESTAO]', RESEED, 0);
+               BuilderSetup.SetCreatePersistenceMethod<Parceiro>(repositorioParceiro.Inserir);
 
-            //    DELETE FROM [DBO].[TBMATERIA]
-            //    DBCC CHECKIDENT ('[TBMATERIA]', RESEED, 0);
+          }
 
-            //    DELETE FROM [DBO].[TBDISCIPLINA]
-            //    DBCC CHECKIDENT ('[TBDISCIPLINA]', RESEED, 0);";
+          private string ObterConnectionString()
+          {
+               var configuracao = new ConfigurationBuilder()
+               .SetBasePath(Directory.GetCurrentDirectory())
+               .AddJsonFile("appsettings.json")
+               .Build();
 
-            //SqlCommand comando = new SqlCommand(sqlLimpezaTabela, sqlConnection);
+               var connectionString = configuracao.GetConnectionString("SqlServer");
+               return connectionString;
+          }
 
-            //sqlConnection.Open();
+          private void LimparTabelas()
+          {
+               string? connectionString = ObterConnectionString();
 
-            //comando.ExecuteNonQuery();
+               SqlConnection sqlConnection = new SqlConnection(connectionString);
 
-            //sqlConnection.Close();
-        }
+               string sqlLimpezaTabela =
+                   @"               
+                DELETE FROM [DBO].[TBPARCEIRO];";
 
-        protected static string ObterConnectionString()
-        {
-            var configuracao = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .Build();
+               SqlCommand comando = new SqlCommand(sqlLimpezaTabela, sqlConnection);
 
-            var connectionString = configuracao.GetConnectionString("SqlServer");
-            return connectionString;
-        }
-    }
+               sqlConnection.Open();
+
+               comando.ExecuteNonQuery();
+
+               sqlConnection.Close();
+          }
+     }
 }

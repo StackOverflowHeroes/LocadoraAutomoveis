@@ -49,5 +49,16 @@ namespace LocadoraAutomoveis.TestesUnitarios.Domínio
                resultado.ShouldHaveValidationErrorFor(x => x.Nome)
                    .WithErrorMessage("'Nome' não deve conter caracteres especiais.");
           }
+
+          [TestMethod]
+          public void Nome_parceiro_nao_deve_conter_espacos_brancos()
+          {
+               parceiro.Nome = "a  ";
+
+               var resultado = validadorParceiro.TestValidate(parceiro);
+
+               resultado.ShouldHaveValidationErrorFor(x => x.Nome);
+
+          }
      }
 }

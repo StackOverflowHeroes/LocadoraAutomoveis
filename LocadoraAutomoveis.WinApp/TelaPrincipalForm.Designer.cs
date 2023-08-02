@@ -75,6 +75,7 @@
                // btnInserir
                // 
                btnInserir.DisplayStyle = ToolStripItemDisplayStyle.Image;
+               btnInserir.Enabled = false;
                btnInserir.Image = Properties.Resources.add;
                btnInserir.ImageScaling = ToolStripItemImageScaling.None;
                btnInserir.ImageTransparentColor = Color.Magenta;
@@ -82,11 +83,13 @@
                btnInserir.Padding = new Padding(5);
                btnInserir.Size = new Size(38, 38);
                btnInserir.Text = "toolStripButton1";
+               btnInserir.ToolTipText = "Inserir";
                btnInserir.Click += btnInserir_Click;
                // 
                // btnEditar
                // 
                btnEditar.DisplayStyle = ToolStripItemDisplayStyle.Image;
+               btnEditar.Enabled = false;
                btnEditar.Image = Properties.Resources.edit;
                btnEditar.ImageScaling = ToolStripItemImageScaling.None;
                btnEditar.ImageTransparentColor = Color.Magenta;
@@ -94,11 +97,13 @@
                btnEditar.Padding = new Padding(5);
                btnEditar.Size = new Size(38, 38);
                btnEditar.Text = "toolStripButton2";
+               btnEditar.ToolTipText = "Editar";
                btnEditar.Click += btnEditar_Click;
                // 
                // btnExcluir
                // 
                btnExcluir.DisplayStyle = ToolStripItemDisplayStyle.Image;
+               btnExcluir.Enabled = false;
                btnExcluir.Image = Properties.Resources.delete;
                btnExcluir.ImageScaling = ToolStripItemImageScaling.None;
                btnExcluir.ImageTransparentColor = Color.Magenta;
@@ -106,6 +111,7 @@
                btnExcluir.Padding = new Padding(5);
                btnExcluir.Size = new Size(38, 38);
                btnExcluir.Text = "toolStripButton3";
+               btnExcluir.ToolTipText = "Excluir";
                btnExcluir.Click += btnExcluir_Click;
                // 
                // toolStripSeparator1
@@ -139,7 +145,7 @@
                // parceirosMenuItem
                // 
                parceirosMenuItem.Name = "parceirosMenuItem";
-               parceirosMenuItem.Size = new Size(180, 22);
+               parceirosMenuItem.Size = new Size(122, 22);
                parceirosMenuItem.Text = "Parceiros";
                parceirosMenuItem.Click += parceirosMenuItem_Click;
                // 

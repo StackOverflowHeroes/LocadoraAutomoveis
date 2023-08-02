@@ -42,22 +42,20 @@ namespace LocadoraAutomoveis.WinApp
 
                var dbContext = new GeradorTestesDbContext(optionsBuilder.Options);
 
-               //var migracoesPendentes = dbContext.Database.GetPendingMigrations();
+               var migracoesPendentes = dbContext.Database.GetPendingMigrations();
 
-               //if (migracoesPendentes.Count() > 0)
-               //{
-               //    dbContext.Database.Migrate();
-               //}
+               if (migracoesPendentes.Count() > 0)
+               {
+                    dbContext.Database.Migrate();
+               }
 
                IRepositorioParceiro repositorioParceiro = new RepositorioParceiroEmOrm(dbContext);
 
                ValidadorParceiro validadorParceiro = new ValidadorParceiro();
 
-               ServicoParceiro servicoDisciplina = new ServicoParceiro(repositorioParceiro, validadorParceiro);
+               ServicoParceiro servicoParceiro = new ServicoParceiro(repositorioParceiro, validadorParceiro);
 
-               controladores.Add("ControladorParceiro", new ControladorParceiro(repositorioParceiro, servicoDisciplina));
-
-               
+               controladores.Add("ControladorParceiro", new ControladorParceiro(repositorioParceiro, servicoParceiro));
           }
 
           private void ConfiguracaoInicialTimer()
