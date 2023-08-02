@@ -33,10 +33,17 @@
                sRodape = new StatusStrip();
                textoRodape = new ToolStripStatusLabel();
                toolStrip1 = new ToolStrip();
+               btnInserir = new ToolStripButton();
+               btnEditar = new ToolStripButton();
+               btnExcluir = new ToolStripButton();
+               toolStripSeparator1 = new ToolStripSeparator();
+               textoTipoCadastro = new ToolStripLabel();
                menuStrip1 = new MenuStrip();
                cadastrosMenuItem = new ToolStripMenuItem();
+               parceirosMenuItem = new ToolStripMenuItem();
                painelRegistros = new Panel();
                sRodape.SuspendLayout();
+               toolStrip1.SuspendLayout();
                menuStrip1.SuspendLayout();
                SuspendLayout();
                // 
@@ -58,11 +65,60 @@
                // 
                // toolStrip1
                // 
+               toolStrip1.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnExcluir, toolStripSeparator1, textoTipoCadastro });
                toolStrip1.Location = new Point(0, 24);
                toolStrip1.Name = "toolStrip1";
-               toolStrip1.Size = new Size(834, 25);
+               toolStrip1.Size = new Size(834, 41);
                toolStrip1.TabIndex = 1;
                toolStrip1.Text = "toolStrip1";
+               // 
+               // btnInserir
+               // 
+               btnInserir.DisplayStyle = ToolStripItemDisplayStyle.Image;
+               btnInserir.Image = Properties.Resources.add;
+               btnInserir.ImageScaling = ToolStripItemImageScaling.None;
+               btnInserir.ImageTransparentColor = Color.Magenta;
+               btnInserir.Name = "btnInserir";
+               btnInserir.Padding = new Padding(5);
+               btnInserir.Size = new Size(38, 38);
+               btnInserir.Text = "toolStripButton1";
+               btnInserir.Click += btnInserir_Click;
+               // 
+               // btnEditar
+               // 
+               btnEditar.DisplayStyle = ToolStripItemDisplayStyle.Image;
+               btnEditar.Image = Properties.Resources.edit;
+               btnEditar.ImageScaling = ToolStripItemImageScaling.None;
+               btnEditar.ImageTransparentColor = Color.Magenta;
+               btnEditar.Name = "btnEditar";
+               btnEditar.Padding = new Padding(5);
+               btnEditar.Size = new Size(38, 38);
+               btnEditar.Text = "toolStripButton2";
+               btnEditar.Click += btnEditar_Click;
+               // 
+               // btnExcluir
+               // 
+               btnExcluir.DisplayStyle = ToolStripItemDisplayStyle.Image;
+               btnExcluir.Image = Properties.Resources.delete;
+               btnExcluir.ImageScaling = ToolStripItemImageScaling.None;
+               btnExcluir.ImageTransparentColor = Color.Magenta;
+               btnExcluir.Name = "btnExcluir";
+               btnExcluir.Padding = new Padding(5);
+               btnExcluir.Size = new Size(38, 38);
+               btnExcluir.Text = "toolStripButton3";
+               btnExcluir.Click += btnExcluir_Click;
+               // 
+               // toolStripSeparator1
+               // 
+               toolStripSeparator1.Name = "toolStripSeparator1";
+               toolStripSeparator1.Size = new Size(6, 41);
+               // 
+               // textoTipoCadastro
+               // 
+               textoTipoCadastro.Font = new Font("Comic Sans MS", 9F, FontStyle.Bold, GraphicsUnit.Point);
+               textoTipoCadastro.Name = "textoTipoCadastro";
+               textoTipoCadastro.Size = new Size(87, 38);
+               textoTipoCadastro.Text = "Tipo Cadastro";
                // 
                // menuStrip1
                // 
@@ -75,16 +131,24 @@
                // 
                // cadastrosMenuItem
                // 
+               cadastrosMenuItem.DropDownItems.AddRange(new ToolStripItem[] { parceirosMenuItem });
                cadastrosMenuItem.Name = "cadastrosMenuItem";
                cadastrosMenuItem.Size = new Size(71, 20);
                cadastrosMenuItem.Text = "Cadastros";
                // 
+               // parceirosMenuItem
+               // 
+               parceirosMenuItem.Name = "parceirosMenuItem";
+               parceirosMenuItem.Size = new Size(180, 22);
+               parceirosMenuItem.Text = "Parceiros";
+               parceirosMenuItem.Click += parceirosMenuItem_Click;
+               // 
                // painelRegistros
                // 
                painelRegistros.Dock = DockStyle.Fill;
-               painelRegistros.Location = new Point(0, 49);
+               painelRegistros.Location = new Point(0, 65);
                painelRegistros.Name = "painelRegistros";
-               painelRegistros.Size = new Size(834, 340);
+               painelRegistros.Size = new Size(834, 324);
                painelRegistros.TabIndex = 3;
                // 
                // TelaPrincipalForm
@@ -104,6 +168,8 @@
                Text = "Locadora Automóveis";
                sRodape.ResumeLayout(false);
                sRodape.PerformLayout();
+               toolStrip1.ResumeLayout(false);
+               toolStrip1.PerformLayout();
                menuStrip1.ResumeLayout(false);
                menuStrip1.PerformLayout();
                ResumeLayout(false);
@@ -119,5 +185,11 @@
           private ToolStripMenuItem cadastrosMenuItem;
           private Panel painelRegistros;
           private ToolStripStatusLabel textoRodape;
+          private ToolStripLabel textoTipoCadastro;
+          private ToolStripButton btnInserir;
+          private ToolStripButton btnEditar;
+          private ToolStripButton btnExcluir;
+          private ToolStripSeparator toolStripSeparator1;
+          private ToolStripMenuItem parceirosMenuItem;
      }
 }

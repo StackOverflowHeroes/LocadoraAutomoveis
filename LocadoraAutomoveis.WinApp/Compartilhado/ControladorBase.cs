@@ -18,6 +18,8 @@
 
         public abstract UserControl ObtemListagem();
 
+          public virtual void CarregarRegistros() { }
+
         public abstract ConfiguracaoToolboxBase ObtemConfiguracaoToolbox();
 
         public string ObterMensagemRodape()

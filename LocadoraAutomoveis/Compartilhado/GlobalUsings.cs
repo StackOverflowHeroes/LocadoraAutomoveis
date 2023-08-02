@@ -7,3 +7,4 @@ global using FluentValidation.Validators;
 global using FluentValidation;
 global using System.ComponentModel;
 global using FluentValidation.Results;
+global using SequentialGuid;

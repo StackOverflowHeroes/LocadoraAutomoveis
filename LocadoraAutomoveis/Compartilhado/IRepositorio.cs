@@ -12,7 +12,6 @@
 
         List<T> SelecionarTodos();
 
-        T SelecionarPorId(int id);
-
+        T SelecionarPorId(Guid id);
     }
 }

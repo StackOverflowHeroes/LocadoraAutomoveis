@@ -37,7 +37,7 @@
             return ObterRegistros().ToList();
         }
 
-        public virtual T SelecionarPorId(int id)
+        public virtual T SelecionarPorId(Guid id)
         {
             return ObterRegistros()
                 .FirstOrDefault(x => x.Id == id);

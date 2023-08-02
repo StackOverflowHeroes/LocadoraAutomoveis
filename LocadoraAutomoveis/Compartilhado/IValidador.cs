@@ -2,6 +2,6 @@
 {
     public interface IValidador<T> where T : EntidadeBase<T>
     {
-        public ValidationResult Validate(T instance);
+        public ValidationResult Validate(T validacao);
     }
 }
