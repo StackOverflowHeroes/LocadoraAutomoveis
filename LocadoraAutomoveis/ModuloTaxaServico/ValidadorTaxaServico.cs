@@ -14,7 +14,7 @@
                RuleFor(x => x.Preco)
                        .NotNull().WithMessage("'Preço' não pode ser nulo.")
                        .LessThan(0).WithMessage("'Preço' não pode ser 0.");
-
+                       
                RuleFor(x => x.PlanoDiario)
                     .NotNull().WithMessage("'Plano' deve ser informado.");
           }
