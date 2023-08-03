@@ -8,12 +8,12 @@
 
           public TaxaServico(bool planoDiario, string nome, decimal preco) : this()
           {
-               PlanoDiario = plano;
+               PlanoDiario = planoDiario;
                Nome = nome;
                Preco = preco;
           }
 
-          public TaxaServico(Guid id, bool planoDiario, string nome, decimal preco) : this(plano, nome, preco)
+          public TaxaServico(Guid id, bool planoDiario, string nome, decimal preco) : this(planoDiario, nome, preco)
           {
                Id = id;
           }
