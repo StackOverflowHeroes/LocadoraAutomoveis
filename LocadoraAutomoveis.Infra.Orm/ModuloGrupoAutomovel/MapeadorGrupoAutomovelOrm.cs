@@ -1,14 +1,14 @@
 ﻿using LocadoraAutomoveis.Dominio.ModuloGrupoAutomovel;
 
-namespace LocadoraAutomoveis.Infra.Orm.ModuloParceiro
+namespace LocadoraAutomoveis.Infra.Orm.ModuloAutomovel
 {
      public class MapeadorGrupoAutomovelOrm : IEntityTypeConfiguration<GrupoAutomovel>
      {
-          public void Configure(EntityTypeBuilder<GrupoAutomovel> parceiroBuilder)
+          public void Configure(EntityTypeBuilder<GrupoAutomovel> grupoAutomovelBuilder)
           {
-               parceiroBuilder.ToTable("TBGrupoAutomovel");
-               parceiroBuilder.Property(d => d.Id).IsRequired().ValueGeneratedNever();
-               parceiroBuilder.Property(d => d.Nome).HasColumnType("varchar(100)").IsRequired();
+               grupoAutomovelBuilder.ToTable("TBGrupoAutomovel");
+               grupoAutomovelBuilder.Property(d => d.Id).IsRequired().ValueGeneratedNever();
+               grupoAutomovelBuilder.Property(d => d.Nome).HasColumnType("varchar(100)").IsRequired();
           }
      }
 }

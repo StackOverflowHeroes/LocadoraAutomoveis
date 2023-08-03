@@ -1,7 +1,6 @@
 ﻿using LocadoraAutomoveis.Dominio.ModuloGrupoAutomovel;
-using LocadoraAutomoveis.Dominio.ModuloParceiro;
 
-namespace LocadoraAutomoveis.Infra.Orm.ModuloParceiro
+namespace LocadoraAutomoveis.Infra.Orm.ModuloGrupoAutomovel
 {
     public class RepositorioGrupoAutomovelEmOrm : RepositorioBaseEmOrm<GrupoAutomovel>, IRepositorioGrupoAutomovel
     {

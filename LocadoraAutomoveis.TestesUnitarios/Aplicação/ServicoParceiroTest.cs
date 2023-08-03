@@ -15,7 +15,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação
           Mock<IRepositorioParceiro> repositorioParceiroMoq;
           Mock<IValidadorParceiro> validadorParceiroMoq;
 
-          private ServicoGrupoAutomovel servicoParceiro;
+          private ServicoParceiro servicoParceiro;
 
           Parceiro parceiro;
           Guid id;

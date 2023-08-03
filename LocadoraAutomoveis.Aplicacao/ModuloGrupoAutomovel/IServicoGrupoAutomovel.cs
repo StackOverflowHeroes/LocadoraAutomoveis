@@ -4,7 +4,7 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloGrupoAutomovel
 {
      public interface IServicoGrupoAutomovel : IServico<GrupoAutomovel>
      {
-          List<string> ValidarParceiro(GrupoAutomovel grupoAutomovel);
+          List<string> ValidarGrupoAutomovel(GrupoAutomovel grupoAutomovel);
           bool NomeDuplicado(GrupoAutomovel grupoAutomovel);
      }
 }
