@@ -4,6 +4,7 @@ using GeradorTestes.Infra.Orm.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocadoraAutomoveis.Infra.Orm.Migrations
 {
     [DbContext(typeof(GeradorTestesDbContext))]
-    partial class GeradorTestesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230803174942_add-TBGrupoAutomovel")]
+    partial class addTBGrupoAutomovel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
