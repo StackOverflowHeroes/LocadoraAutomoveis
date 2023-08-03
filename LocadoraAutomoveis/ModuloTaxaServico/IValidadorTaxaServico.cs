@@ -1,6 +1,6 @@
 ﻿namespace LocadoraAutomoveis.Dominio.ModuloTaxaServico
 {
-     public interface IValidadorTaxaServico : IRepositorio<TaxaServico>
+     public interface IValidadorTaxaServico : IValidador<TaxaServico>
      {
      }
 }
