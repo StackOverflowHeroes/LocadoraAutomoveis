@@ -3,6 +3,7 @@ using LocadoraAutomoveis.Aplicacao.ModuloGrupoAutomovel;
 using LocadoraAutomoveis.Aplicacao.ModuloParceiro;
 using LocadoraAutomoveis.Dominio.ModuloGrupoAutomovel;
 using LocadoraAutomoveis.Dominio.ModuloParceiro;
+using LocadoraAutomoveis.Infra.Orm.ModuloGrupoAutomovel;
 using LocadoraAutomoveis.Infra.Orm.ModuloParceiro;
 using LocadoraAutomoveis.WinApp.ModuloGrupoAutomovel;
 using LocadoraAutomoveis.WinApp.ModuloParceiro;
