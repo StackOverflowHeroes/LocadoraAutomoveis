@@ -1,7 +1,9 @@
 ﻿using FizzWare.NBuilder;
 using GeradorTestes.Infra.Orm.Compartilhado;
 using LocadoraAutomoveis.Dominio.ModuloParceiro;
+using LocadoraAutomoveis.Dominio.ModuloTaxaServico;
 using LocadoraAutomoveis.Infra.Orm.ModuloParceiro;
+using LocadoraAutomoveis.Infra.Orm.ModuloTaxaServico;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -13,6 +15,7 @@ namespace LocadoraAutomoveis.TestesIntegracao.Compartilhado
      {
           protected IRepositorioParceiro repositorioParceiro;
 
+          protected IRepositorioTaxaServico repositorioTaxaServico;
           public TestesIntegracaoBase()
           {
                LimparTabelas();
@@ -26,8 +29,10 @@ namespace LocadoraAutomoveis.TestesIntegracao.Compartilhado
                var dbContext = new GeradorTestesDbContext(optionsBuilder.Options);
 
                repositorioParceiro = new RepositorioParceiroEmOrm(dbContext);
+               repositorioTaxaServico = new RepositorioTaxaServicoEmOrm(dbContext);
 
                BuilderSetup.SetCreatePersistenceMethod<Parceiro>(repositorioParceiro.Inserir);
+               BuilderSetup.SetCreatePersistenceMethod<TaxaServico>(repositorioTaxaServico.Inserir);
 
           }
 
@@ -50,7 +55,8 @@ namespace LocadoraAutomoveis.TestesIntegracao.Compartilhado
 
                string sqlLimpezaTabela =
                    @"               
-                DELETE FROM [DBO].[TBPARCEIRO];";
+                DELETE FROM [DBO].[TBPARCEIRO];
+                DELETE FROM [DBO].[TBTAXASERVICO];";
 
                SqlCommand comando = new SqlCommand(sqlLimpezaTabela, sqlConnection);
 
