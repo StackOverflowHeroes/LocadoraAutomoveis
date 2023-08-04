@@ -41,6 +41,7 @@
                menuStrip1 = new MenuStrip();
                cadastrosMenuItem = new ToolStripMenuItem();
                parceirosMenuItem = new ToolStripMenuItem();
+               taxasServicosMenuItem = new ToolStripMenuItem();
                painelRegistros = new Panel();
                sRodape.SuspendLayout();
                toolStrip1.SuspendLayout();
@@ -137,7 +138,7 @@
                // 
                // cadastrosMenuItem
                // 
-               cadastrosMenuItem.DropDownItems.AddRange(new ToolStripItem[] { parceirosMenuItem });
+               cadastrosMenuItem.DropDownItems.AddRange(new ToolStripItem[] { parceirosMenuItem, taxasServicosMenuItem });
                cadastrosMenuItem.Name = "cadastrosMenuItem";
                cadastrosMenuItem.Size = new Size(71, 20);
                cadastrosMenuItem.Text = "Cadastros";
@@ -145,9 +146,16 @@
                // parceirosMenuItem
                // 
                parceirosMenuItem.Name = "parceirosMenuItem";
-               parceirosMenuItem.Size = new Size(122, 22);
+               parceirosMenuItem.Size = new Size(180, 22);
                parceirosMenuItem.Text = "Parceiros";
                parceirosMenuItem.Click += parceirosMenuItem_Click;
+               // 
+               // taxasServicosMenuItem
+               // 
+               taxasServicosMenuItem.Name = "taxasServicosMenuItem";
+               taxasServicosMenuItem.Size = new Size(180, 22);
+               taxasServicosMenuItem.Text = "Taxa e Serviços";
+               taxasServicosMenuItem.Click += taxasServicosMenuItem_Click;
                // 
                // painelRegistros
                // 
@@ -197,5 +205,6 @@
           private ToolStripButton btnExcluir;
           private ToolStripSeparator toolStripSeparator1;
           private ToolStripMenuItem parceirosMenuItem;
+          private ToolStripMenuItem taxasServicosMenuItem;
      }
 }

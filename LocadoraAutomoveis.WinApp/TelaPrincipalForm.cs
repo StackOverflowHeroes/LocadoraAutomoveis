@@ -1,8 +1,12 @@
 using GeradorTestes.Infra.Orm.Compartilhado;
 using LocadoraAutomoveis.Aplicacao.ModuloParceiro;
+using LocadoraAutomoveis.Aplicacao.ModuloTaxaServico;
 using LocadoraAutomoveis.Dominio.ModuloParceiro;
+using LocadoraAutomoveis.Dominio.ModuloTaxaServico;
 using LocadoraAutomoveis.Infra.Orm.ModuloParceiro;
+using LocadoraAutomoveis.Infra.Orm.ModuloTaxaServico;
 using LocadoraAutomoveis.WinApp.ModuloParceiro;
+using LocadoraAutomoveis.WinApp.ModuloTaxaServico;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -50,12 +54,16 @@ namespace LocadoraAutomoveis.WinApp
                }
 
                IRepositorioParceiro repositorioParceiro = new RepositorioParceiroEmOrm(dbContext);
-
                ValidadorParceiro validadorParceiro = new ValidadorParceiro();
-
                ServicoParceiro servicoParceiro = new ServicoParceiro(repositorioParceiro, validadorParceiro);
 
                controladores.Add("ControladorParceiro", new ControladorParceiro(repositorioParceiro, servicoParceiro));
+
+               IRepositorioTaxaServico repositorioTaxaServico = new RepositorioTaxaServicoEmOrm(dbContext);
+               ValidadorTaxaServico validadorTaxaServico = new ValidadorTaxaServico();
+               ServicoTaxaServico servicoTaxaServico = new ServicoTaxaServico(repositorioTaxaServico, validadorTaxaServico);
+
+               controladores.Add("ControladorTaxaServico", new ControladorTaxaServico(repositorioTaxaServico, servicoTaxaServico));
           }
 
           private void ConfiguracaoInicialTimer()
@@ -175,6 +183,11 @@ namespace LocadoraAutomoveis.WinApp
           private void parceirosMenuItem_Click(object sender, EventArgs e)
           {
                ConfigurarTelaPrincipal(controladores["ControladorParceiro"]);
+          }
+
+          private void taxasServicosMenuItem_Click(object sender, EventArgs e)
+          {
+               ConfigurarTelaPrincipal(controladores["ControladorTaxaServico"]);
           }
      }
 }

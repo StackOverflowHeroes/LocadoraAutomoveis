@@ -20,7 +20,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloTaxaServico
 
                 new DataGridViewTextBoxColumn { Name = "Nome", HeaderText = "Nome", FillWeight=85F },
 
-                new DataGridViewTextBoxColumn { Name = "Preco", HeaderText = "Preço da Taxa/Serviço", FillWeight=50F }
+                new DataGridViewTextBoxColumn { Name = "Preco", HeaderText = "Preço da Taxa/Serviço (R$)", FillWeight=50F }
 };
 
                return colunas;
@@ -37,7 +37,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloTaxaServico
 
                foreach (TaxaServico taxaServico in taxaServicos)
                {
-                    gridTaxaServico.Rows.Add(taxaServico.Id, taxaServico.Nome);
+                    gridTaxaServico.Rows.Add(taxaServico.Id, taxaServico.Nome, $"R$ {taxaServico.Preco}");
                }
           }
      }
