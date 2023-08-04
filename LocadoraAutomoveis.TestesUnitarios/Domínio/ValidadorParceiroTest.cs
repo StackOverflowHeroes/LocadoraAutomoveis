@@ -51,14 +51,13 @@ namespace LocadoraAutomoveis.TestesUnitarios.Domínio
           }
 
           [TestMethod]
-          public void Nome_parceiro_nao_deve_conter_espacos_brancos()
+          public void Nome_parceiro_nao_deve_conter_espacos_brancos_antes_minimo()
           {
-               parceiro.Nome = "a  ";
+               parceiro.Nome = "a c";
 
                var resultado = validadorParceiro.TestValidate(parceiro);
 
                resultado.ShouldHaveValidationErrorFor(x => x.Nome);
-
           }
      }
 }
