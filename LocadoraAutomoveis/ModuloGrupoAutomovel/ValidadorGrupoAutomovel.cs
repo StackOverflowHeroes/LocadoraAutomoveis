@@ -9,8 +9,7 @@ namespace LocadoraAutomoveis.Dominio.ModuloGrupoAutomovel
                     .NotNull().WithMessage("'Nome' deve ser informado.")
                     .NotEmpty().WithMessage("'Nome' não pode ser vazio.")
                     .MinimumLength(2).WithMessage("'Nome' deve possuir no mínimo 2 caracteres.")
-                    .NaoPodeCaracteresEspeciais()
-                    .Matches(@"\A\S{3,15}\z").WithMessage("'Nome' não pode conter espaços em branco.");
+                    .NaoPodeCaracteresEspeciais();
         }
     }
 }

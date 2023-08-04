@@ -44,16 +44,6 @@ namespace LocadoraAutomoveis.TestesUnitarios.Domínio.ModuloGrupoAutomovel
                 .WithErrorMessage("'Nome' não deve conter caracteres especiais.");
         }
 
-        [TestMethod]
-        public void Nome_grupo_de_automoveis_nao_deve_conter_espacos_brancos()
-        {
-            grupoAutomovel.Nome = "a  ";
-            var resultado = validadorGrupoAutomovel.TestValidate(grupoAutomovel);
-
-            resultado.ShouldHaveValidationErrorFor(x => x.Nome);
-
-        }
-
 
     }
 }

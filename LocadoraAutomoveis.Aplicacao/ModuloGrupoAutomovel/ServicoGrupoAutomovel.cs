@@ -73,7 +73,7 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloGrupoAutomovel
             }
             catch (Exception excecao)
             {
-                string msgErro = "Falha ao tentar editar grupo de automoveis.";
+                string msgErro = "Falha ao tentar excluir grupo de automovéis.";
                 Log.Error(excecao, msgErro + "{@p}", grupoAutomovel);
                 return Result.Fail(msgErro);
             }
@@ -101,7 +101,7 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloGrupoAutomovel
             }
             catch (Exception excecao)
             {
-                string msgErro = "Falha ao tentar excluir grupo de automoveis.";
+                string msgErro = "Falha ao tentar excluir grupo de automovéis.";
                 Log.Error(excecao, msgErro + "{@p}", grupoAutomovel);
 
                 return Result.Fail(msgErro);

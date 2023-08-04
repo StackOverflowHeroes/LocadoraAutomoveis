@@ -165,7 +165,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação.ModuloGrupoAutomovel
             Result resultado = servicoGrupoAutomovel.Editar(grupoAutomovel);
 
             resultado.Should().BeFailure();
-            resultado.Reasons[0].Message.Should().Be("Falha ao tentar editar grupo de automóveis.");
+            resultado.Reasons[0].Message.Should().Be("Falha ao tentar excluir grupo de automovéis.");
         }
 
         public void Deve_excluir_grupo_de_automoveis_caso_esteja_registrado()

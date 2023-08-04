@@ -1,6 +1,8 @@
 ﻿
 using LocadoraAutomoveis.Aplicacao.ModuloGrupoAutomovel;
+using LocadoraAutomoveis.Aplicacao.ModuloParceiro;
 using LocadoraAutomoveis.Dominio.ModuloGrupoAutomovel;
+using LocadoraAutomoveis.Dominio.ModuloParceiro;
 
 namespace LocadoraAutomoveis.WinApp.ModuloGrupoAutomovel
 {
@@ -19,25 +21,78 @@ namespace LocadoraAutomoveis.WinApp.ModuloGrupoAutomovel
 
         public override void Inserir()
         {
-            throw new NotImplementedException();
-        }
+            TelaGrupoAutomovelForm telaGrupoAutomovel = new TelaGrupoAutomovelForm();
+            telaGrupoAutomovel.ConfigurarTelaGrupoAutomovel(new GrupoAutomovel());
 
+            telaGrupoAutomovel.onGravarRegistro += servicoGrupoAutomovel.Inserir;
+            DialogResult resultado = telaGrupoAutomovel.ShowDialog();
+
+            if (resultado == DialogResult.OK)
+            {
+                CarregarRegistros();
+            }
+        }
         public override void Editar()
         {
-            throw new NotImplementedException();
-        }
+            Guid id = tabelaGrupoAutomovel.ObtemIdSelecionado();
+            GrupoAutomovel grupoAutomovelSelecionado = repositorioGrupoAutomovel.SelecionarPorId(id);
 
+            if (grupoAutomovelSelecionado == null)
+            {
+                MessageBox.Show("Selecione um grupo de automóveis primeiro.",
+                "Edição de Parceiros", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            TelaGrupoAutomovelForm telaGrupoAutomovel = new TelaGrupoAutomovelForm();
+
+            telaGrupoAutomovel.onGravarRegistro += servicoGrupoAutomovel.Editar;
+
+            telaGrupoAutomovel.ConfigurarTelaGrupoAutomovel(grupoAutomovelSelecionado);
+
+            DialogResult resultado = telaGrupoAutomovel.ShowDialog();
+
+            if (resultado == DialogResult.OK)
+            {
+                CarregarRegistros();
+            }
+        }
         public override void Excluir()
         {
-            throw new NotImplementedException();
-        }
+            Guid id = tabelaGrupoAutomovel.ObtemIdSelecionado();
 
+            GrupoAutomovel grupoAutomovelSelecionado = repositorioGrupoAutomovel.SelecionarPorId(id);
+
+            if (grupoAutomovelSelecionado == null)
+            {
+                MessageBox.Show("Selecione um parceiro primeiro.",
+                "Exclusão de Parceiros", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            DialogResult opcaoEscolhida = MessageBox.Show("Deseja realmente excluir o grupo de automóveis?",
+               "Exclusão de grupo de automóveis", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                Result resultado = servicoGrupoAutomovel.Excluir(grupoAutomovelSelecionado);
+
+                if (resultado.IsFailed)
+                {
+                    MessageBox.Show(resultado.Errors[0].Message, "Exclusão de Parceiros",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    return;
+                }
+
+                CarregarRegistros();
+            }
+        }
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
             return new ConfiguracaoToolBoxGrupoAutomovel();
 
         }
-
         public override void CarregarRegistros()
         {
             List<GrupoAutomovel> gruposAutomovels = repositorioGrupoAutomovel.SelecionarTodos();
@@ -48,7 +103,6 @@ namespace LocadoraAutomoveis.WinApp.ModuloGrupoAutomovel
 
             TelaPrincipalForm.Instancia.AtualizarRodape(mensagemRodape, TipoStatusEnum.Visualizando);
         }
-
         public override UserControl ObtemListagem()
         {
             if (tabelaGrupoAutomovel == null)

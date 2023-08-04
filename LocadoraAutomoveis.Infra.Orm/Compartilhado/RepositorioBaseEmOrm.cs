@@ -19,7 +19,7 @@
             dbContext.SaveChanges();
         }
 
-        public void Editar(T registro)
+        public virtual void Editar(T registro)
         {
             registros.Update(registro);
 
