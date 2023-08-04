@@ -71,13 +71,5 @@ namespace LocadoraAutomoveis.TestesUnitarios.Domínio
 
                resultado.ShouldHaveValidationErrorFor(x => x.Preco);
           }
-
-          [TestMethod]
-          public void PlanoDiario_TaxaOuServico_nao_deve_ser_nulo_ou_vazio()
-          {
-               var resultado = validadorTaxaServico.TestValidate(taxaServico);
-
-               resultado.ShouldHaveValidationErrorFor(x => x.PlanoDiario);
-          }
      }
 }

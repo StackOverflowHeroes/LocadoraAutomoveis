@@ -1,7 +1,6 @@
 ﻿using LocadoraAutomoveis.Aplicacao.ModuloTaxaServico;
 using LocadoraAutomoveis.Dominio.ModuloTaxaServico;
 
-
 namespace LocadoraAutomoveis.WinApp.ModuloTaxaServico
 {
      public class ControladorTaxaServico : ControladorBase
@@ -15,7 +14,6 @@ namespace LocadoraAutomoveis.WinApp.ModuloTaxaServico
                this.repositorioTaxaServico = repositorioTaxaServico;
                this.servicoTaxaServico = servicoTaxaServico;
           }
-
           public override void CarregarRegistros()
           {
                List<TaxaServico> taxaServicos = repositorioTaxaServico.SelecionarTodos();
@@ -42,18 +40,71 @@ namespace LocadoraAutomoveis.WinApp.ModuloTaxaServico
                     CarregarRegistros();
                }
           }
+
           public override void Editar()
           {
-               throw new NotImplementedException();
+               Guid id = tabelaTaxaServico.ObtemIdSelecionada();
+
+               TaxaServico taxaServicoSelecionado = repositorioTaxaServico.SelecionarPorId(id);
+
+               if (taxaServicoSelecionado == null)
+               {
+                    MessageBox.Show("Selecione uma  Taxa ou Serviço primeiro.",
+                    "Edição de Taxa/Serviços", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+               }
+
+               TelaTaxaServicoForm telaTaxaServico = new TelaTaxaServicoForm();
+
+               telaTaxaServico.onGravarRegistro += servicoTaxaServico.Editar;
+
+               telaTaxaServico.ConfigurarTelaTaxaServico(taxaServicoSelecionado);
+
+               DialogResult resultado = telaTaxaServico.ShowDialog();
+
+               if (resultado == DialogResult.OK)
+               {
+                    CarregarRegistros();
+               }
           }
+
           public override void Excluir()
           {
-               throw new NotImplementedException();
+               Guid id = tabelaTaxaServico.ObtemIdSelecionada();
+
+               TaxaServico taxaServicoSelecionado = repositorioTaxaServico.SelecionarPorId(id);
+
+               if (taxaServicoSelecionado == null)
+               {
+                    MessageBox.Show("Selecione uma Taxa ou Serviço primeiro.",
+                    "Exclusão de Taxas/Serviços", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+               }
+
+               DialogResult opcaoEscolhida = MessageBox.Show("Deseja realmente excluir a Taxa/Serviço?",
+                  "Exclusão de Taxa/Serviços", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+               if (opcaoEscolhida == DialogResult.OK)
+               {
+                    Result resultado = servicoTaxaServico.Excluir(taxaServicoSelecionado);
+
+                    if (resultado.IsFailed)
+                    {
+                         MessageBox.Show(resultado.Errors[0].Message, "Exclusão de Taxa/Serviços",
+                             MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                         return;
+                    }
+
+                    CarregarRegistros();
+               }
           }
+
           public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
           {
                return new ConfiguracaoToolboxTaxaServico();
           }
+
           public override UserControl ObtemListagem()
           {
                if (tabelaTaxaServico == null)

@@ -117,10 +117,12 @@ namespace LocadoraAutomoveis.WinApp.ModuloTaxaServico
                // precoDiario
                // 
                precoDiario.AutoSize = true;
+               precoDiario.Checked = true;
                precoDiario.Location = new Point(64, 45);
                precoDiario.Name = "precoDiario";
                precoDiario.Size = new Size(111, 19);
                precoDiario.TabIndex = 1;
+               precoDiario.TabStop = true;
                precoDiario.Text = "Cobrança Diária";
                precoDiario.UseVisualStyleBackColor = true;
                // 

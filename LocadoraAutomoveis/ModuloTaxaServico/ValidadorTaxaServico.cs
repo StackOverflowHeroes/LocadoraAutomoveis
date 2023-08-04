@@ -1,4 +1,6 @@
-﻿namespace LocadoraAutomoveis.Dominio.ModuloTaxaServico
+﻿using FluentValidation;
+
+namespace LocadoraAutomoveis.Dominio.ModuloTaxaServico
 {
      public class ValidadorTaxaServico : AbstractValidator<TaxaServico>, IValidadorTaxaServico
      {
@@ -15,9 +17,9 @@
                        .NotNull().WithMessage("'Preço' não pode ser nulo.")
                        .GreaterThan(0).WithMessage("'Preço' não pode ser 0.");
 
-               RuleFor(x => x.PlanoDiario)
-                       .NotNull().WithMessage("'Plano' deve ser informado.")
-                       .NotEmpty().WithMessage("'Plano' não pode ser vazio.");                       
+               RuleFor(x => x.PlanoDiario);
+                       
+                                     
           }
      }
 }

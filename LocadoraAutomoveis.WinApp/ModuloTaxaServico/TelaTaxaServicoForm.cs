@@ -20,6 +20,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloTaxaServico
 
                if (precoDiario.Checked)
                     taxaServico.PlanoDiario = true;
+
                else
                     taxaServico.PlanoDiario = false;
 
@@ -32,18 +33,15 @@ namespace LocadoraAutomoveis.WinApp.ModuloTaxaServico
                txtNome.Text = taxaServico.Nome;
                campoPreco.Value = taxaServico.Preco;
 
-               if (taxaServico != null)
-               {
-                    if (taxaServico.PlanoDiario)
-                         precoDiario.Checked = true;
-                    else
-                         precoFixo.Checked = false;
-               }
+               if (taxaServico.PlanoDiario)
+                    precoDiario.Checked = true;
+               else
+                    precoFixo.Checked = true;
           }
 
           private void btnGravar_Click(object sender, EventArgs e)
           {
-               this.taxaServico = ObterTaxaServico();
+               taxaServico = ObterTaxaServico();
 
                Result resultado = onGravarRegistro(taxaServico);
 
