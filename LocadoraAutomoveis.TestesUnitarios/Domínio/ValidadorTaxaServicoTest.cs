@@ -45,9 +45,9 @@ namespace LocadoraAutomoveis.TestesUnitarios.Domínio
           }
 
           [TestMethod]
-          public void Nome_TaxaOuServico_nao_deve_conter_espacos_brancos()
+          public void Nome_TaxaOuServico_nao_deve_conter_espacos_brancos_antes_do_minimo_caracteres()
           {
-               taxaServico.Nome = "abcdef  ";
+               taxaServico.Nome = "a c";
 
                var resultado = validadorTaxaServico.TestValidate(taxaServico);
 

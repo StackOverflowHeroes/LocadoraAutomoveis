@@ -9,7 +9,7 @@
                        .NotEmpty().WithMessage("'Nome' não pode ser vazio.")
                        .MinimumLength(3).WithMessage("'Nome' deve possuir no mínimo 3 caracteres.")
                        .NaoPodeCaracteresEspeciais()
-                       .Matches(@"\A\S{3,15}\z").WithMessage("'Nome' não pode conter espaços em branco.");
+                       .Matches(@"^[a-zA-Z0-9]{3}").WithMessage("'Nome' não pode conter espaços em branco antes do mínimo.");
 
                RuleFor(x => x.Preco)
                        .NotNull().WithMessage("'Preço' não pode ser nulo.")
