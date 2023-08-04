@@ -11,7 +11,7 @@
                 BackColor = Color.LightGray,
                 Font = font,
                 ForeColor = Color.Black,
-                SelectionBackColor = Color.LightYellow,
+                SelectionBackColor = Color.LightCyan,
                 SelectionForeColor = Color.Black
             };
 
@@ -21,7 +21,7 @@
             {
                 BackColor = Color.White,
                 Font = font,
-                SelectionBackColor = Color.LightYellow,
+                SelectionBackColor = Color.LightCyan,
                 SelectionForeColor = Color.Black
             };
 

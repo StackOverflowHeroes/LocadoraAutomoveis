@@ -20,6 +20,7 @@ namespace LocadoraAutomoveis.TestesIntegracao.ModuloParceiro
 
                repositorioParceiro.SelecionarPorId(parceiro.Id).Should().Be(parceiro);
           }
+
           [TestMethod]
           public void Deve_editar_parceiro()
           {

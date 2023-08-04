@@ -42,6 +42,7 @@
             cadastrosMenuItem = new ToolStripMenuItem();
             parceirosMenuItem = new ToolStripMenuItem();
             grupoToolStripMenuItem = new ToolStripMenuItem();
+            taxasServicosMenuItem = new ToolStripMenuItem();
             painelRegistros = new Panel();
             sRodape.SuspendLayout();
             toolStrip1.SuspendLayout();
@@ -162,6 +163,13 @@
             grupoToolStripMenuItem.Text = "Grupo de automóvel";
             grupoToolStripMenuItem.Click += grupoToolStripMenuItem_Click;
             // 
+            // taxasServicosMenuItem
+            // 
+            taxasServicosMenuItem.Name = "taxasServicosMenuItem";
+            taxasServicosMenuItem.Size = new Size(180, 22);
+            taxasServicosMenuItem.Text = "Taxa e Serviços";
+            taxasServicosMenuItem.Click += taxasServicosMenuItem_Click;
+            // 
             // painelRegistros
             // 
             painelRegistros.Dock = DockStyle.Fill;
@@ -213,5 +221,6 @@
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripMenuItem parceirosMenuItem;
         private ToolStripMenuItem grupoToolStripMenuItem;
-    }
+        private ToolStripMenuItem taxasServicosMenuItem;
+     }
 }

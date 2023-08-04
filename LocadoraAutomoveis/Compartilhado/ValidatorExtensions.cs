@@ -6,5 +6,5 @@
         {
             return ruleBuilder.SetValidator(new NaoPodeCaracteresEspeciaisValidator<T>());
         }
-    }
+     }
 }

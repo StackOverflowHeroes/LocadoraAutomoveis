@@ -2,11 +2,15 @@ using GeradorTestes.Infra.Orm.Compartilhado;
 using LocadoraAutomoveis.Aplicacao.ModuloGrupoAutomovel;
 using LocadoraAutomoveis.Aplicacao.ModuloParceiro;
 using LocadoraAutomoveis.Dominio.ModuloGrupoAutomovel;
+using LocadoraAutomoveis.Aplicacao.ModuloTaxaServico;
 using LocadoraAutomoveis.Dominio.ModuloParceiro;
 using LocadoraAutomoveis.Infra.Orm.ModuloGrupoAutomovel;
+using LocadoraAutomoveis.Dominio.ModuloTaxaServico;
 using LocadoraAutomoveis.Infra.Orm.ModuloParceiro;
 using LocadoraAutomoveis.WinApp.ModuloGrupoAutomovel;
+using LocadoraAutomoveis.Infra.Orm.ModuloTaxaServico;
 using LocadoraAutomoveis.WinApp.ModuloParceiro;
+using LocadoraAutomoveis.WinApp.ModuloTaxaServico;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -55,16 +59,19 @@ namespace LocadoraAutomoveis.WinApp
 
             IRepositorioParceiro repositorioParceiro = new RepositorioParceiroEmOrm(dbContext);
             IRepositorioGrupoAutomovel repositorioGrupoAutomovel = new RepositorioGrupoAutomovelEmOrm(dbContext);
+            IRepositorioTaxaServico repositorioTaxaServico = new RepositorioTaxaServicoEmOrm(dbContext);
 
             ValidadorParceiro validadorParceiro = new ValidadorParceiro();
             ValidadorGrupoAutomovel validadorGrupoAutomovel = new ValidadorGrupoAutomovel();
+            ValidadorTaxaServico validadorTaxaServico = new ValidadorTaxaServico();
 
             ServicoParceiro servicoParceiro = new ServicoParceiro(repositorioParceiro, validadorParceiro);
             ServicoGrupoAutomovel servicoGrupoAutomovel = new ServicoGrupoAutomovel(repositorioGrupoAutomovel, validadorGrupoAutomovel);
-
+            ServicoTaxaServico servicoTaxaServico = new ServicoTaxaServico(repositorioTaxaServico, validadorTaxaServico);
             controladores.Add("ControladorParceiro", new ControladorParceiro(repositorioParceiro, servicoParceiro));
             controladores.Add("ControladorGrupoAutomovel", new ControladorGrupoAutomovel(repositorioGrupoAutomovel, servicoGrupoAutomovel));
-        }
+            controladores.Add("ControladorTaxaServico", new ControladorTaxaServico(repositorioTaxaServico, servicoTaxaServico));
+          }
 
         private void ConfiguracaoInicialTimer()
         {
@@ -189,5 +196,10 @@ namespace LocadoraAutomoveis.WinApp
         {
             ConfigurarTelaPrincipal(controladores["ControladorGrupoAutomovel"]);
         }
-    }
+
+          private void taxasServicosMenuItem_Click(object sender, EventArgs e)
+          {
+               ConfigurarTelaPrincipal(controladores["ControladorTaxaServico"]);
+          }
+     }
 }
