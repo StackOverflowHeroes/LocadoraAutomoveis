@@ -1,89 +1,99 @@
-﻿using LocadoraAutomoveis.Dominio.ModuloParceiro;
+﻿using LocadoraAutomoveis.Dominio.ModuloFuncionario;
+using LocadoraAutomoveis.Dominio.ModuloParceiro;
 using LocadoraAutomoveis.Dominio.ModuloTaxaServico;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 
 namespace LocadoraAutomoveis.Infra.MassaDados
 {
-     public class GeradorMassaDados
-     {
-          IRepositorioParceiro repositorioParceiro;
-          IRepositorioTaxaServico repositorioTaxaServico;
+    public class GeradorMassaDados
+    {
+        IRepositorioParceiro repositorioParceiro;
+        IRepositorioTaxaServico repositorioTaxaServico;
+        IRepositorioFuncionario repositorioFuncionario;
 
-          public GeradorMassaDados(IRepositorioParceiro repositorioParceiro, IRepositorioTaxaServico repositorioTaxaServico)
-          {
-               this.repositorioParceiro = repositorioParceiro;
-               this.repositorioTaxaServico = repositorioTaxaServico;
-          }
+        public GeradorMassaDados(IRepositorioParceiro repositorioParceiro, IRepositorioTaxaServico repositorioTaxaServico, IRepositorioFuncionario repositorioFuncionario)
+        {
+            this.repositorioParceiro = repositorioParceiro;
+            this.repositorioTaxaServico = repositorioTaxaServico;
+            this.repositorioFuncionario = repositorioFuncionario;
+        }
 
-          public void IncrementarDados()
-          {
-               //LimparTabelas();
-               IncrementarDadosParceiros();
-               IncrementarDadosTaxaServico();
-          }
+        public void IncrementarDados()
+        {
+            //LimparTabelas();
+            IncrementarDadosParceiros();
+            IncrementarDadosTaxaServico();
+            //IncrementarDadosFuncionario();
+        }
 
-          public void IncrementarDadosTaxaServico()
-          {
-               TaxaServico ts1 = new TaxaServico(true, "Cadeirinha", 25.50m);
-               TaxaServico ts2 = new TaxaServico(true, "GPS", 20.00m);
-               TaxaServico ts3 = new TaxaServico(false, "Lavação", 10.00m);
-               TaxaServico ts4 = new TaxaServico(false, "Translado", 25.00m);
-               TaxaServico ts5 = new TaxaServico(true, "Seguro", 25.00m);
+        //private void IncrementarDadosFuncionario()
+        //{
+        //    Funcionario f1 = new Funcionario();
+        //}
 
-               List<TaxaServico> taxaServicos = new List<TaxaServico>() { ts1, ts2, ts3, ts4, ts5 };
+        public void IncrementarDadosTaxaServico()
+        {
+            TaxaServico ts1 = new TaxaServico(true, "Cadeirinha", 25.50m);
+            TaxaServico ts2 = new TaxaServico(true, "GPS", 20.00m);
+            TaxaServico ts3 = new TaxaServico(false, "Lavação", 10.00m);
+            TaxaServico ts4 = new TaxaServico(false, "Translado", 25.00m);
+            TaxaServico ts5 = new TaxaServico(true, "Seguro", 25.00m);
 
-               foreach (TaxaServico ts in taxaServicos)
-               {
-                    repositorioTaxaServico.Inserir(ts);
-               }
-          }
+            List<TaxaServico> taxaServicos = new List<TaxaServico>() { ts1, ts2, ts3, ts4, ts5 };
 
-          public void IncrementarDadosParceiros()
-          {
-               Parceiro p1 = new Parceiro("KmDeVantagens");
-               Parceiro p2 = new Parceiro("Mastercard");
-               Parceiro p3 = new Parceiro("Bradesco");
-               Parceiro p4 = new Parceiro("Swan");
-               Parceiro p5 = new Parceiro("Inter");
+            foreach (TaxaServico ts in taxaServicos)
+            {
+                repositorioTaxaServico.Inserir(ts);
+            }
+        }
 
-               List<Parceiro> parceiros = new List<Parceiro>() { p1, p2, p3, p4, p5 };
+        public void IncrementarDadosParceiros()
+        {
+            Parceiro p1 = new Parceiro("KmDeVantagens");
+            Parceiro p2 = new Parceiro("Mastercard");
+            Parceiro p3 = new Parceiro("Bradesco");
+            Parceiro p4 = new Parceiro("Swan");
+            Parceiro p5 = new Parceiro("Inter");
 
-               foreach (Parceiro p in parceiros)
-               {
-                    repositorioParceiro.Inserir(p);
-               }
-          }
+            List<Parceiro> parceiros = new List<Parceiro>() { p1, p2, p3, p4, p5 };
 
-          private string ObterConnectionString()
-          {
-          var configuracao = new ConfigurationBuilder()
-          .SetBasePath(Directory.GetCurrentDirectory())
-          .AddJsonFile("appsettings.json")
-          .Build();
+            foreach (Parceiro p in parceiros)
+            {
+                repositorioParceiro.Inserir(p);
+            }
+        }
 
-          var connectionString = configuracao.GetConnectionString("SqlServer");
-          return connectionString;
-          }
+        private string ObterConnectionString()
+        {
+            var configuracao = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json")
+            .Build();
 
-          public void LimparTabelas()
-          {
-               string? connectionString = ObterConnectionString();
+            var connectionString = configuracao.GetConnectionString("SqlServer");
+            return connectionString;
+        }
 
-               SqlConnection sqlConnection = new SqlConnection(connectionString);
+        public void LimparTabelas()
+        {
+            string? connectionString = ObterConnectionString();
 
-               string sqlLimpezaTabela =
-                   @"
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+
+            string sqlLimpezaTabela =
+                @"
                 DELETE FROM [DBO].[TBPARCEIRO];
-                DELETE FROM [DBO].[TBTAXASERVICO];";
+                DELETE FROM [DBO].[TBTAXASERVICO];
+                DELETE FROM [DBO].[TBFUNCIONARIO];";
 
-               SqlCommand comando = new SqlCommand(sqlLimpezaTabela, sqlConnection);
+            SqlCommand comando = new SqlCommand(sqlLimpezaTabela, sqlConnection);
 
-               sqlConnection.Open();
+            sqlConnection.Open();
 
-               comando.ExecuteNonQuery();
+            comando.ExecuteNonQuery();
 
-               sqlConnection.Close();
-          }
-     }
+            sqlConnection.Close();
+        }
+    }
 }
