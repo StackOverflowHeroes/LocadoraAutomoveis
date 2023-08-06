@@ -22,7 +22,7 @@ namespace LocadoraAutomoveis.Dominio.ModuloCupom
 
             RuleFor(x => x.Parceiro)
                     .NotNull().WithMessage("'Parceiro' deve ser informado.")
-                    .NotEmpty().WithMessage("'Parceiro' não pode ser vazio.")
+                    .NotEmpty().WithMessage("'Parceiro' não pode ser vazio.");
 
         }
 
