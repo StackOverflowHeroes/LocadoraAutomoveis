@@ -20,7 +20,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Domínio.ModuloPlanoCobranca
         }
 
         [TestMethod]
-        public void Nome_grupo_de_automoveis_nao_deve_ser_nulo_ou_vazio()
+        public void Nome_nao_deve_ser_nulo_ou_vazio()
         {
             var resultado = validadorPlanoCobranca.TestValidate(planoCobranca);
 
