@@ -4,6 +4,7 @@ using GeradorTestes.Infra.Orm.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocadoraAutomoveis.Infra.Orm.Migrations
 {
     [DbContext(typeof(GeradorTestesDbContext))]
-    partial class GeradorTestesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230805100513_TBFuncionario")]
+    partial class TBFuncionario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,55 +24,6 @@ namespace LocadoraAutomoveis.Infra.Orm.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("LocadoraAutomoveis.Dominio.ModuloCliente.Cliente", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Bairro")
-                        .IsRequired()
-                        .HasColumnType("varchar(120)");
-
-                    b.Property<string>("Cidade")
-                        .IsRequired()
-                        .HasColumnType("varchar(60)");
-
-                    b.Property<string>("Documento")
-                        .IsRequired()
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("Estado")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<int>("Numero")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Rua")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("Telefone")
-                        .IsRequired()
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<int>("TipoPessoa")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TBCliente", (string)null);
-                });
 
             modelBuilder.Entity("LocadoraAutomoveis.Dominio.ModuloFuncionario.Funcionario", b =>
                 {
@@ -119,37 +73,6 @@ namespace LocadoraAutomoveis.Infra.Orm.Migrations
                     b.ToTable("TBParceiro", (string)null);
                 });
 
-            modelBuilder.Entity("LocadoraAutomoveis.Dominio.ModuloPlanoCobranca.PlanoCobranca", b =>
-            {
-                b.Property<Guid>("Id")
-                    .HasColumnType("uniqueidentifier");
-
-                b.Property<decimal>("Diaria")
-                    .HasColumnType("decimal(18,2)");
-
-                b.Property<int?>("KM_disponivel")
-                    .HasColumnType("int");
-
-                b.Property<string>("Nome")
-                    .IsRequired()
-                    .HasColumnType("varchar(250)");
-
-                b.Property<int>("Plano")
-                    .HasColumnType("int");
-
-                b.Property<decimal?>("Preco_KM")
-                    .HasColumnType("decimal(18, 0)");
-
-                b.Property<Guid>("grupoAutomovelId")
-                    .HasColumnType("uniqueidentifier");
-
-                b.HasKey("Id");
-
-                b.HasIndex("grupoAutomovelId");
-
-                b.ToTable("TBPlanoCobranca", (string)null);
-            });
-
             modelBuilder.Entity("LocadoraAutomoveis.Dominio.ModuloTaxaServico.TaxaServico", b =>
                 {
                     b.Property<Guid>("Id")
@@ -169,8 +92,6 @@ namespace LocadoraAutomoveis.Infra.Orm.Migrations
 
                     b.ToTable("TBTaxaServico", (string)null);
                 });
-
-
 #pragma warning restore 612, 618
         }
     }
