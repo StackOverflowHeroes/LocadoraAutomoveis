@@ -5,10 +5,10 @@ namespace LocadoraAutomoveis.Dominio.ModuloCupom
 {
     public class Cupom : EntidadeBase<Cupom>
     {
-        private string Nome { get; set; }  
-        private decimal Valor { get; set; }
-        private DateTime DataValidade { get; set; }
-        private Parceiro Parceiro { get; set; }
+        public string Nome { get; set; }  
+        public decimal Valor { get; set; }
+        public DateTime DataValidade { get; set; }
+        public Parceiro Parceiro { get; set; }
 
         public Cupom()
         {
