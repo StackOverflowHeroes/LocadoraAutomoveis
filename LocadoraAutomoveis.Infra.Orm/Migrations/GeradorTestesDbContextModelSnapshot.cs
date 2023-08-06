@@ -50,6 +50,37 @@ namespace LocadoraAutomoveis.Infra.Orm.Migrations
                     b.ToTable("TBParceiro", (string)null);
                 });
 
+            modelBuilder.Entity("LocadoraAutomoveis.Dominio.ModuloPlanoCobranca.PlanoCobranca", b =>
+            {
+                b.Property<Guid>("Id")
+                    .HasColumnType("uniqueidentifier");
+
+                b.Property<decimal>("Diaria")
+                    .HasColumnType("decimal(18,2)");
+
+                b.Property<int?>("KM_disponivel")
+                    .HasColumnType("int");
+
+                b.Property<string>("Nome")
+                    .IsRequired()
+                    .HasColumnType("varchar(250)");
+
+                b.Property<int>("Plano")
+                    .HasColumnType("int");
+
+                b.Property<decimal?>("Preco_KM")
+                    .HasColumnType("decimal(18, 0)");
+
+                b.Property<Guid>("grupoAutomovelId")
+                    .HasColumnType("uniqueidentifier");
+
+                b.HasKey("Id");
+
+                b.HasIndex("grupoAutomovelId");
+
+                b.ToTable("TBPlanoCobranca", (string)null);
+            });
+
             modelBuilder.Entity("LocadoraAutomoveis.Dominio.ModuloTaxaServico.TaxaServico", b =>
                 {
                     b.Property<Guid>("Id")
@@ -69,6 +100,8 @@ namespace LocadoraAutomoveis.Infra.Orm.Migrations
 
                     b.ToTable("TBTaxaServico", (string)null);
                 });
+
+
 #pragma warning restore 612, 618
         }
     }

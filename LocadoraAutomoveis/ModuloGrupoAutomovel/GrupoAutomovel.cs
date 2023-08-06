@@ -1,9 +1,12 @@
 ﻿
+using LocadoraAutomoveis.Dominio.ModuloPlanoCobranca;
+
 namespace LocadoraAutomoveis.Dominio.ModuloGrupoAutomovel
 {
     public class GrupoAutomovel : EntidadeBase<GrupoAutomovel>
     {
         public string Nome { get; set; }
+        public List<PlanoCobranca> Plano { get; set; }
 
         public GrupoAutomovel()
         {
