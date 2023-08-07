@@ -59,6 +59,7 @@
             // 
             // ComboBoxParceiro
             // 
+            ComboBoxParceiro.DisplayMember = "Nome";
             ComboBoxParceiro.FormattingEnabled = true;
             ComboBoxParceiro.Location = new Point(50, 239);
             ComboBoxParceiro.Name = "ComboBoxParceiro";

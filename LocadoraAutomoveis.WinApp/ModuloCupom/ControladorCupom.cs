@@ -39,13 +39,66 @@ namespace LocadoraAutomoveis.WinApp.ModuloCupom
             }
         }
 
-        public override void Excluir()
-        {
-        }
-
         public override void Editar()
         {
+            Guid id = tabelaCupom.ObtemIdSelecionado();
+            Cupom cupomSelecionado = repositorioCupom.SelecionarPorId(id);
+
+            if (cupomSelecionado == null)
+            {
+                MessageBox.Show("Selecione um cupom primeiro.",
+                "Edição de cupom", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            TelaCupomForm telaCupom = new TelaCupomForm();
+
+            telaCupom.PopularComboBox(repositorioParceiro.SelecionarTodos());
+
+            telaCupom.onGravarRegistro += servicoCupom.Editar;
+
+            telaCupom.ConfigurarTelaCupom(cupomSelecionado);
+
+            DialogResult resultado = telaCupom.ShowDialog();
+
+            if (resultado == DialogResult.OK)
+            {
+                CarregarRegistros();
+            }
         }
+
+        public override void Excluir()
+        {
+            Guid id = tabelaCupom.ObtemIdSelecionado();
+
+            Cupom cupomSelecionado = repositorioCupom.SelecionarPorId(id);
+
+            if (cupomSelecionado == null)
+            {
+                MessageBox.Show("Selecione um cupom primeiro primeiro.",
+                "Exclusão de cupom", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            DialogResult opcaoEscolhida = MessageBox.Show("Deseja realmente excluir o cupom?",
+               "Exclusão de cupom", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                Result resultado = servicoCupom.Excluir(cupomSelecionado);
+
+                if (resultado.IsFailed)
+                {
+                    MessageBox.Show(resultado.Errors[0].Message, "Exclusão de cupom",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    return;
+                }
+
+                CarregarRegistros();
+            }
+        }
+
 
         public override void CarregarRegistros()
         {

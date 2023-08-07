@@ -22,7 +22,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloCupom
             NumericInputValor.Value = cupom.Valor;
             DataValidade.Value = DateTime.Now;
             ComboBoxParceiro.SelectedItem = cupom.Parceiro;
-            
+
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
