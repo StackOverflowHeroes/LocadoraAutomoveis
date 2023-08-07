@@ -2,12 +2,12 @@
 {
      public class ConfiguracaoToolboxParceiro : ConfiguracaoToolboxBase
      {
-          public override string TipoCadastro => "Cadastro de Parceiros";
+          public override string TipoCadastro => "Cadastro de parceiros";
 
-          public override string TooltipInserir => "Inserir novo Parceiro";
+          public override string TooltipInserir => "Inserir novo parceiro";
 
-          public override string TooltipEditar => "Editar Parceiro existente";
+          public override string TooltipEditar => "Editar parceiro existente";
 
-          public override string TooltipExcluir => "Excluir Parceiro existente";
+          public override string TooltipExcluir => "Excluir parceiro existente";
      }
 }

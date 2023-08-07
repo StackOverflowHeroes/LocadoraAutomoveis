@@ -3,7 +3,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloGrupoAutomovel
 {
     internal class ConfiguracaoToolBoxGrupoAutomovel : ConfiguracaoToolboxBase
     {
-        public override string TipoCadastro => "Cadastro grupo de automóveis";
+        public override string TipoCadastro => "Cadastro de grupos de automóveis";
 
         public override string TooltipInserir => "Inserir novo grupo de automóveis";
 

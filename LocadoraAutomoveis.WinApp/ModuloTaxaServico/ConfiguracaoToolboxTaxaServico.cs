@@ -2,12 +2,12 @@
 {
      public class ConfiguracaoToolboxTaxaServico : ConfiguracaoToolboxBase
      {
-          public override string TipoCadastro => "Cadastro de Taxa ou Serviços";
+          public override string TipoCadastro => "Cadastro de taxas ou serviços";
 
-          public override string TooltipInserir => "Inserir nova Taxa ou Serviço";
+          public override string TooltipInserir => "Inserir nova taxa ou serviço";
 
-          public override string TooltipEditar => "Editar Taxa ou Serviço existente";
+          public override string TooltipEditar => "Editar taxa ou serviço existente";
 
-          public override string TooltipExcluir => "Excluir Taxa ou Serviço existente";
+          public override string TooltipExcluir => "Excluir taxa ou serviço existente";
      }
 }
