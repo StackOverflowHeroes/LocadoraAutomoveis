@@ -26,13 +26,13 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação
             repositorioClienteMoq = new Mock<IRepositorioCliente>();
             validadorClienteMoq = new Mock<IValidadorCliente>();
             servicoCliente = new ServicoCliente(repositorioClienteMoq.Object, validadorClienteMoq.Object);
-            cliente = new Cliente("Pedro", "pedro@gmail.com", "(48) 91234-1234", Tipo.CPF, "123.123.321.10", 
+            cliente = new Cliente("Pedro", "pedro@gmail.com", "(48) 91234-1234", Tipo.Fisica, "123.123.321.10", 
                 "Santa Catarina", "Florianópolis", "Santa Mônica", "Rua Velha", 103);
         }
         [TestMethod]
         public void Deve_inserir_cliente_caso_valido()
         {
-            cliente = new Cliente("Pedro", "pedro@gmail.com", "(48) 91234-1234", Tipo.CPF, "123.123.321.10",
+            cliente = new Cliente("Pedro", "pedro@gmail.com", "(48) 91234-1234", Tipo.Fisica, "123.123.321.10",
                 "Santa Catarina", "Florianópolis", "Santa Mônica", "Rua Velha", 103);
             Result resultado = servicoCliente.Inserir(cliente);
 
@@ -62,7 +62,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação
             repositorioClienteMoq.Setup(x => x.SelecionarPorNome(nomeCliente))
                 .Returns(() =>
                 {
-                    return new Cliente("Pedro", "pedro@gmail.com", "(48) 91234-1234", Tipo.CPF, "123.123.321.10",
+                    return new Cliente("Pedro", "pedro@gmail.com", "(48) 91234-1234", Tipo.Fisica, "123.123.321.10",
                 "Santa Catarina", "Florianópolis", "Santa Mônica", "Rua Velha", 103);
                 });
             var resultado = servicoCliente.Inserir(cliente);
@@ -88,7 +88,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação
         [TestMethod]
         public void Deve_editar_cliente_caso_valido()
         {
-            cliente = new Cliente("Pedro", "pedro@gmail.com", "(48) 91234-1234", Tipo.CPF, "123.123.321.10",
+            cliente = new Cliente("Pedro", "pedro@gmail.com", "(48) 91234-1234", Tipo.Fisica, "123.123.321.10",
                 "Santa Catarina", "Florianópolis", "Santa Mônica", "Rua Velha", 103);
 
             Result resultado = servicoCliente.Editar(cliente);
@@ -121,11 +121,11 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação
             repositorioClienteMoq.Setup(x => x.SelecionarPorNome("Jonas"))
                  .Returns(() =>
                  {
-                     return new Cliente(id, "Pedro", "pedro@gmail.com", "(48) 91234-1234", Tipo.CPF, "123.123.321.10",
+                     return new Cliente(id, "Pedro", "pedro@gmail.com", "(48) 91234-1234", Tipo.Fisica, "123.123.321.10",
                 "Santa Catarina", "Florianópolis", "Santa Mônica", "Rua Velha", 103);
                  });
 
-            Cliente outroCliente = new Cliente(id, "Pedro", "pedro@gmail.com", "(48) 91234-1234", Tipo.CPF, "123.123.321.10",
+            Cliente outroCliente = new Cliente(id, "Pedro", "pedro@gmail.com", "(48) 91234-1234", Tipo.Fisica, "123.123.321.10",
                 "Santa Catarina", "Florianópolis", "Santa Mônica", "Rua Velha", 103);
 
             var resultado = servicoCliente.Editar(outroCliente);
@@ -141,11 +141,11 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação
             repositorioClienteMoq.Setup(x => x.SelecionarPorNome("Pedro"))
                  .Returns(() =>
                  {
-                     return new Cliente("Pedro", "pedro@gmail.com", "(48) 91234-1234", Tipo.CPF, "123.123.321.10",
+                     return new Cliente("Pedro", "pedro@gmail.com", "(48) 91234-1234", Tipo.Fisica, "123.123.321.10",
                 "Santa Catarina", "Florianópolis", "Santa Mônica", "Rua Velha", 103);
                  });
 
-            Cliente novoCliente = new Cliente("Pedro", "pedro@gmail.com", "(48) 91234-1234", Tipo.CPF, "123.123.321.10",
+            Cliente novoCliente = new Cliente("Pedro", "pedro@gmail.com", "(48) 91234-1234", Tipo.Fisica, "123.123.321.10",
                 "Santa Catarina", "Florianópolis", "Santa Mônica", "Rua Velha", 103);
 
             var resultado = servicoCliente.Editar(novoCliente);
@@ -173,7 +173,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação
         [TestMethod]
         public void Deve_excluir_cliente_caso_esteja_registrado()
         {
-            var cliente = new Cliente("Pedro", "pedro@gmail.com", "(48) 91234-1234", Tipo.CPF, "123.123.321.10",
+            var cliente = new Cliente("Pedro", "pedro@gmail.com", "(48) 91234-1234", Tipo.Fisica, "123.123.321.10",
                 "Santa Catarina", "Florianópolis", "Santa Mônica", "Rua Velha", 103);
 
             repositorioClienteMoq.Setup(x => x.Existe(cliente))
@@ -191,7 +191,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação
         [TestMethod]
         public void Nao_deve_excluir_cliente_caso_nao_esteja_cadastrado()
         {
-            var cliente = new Cliente("Pedro", "pedro@gmail.com", "(48) 91234-1234", Tipo.CPF, "123.123.321.10",
+            var cliente = new Cliente("Pedro", "pedro@gmail.com", "(48) 91234-1234", Tipo.Fisica, "123.123.321.10",
                 "Santa Catarina", "Florianópolis", "Santa Mônica", "Rua Velha", 103);
 
             repositorioClienteMoq.Setup(x => x.Existe(cliente))
@@ -209,7 +209,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação
         [TestMethod]
         public void Deve_tratar_erro_caso_ocorra_falha_ao_excluir_cliente()
         {
-            var cliente = new Cliente("Pedro", "pedro@gmail.com", "(48) 91234-1234", Tipo.CPF, "123.123.321.10",
+            var cliente = new Cliente("Pedro", "pedro@gmail.com", "(48) 91234-1234", Tipo.Fisica, "123.123.321.10",
                 "Santa Catarina", "Florianópolis", "Santa Mônica", "Rua Velha", 103);
 
             repositorioClienteMoq.Setup(x => x.Existe(cliente))

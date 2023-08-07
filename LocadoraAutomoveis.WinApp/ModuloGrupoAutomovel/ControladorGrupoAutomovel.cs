@@ -1,8 +1,6 @@
 ﻿
 using LocadoraAutomoveis.Aplicacao.ModuloGrupoAutomovel;
-using LocadoraAutomoveis.Aplicacao.ModuloParceiro;
 using LocadoraAutomoveis.Dominio.ModuloGrupoAutomovel;
-using LocadoraAutomoveis.Dominio.ModuloParceiro;
 
 namespace LocadoraAutomoveis.WinApp.ModuloGrupoAutomovel
 {
@@ -40,13 +38,13 @@ namespace LocadoraAutomoveis.WinApp.ModuloGrupoAutomovel
             if (grupoAutomovelSelecionado == null)
             {
                 MessageBox.Show("Selecione um grupo de automóveis primeiro.",
-                "Edição de Grupo de Automóveis", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                "Edição de grupo de automóveis", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             TelaGrupoAutomovelForm telaGrupoAutomovel = new TelaGrupoAutomovelForm();
 
-               telaGrupoAutomovel.Text = "Edição de Grupo de Automóveis";
+            telaGrupoAutomovel.Text = "Edição de grupo de automóveis";
             telaGrupoAutomovel.onGravarRegistro += servicoGrupoAutomovel.Editar;
 
             telaGrupoAutomovel.ConfigurarTelaGrupoAutomovel(grupoAutomovelSelecionado);
@@ -67,7 +65,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloGrupoAutomovel
             if (grupoAutomovelSelecionado == null)
             {
                 MessageBox.Show("Selecione um grupo de automóveis primeiro.",
-                "Exclusão de Grupo de Automóveis", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                "Exclusão de grupo de automóveis", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -80,7 +78,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloGrupoAutomovel
 
                 if (resultado.IsFailed)
                 {
-                    MessageBox.Show(resultado.Errors[0].Message, "Exclusão de Grupo de Automóveis",
+                    MessageBox.Show(resultado.Errors[0].Message, "Exclusão de grupo de automóveis",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     return;
