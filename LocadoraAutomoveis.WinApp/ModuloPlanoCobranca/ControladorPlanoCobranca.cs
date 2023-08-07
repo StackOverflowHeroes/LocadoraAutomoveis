@@ -102,7 +102,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloPlanoCobranca
 
             tabelaPlanoCobranca.AtualizarRegistros(planoCobrancas);
 
-            mensagemRodape = string.Format("Visualizando {0} planos de cobrança", planoCobrancas.Count);
+            mensagemRodape = string.Format("Visualizando {0} plano{1} de cobrança{1}", planoCobrancas.Count, planoCobrancas.Count == 1 ? "" : "s");
 
             TelaPrincipalForm.Instancia.AtualizarRodape(mensagemRodape, TipoStatusEnum.Visualizando);
         }

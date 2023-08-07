@@ -72,17 +72,17 @@ namespace LocadoraAutomoveis.WinApp.ModuloPlanoCobranca
         private void ComboBoxTipoPlano_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            if ((FormasCobrancasEnum)ComboBoxTipoPlano.SelectedItem == FormasCobrancasEnum.diario)
+            if ((FormasCobrancasEnum)ComboBoxTipoPlano.SelectedItem == FormasCobrancasEnum.Diario)
             {
                 NumericInputPrecoKM.Enabled = true;
                 NumericInputKmDisponiveis.Enabled = false;
             }
-            if ((FormasCobrancasEnum)ComboBoxTipoPlano.SelectedItem == FormasCobrancasEnum.controlado)
+            if ((FormasCobrancasEnum)ComboBoxTipoPlano.SelectedItem == FormasCobrancasEnum.Controlado)
             {
                 NumericInputPrecoKM.Enabled = true;
                 NumericInputKmDisponiveis.Enabled = true;
             }
-            if ((FormasCobrancasEnum)ComboBoxTipoPlano.SelectedItem == FormasCobrancasEnum.livre)
+            if ((FormasCobrancasEnum)ComboBoxTipoPlano.SelectedItem == FormasCobrancasEnum.Livre)
             {
                 NumericInputPrecoKM.Enabled = false;
                 NumericInputKmDisponiveis.Enabled = false;

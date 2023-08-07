@@ -3,6 +3,6 @@ namespace LocadoraAutomoveis.Dominio.ModuloPlanoCobranca
 {
     public enum FormasCobrancasEnum
     {
-        diario, controlado, livre
+        Diario, Controlado, Livre
     }
 }

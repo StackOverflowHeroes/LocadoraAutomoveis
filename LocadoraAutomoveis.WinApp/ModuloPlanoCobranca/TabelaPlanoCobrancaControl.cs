@@ -21,13 +21,13 @@ namespace LocadoraAutomoveis.WinApp.ModuloPlanoCobranca
 
                 new DataGridViewTextBoxColumn { Name = "Nome", HeaderText = "Nome", FillWeight=85F, Visible=false},
 
-                new DataGridViewTextBoxColumn { Name = "Diaria", HeaderText = "Valor dia", FillWeight=85F },
+                new DataGridViewTextBoxColumn { Name = "Diaria", HeaderText = "Valor Diária", FillWeight=85F },
 
                 new DataGridViewTextBoxColumn { Name = "Preco_KM", HeaderText = "Preço por KM", FillWeight=85F },
 
-                new DataGridViewTextBoxColumn { Name = "KM_disponivel", HeaderText = "KM disponíveis", FillWeight=85F },
+                new DataGridViewTextBoxColumn { Name = "KM_disponivel", HeaderText = "KM Disponíveis", FillWeight=85F },
 
-                new DataGridViewTextBoxColumn { Name = "Plano", HeaderText = "Plano selecionado", FillWeight=85F },
+                new DataGridViewTextBoxColumn { Name = "Plano", HeaderText = "Plano Selecionado", FillWeight=85F },
 
             };
 
