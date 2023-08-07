@@ -7,12 +7,6 @@ namespace LocadoraAutomoveis.Dominio.ModuloPlanoCobranca
     {
         public ValidadorPlanoCobranca()
         {
-            //RuleFor(x => x.Nome)
-            //        .NotNull().WithMessage("'Nome' deve ser informado.")
-            //        .NotEmpty().WithMessage("'Nome' não pode ser vazio.")
-            //        .MinimumLength(2).WithMessage("'Nome' deve possuir no mínimo 2 caracteres.")
-            //        .NaoPodeCaracteresEspeciais();
-
             RuleFor(x => x.Diaria)
                     .NotNull().WithMessage("'Diária' deve ser informado")
                     .NotEmpty().WithMessage("'Diária' não pode ser vazio.")

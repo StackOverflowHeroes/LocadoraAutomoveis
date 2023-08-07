@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using LocadoraAutomoveis.Dominio.ModuloPlanoCobranca;
 using LocadoraAutomoveis.Infra.Orm.ModuloPlanoCobranca;
+using LocadoraAutomoveis.Dominio.ModuloCupom;
+using LocadoraAutomoveis.Infra.Orm.ModuloCupom;
 
 namespace LocadoraAutomoveis.TestesIntegracao.Compartilhado
 {
@@ -20,6 +22,7 @@ namespace LocadoraAutomoveis.TestesIntegracao.Compartilhado
         protected IRepositorioParceiro repositorioParceiro;
         protected IRepositorioGrupoAutomovel repositorioGrupoAutomovel;
         protected IRepositorioPlanoCobranca repositorioPlanoCobranca;
+        protected IRepositorioCupom repositorioCupom;
 
         protected IRepositorioTaxaServico repositorioTaxaServico;
         public TestesIntegracaoBase()
@@ -38,10 +41,12 @@ namespace LocadoraAutomoveis.TestesIntegracao.Compartilhado
             repositorioTaxaServico = new RepositorioTaxaServicoEmOrm(dbContext);
             repositorioPlanoCobranca = new RepositorioPlanoCobrancaEmOrm(dbContext);
             repositorioGrupoAutomovel = new RepositorioGrupoAutomovelEmOrm(dbContext);
+            repositorioCupom = new RepositorioCupomEmOrm(dbContext);
 
             BuilderSetup.SetCreatePersistenceMethod<Parceiro>(repositorioParceiro.Inserir);
             BuilderSetup.SetCreatePersistenceMethod<GrupoAutomovel>(repositorioGrupoAutomovel.Inserir);
             BuilderSetup.SetCreatePersistenceMethod<PlanoCobranca>(repositorioPlanoCobranca.Inserir);
+            BuilderSetup.SetCreatePersistenceMethod<Cupom>(repositorioCupom.Inserir);
 
             BuilderSetup.SetCreatePersistenceMethod<TaxaServico>(repositorioTaxaServico.Inserir);
 
@@ -65,11 +70,12 @@ namespace LocadoraAutomoveis.TestesIntegracao.Compartilhado
             SqlConnection sqlConnection = new SqlConnection(connectionString);
 
             string sqlLimpezaTabela =
-                @"               
+                @"         
+                DELETE FROM [DBO].[TBCUPOM];
                 DELETE FROM [DBO].[TBPARCEIRO];
                 DELETE FROM [DBO].[TBTAXASERVICO];
-                DELETE FROM [DBO].[TBGRUPOAUTOMOVEL];
                 DELETE FROM [DBO].[TBPLANOCOBRANCA];
+                DELETE FROM [DBO].[TBGRUPOAUTOMOVEL];
                 ";
 
             SqlCommand comando = new SqlCommand(sqlLimpezaTabela, sqlConnection);
