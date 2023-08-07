@@ -17,6 +17,10 @@ using LocadoraAutomoveis.Dominio.ModuloPlanoCobranca;
 using LocadoraAutomoveis.Infra.Orm.ModuloPlanoCobranca;
 using LocadoraAutomoveis.Aplicacao.ModuloPlanoCobranca;
 using LocadoraAutomoveis.WinApp.ModuloPlanoCobranca;
+using LocadoraAutomoveis.Dominio.ModuloCupom;
+using LocadoraAutomoveis.Infra.Orm.ModuloCupom;
+using LocadoraAutomoveis.Aplicacao.ModuloCupom;
+using LocadoraAutomoveis.WinApp.ModuloCupom;
 
 namespace LocadoraAutomoveis.WinApp
 {
@@ -65,22 +69,26 @@ namespace LocadoraAutomoveis.WinApp
             IRepositorioGrupoAutomovel repositorioGrupoAutomovel = new RepositorioGrupoAutomovelEmOrm(dbContext);
             IRepositorioTaxaServico repositorioTaxaServico = new RepositorioTaxaServicoEmOrm(dbContext);
             IRepositorioPlanoCobranca repositorioPlanoCobranca = new RepositorioPlanoCobrancaEmOrm(dbContext);
+            IRepositorioCupom repositorioCupom = new RepositorioCupomEmOrm(dbContext);
 
             ValidadorParceiro validadorParceiro = new ValidadorParceiro();
             ValidadorGrupoAutomovel validadorGrupoAutomovel = new ValidadorGrupoAutomovel();
             ValidadorTaxaServico validadorTaxaServico = new ValidadorTaxaServico();
             ValidadorPlanoCobranca validadorPlanoCobranca = new ValidadorPlanoCobranca();
+            ValidadorCupom validadorCupom = new ValidadorCupom();
 
             ServicoParceiro servicoParceiro = new ServicoParceiro(repositorioParceiro, validadorParceiro);
             ServicoGrupoAutomovel servicoGrupoAutomovel = new ServicoGrupoAutomovel(repositorioGrupoAutomovel, validadorGrupoAutomovel);
             ServicoTaxaServico servicoTaxaServico = new ServicoTaxaServico(repositorioTaxaServico, validadorTaxaServico);
             ServicoPlanoCobranca servicoPlanoCobranca = new ServicoPlanoCobranca(repositorioPlanoCobranca, validadorPlanoCobranca);
+            ServicoCupom servicoCupom = new ServicoCupom(repositorioCupom, validadorCupom);
 
 
             controladores.Add("ControladorParceiro", new ControladorParceiro(repositorioParceiro, servicoParceiro));
             controladores.Add("ControladorGrupoAutomovel", new ControladorGrupoAutomovel(repositorioGrupoAutomovel, servicoGrupoAutomovel));
             controladores.Add("ControladorTaxaServico", new ControladorTaxaServico(repositorioTaxaServico, servicoTaxaServico));
             controladores.Add("ControladorPlanoCobranca", new ControladorPlanoCobranca(repositorioPlanoCobranca, servicoPlanoCobranca, repositorioGrupoAutomovel));
+            controladores.Add("ControladorCupom", new ControladorCupom(repositorioCupom, repositorioParceiro, servicoCupom));
         }
 
         private void ConfiguracaoInicialTimer()
@@ -215,6 +223,11 @@ namespace LocadoraAutomoveis.WinApp
         private void planosDeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(controladores["ControladorPlanoCobranca"]);
+        }
+
+        private void cupomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal(controladores["ControladorCupom"]);
         }
     }
 }

@@ -14,13 +14,13 @@ namespace LocadoraAutomoveis.WinApp.ModuloCupom
             this.ConfigurarDialog();
         }
 
-        public void ConfigurarTelaGrupoAutomovel(Cupom cupom)
+        public void ConfigurarTelaCupom(Cupom cupom)
         {
             this.Cupom = cupom;
 
             TextBoxNome.Text = cupom.Nome;
             NumericInputValor.Value = cupom.Valor;
-            DataValidade.Value = cupom.DataValidade;
+            DataValidade.Value = DateTime.Now;
             ComboBoxParceiro.SelectedItem = cupom.Parceiro;
             
         }

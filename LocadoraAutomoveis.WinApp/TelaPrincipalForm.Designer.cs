@@ -43,8 +43,9 @@
             parceirosMenuItem = new ToolStripMenuItem();
             grupoToolStripMenuItem = new ToolStripMenuItem();
             taxaServicoMenuItem = new ToolStripMenuItem();
-            painelRegistros = new Panel();
             planosDeToolStripMenuItem = new ToolStripMenuItem();
+            painelRegistros = new Panel();
+            cupomToolStripMenuItem = new ToolStripMenuItem();
             sRodape.SuspendLayout();
             toolStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -152,6 +153,7 @@
             // 
             // parceirosMenuItem
             // 
+            parceirosMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cupomToolStripMenuItem });
             parceirosMenuItem.Name = "parceirosMenuItem";
             parceirosMenuItem.Size = new Size(229, 26);
             parceirosMenuItem.Text = "Parceiros";
@@ -171,6 +173,13 @@
             taxaServicoMenuItem.Text = "Taxa ou Serviços";
             taxaServicoMenuItem.Click += taxaServicoMenuItem_Click;
             // 
+            // planosDeToolStripMenuItem
+            // 
+            planosDeToolStripMenuItem.Name = "planosDeToolStripMenuItem";
+            planosDeToolStripMenuItem.Size = new Size(229, 26);
+            planosDeToolStripMenuItem.Text = "Planos de cobrança";
+            planosDeToolStripMenuItem.Click += planosDeToolStripMenuItem_Click;
+            // 
             // painelRegistros
             // 
             painelRegistros.Dock = DockStyle.Fill;
@@ -180,12 +189,12 @@
             painelRegistros.Size = new Size(953, 451);
             painelRegistros.TabIndex = 3;
             // 
-            // planosDeToolStripMenuItem
+            // cupomToolStripMenuItem
             // 
-            planosDeToolStripMenuItem.Name = "planosDeToolStripMenuItem";
-            planosDeToolStripMenuItem.Size = new Size(229, 26);
-            planosDeToolStripMenuItem.Text = "Planos de cobrança";
-            planosDeToolStripMenuItem.Click += planosDeToolStripMenuItem_Click;
+            cupomToolStripMenuItem.Name = "cupomToolStripMenuItem";
+            cupomToolStripMenuItem.Size = new Size(224, 26);
+            cupomToolStripMenuItem.Text = "Cupom";
+            cupomToolStripMenuItem.Click += cupomToolStripMenuItem_Click;
             // 
             // TelaPrincipalForm
             // 
@@ -231,5 +240,6 @@
         private ToolStripMenuItem grupoToolStripMenuItem;
         private ToolStripMenuItem taxaServicoMenuItem;
         private ToolStripMenuItem planosDeToolStripMenuItem;
+        private ToolStripMenuItem cupomToolStripMenuItem;
     }
 }
