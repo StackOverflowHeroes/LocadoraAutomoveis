@@ -13,32 +13,38 @@ namespace LocadoraAutomoveis.TestesIntegracao.ModuloPlanoCobranca
         [TestMethod]
         public void Deve_inserir_registro()
         {
-
+            var grupoAutomovel = Builder<GrupoAutomovel>.CreateNew().Persist();
             var planoCobranca = Builder<PlanoCobranca>.CreateNew().Build();
+            planoCobranca.grupoAutomovel = grupoAutomovel;
 
             repositorioPlanoCobranca.Inserir(planoCobranca);
 
-            repositorioGrupoAutomovel.SelecionarPorId(planoCobranca.Id).Should().Be(planoCobranca);
+            var x = repositorioPlanoCobranca.SelecionarPorId(planoCobranca.Id);
+
+            x.Should().Be(planoCobranca);
         }
 
         [TestMethod]
         public void Deve_editar_registro()
         {
-            var planoCobrancaId = Builder<PlanoCobranca>.CreateNew().Persist().Id;
+            var grupoAutomovel = Builder<GrupoAutomovel>.CreateNew().Persist();
+            var planoCobrancaId = Builder<PlanoCobranca>.CreateNew().With(x => x.grupoAutomovel = grupoAutomovel).Persist().Id;
+
 
             var planoCobranca = repositorioPlanoCobranca.SelecionarPorId(planoCobrancaId);
             planoCobranca.Nome = "novoPlano";
 
             repositorioPlanoCobranca.Editar(planoCobranca);
 
-            repositorioGrupoAutomovel.SelecionarPorId(planoCobranca.Id)
+            repositorioPlanoCobranca.SelecionarPorId(planoCobranca.Id)
                 .Should().Be(planoCobranca);
         }
 
         [TestMethod]
         public void Deve_excluir_grupo_registro()
         {
-            var planoCobranca = Builder<PlanoCobranca>.CreateNew().Persist();
+            var grupoAutomovel = Builder<GrupoAutomovel>.CreateNew().Persist();
+            var planoCobranca = Builder<PlanoCobranca>.CreateNew().With(x => x.grupoAutomovel = grupoAutomovel).Persist();
 
             repositorioPlanoCobranca.Excluir(planoCobranca);
 
@@ -48,8 +54,10 @@ namespace LocadoraAutomoveis.TestesIntegracao.ModuloPlanoCobranca
         [TestMethod]
         public void Deve_selecionar_todos_registros()
         {
-            var p1 = Builder<PlanoCobranca>.CreateNew().With(x => x.Nome = "plano1").Persist();
-            var p2 = Builder<PlanoCobranca>.CreateNew().With(x => x.Nome = "plano2").Persist();
+            var grupoAutomovel = Builder<GrupoAutomovel>.CreateNew().Persist();
+
+            var p1 = Builder<PlanoCobranca>.CreateNew().With(x => x.Nome = "plano1").With(x => x.grupoAutomovel = grupoAutomovel).Persist();
+            var p2 = Builder<PlanoCobranca>.CreateNew().With(x => x.Nome = "plano2").With(x => x.grupoAutomovel = grupoAutomovel).Persist();
 
             var planoCobrancas = repositorioPlanoCobranca.SelecionarTodos();
 
@@ -60,7 +68,9 @@ namespace LocadoraAutomoveis.TestesIntegracao.ModuloPlanoCobranca
         [TestMethod]
         public void Deve_selecionar_registro_por_nome()
         {
-            var planoCobranca = Builder<PlanoCobranca>.CreateNew().Persist();
+            var grupoAutomovel = Builder<GrupoAutomovel>.CreateNew().Persist();
+
+            var planoCobranca = Builder<PlanoCobranca>.CreateNew().With(x => x.grupoAutomovel = grupoAutomovel).Persist();
 
             var grupoAutomovelEncontrados = repositorioPlanoCobranca.SelecionarPorNome(planoCobranca.Nome);
 
@@ -71,7 +81,8 @@ namespace LocadoraAutomoveis.TestesIntegracao.ModuloPlanoCobranca
 
         public void Deve_selecionar_registro_por_id()
         {
-            var planoCobranca = Builder<PlanoCobranca>.CreateNew().Persist();
+            var grupoAutomovel = Builder<GrupoAutomovel>.CreateNew().Persist();
+            var planoCobranca = Builder<PlanoCobranca>.CreateNew().With(x => x.grupoAutomovel = grupoAutomovel).Persist();
 
             var planoCobrancaEncontrado = repositorioPlanoCobranca.SelecionarPorId(planoCobranca.Id);
 
