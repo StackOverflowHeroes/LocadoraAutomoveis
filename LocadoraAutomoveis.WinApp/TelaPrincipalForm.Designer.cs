@@ -43,8 +43,9 @@
             parceirosMenuItem = new ToolStripMenuItem();
             grupoToolStripMenuItem = new ToolStripMenuItem();
             taxaServicoMenuItem = new ToolStripMenuItem();
-            painelRegistros = new Panel();
             planosDeToolStripMenuItem = new ToolStripMenuItem();
+            painelRegistros = new Panel();
+            funcionárioToolStripMenuItem = new ToolStripMenuItem();
             sRodape.SuspendLayout();
             toolStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -54,10 +55,9 @@
             // 
             sRodape.ImageScalingSize = new Size(20, 20);
             sRodape.Items.AddRange(new ToolStripItem[] { textoRodape });
-            sRodape.Location = new Point(0, 522);
+            sRodape.Location = new Point(0, 389);
             sRodape.Name = "sRodape";
-            sRodape.Padding = new Padding(1, 0, 16, 0);
-            sRodape.Size = new Size(953, 26);
+            sRodape.Size = new Size(834, 22);
             sRodape.TabIndex = 0;
             sRodape.Text = "statusStrip1";
             // 
@@ -65,16 +65,16 @@
             // 
             textoRodape.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             textoRodape.Name = "textoRodape";
-            textoRodape.Size = new Size(53, 20);
+            textoRodape.Size = new Size(42, 17);
             textoRodape.Text = "Status";
             // 
             // toolStrip1
             // 
             toolStrip1.ImageScalingSize = new Size(20, 20);
             toolStrip1.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnExcluir, toolStripSeparator1, textoTipoCadastro });
-            toolStrip1.Location = new Point(0, 30);
+            toolStrip1.Location = new Point(0, 24);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(953, 41);
+            toolStrip1.Size = new Size(834, 41);
             toolStrip1.TabIndex = 1;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -129,7 +129,7 @@
             // 
             textoTipoCadastro.Font = new Font("Comic Sans MS", 9F, FontStyle.Bold, GraphicsUnit.Point);
             textoTipoCadastro.Name = "textoTipoCadastro";
-            textoTipoCadastro.Size = new Size(110, 38);
+            textoTipoCadastro.Size = new Size(87, 38);
             textoTipoCadastro.Text = "Tipo Cadastro";
             // 
             // menuStrip1
@@ -138,66 +138,70 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { cadastrosMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(7, 3, 0, 3);
-            menuStrip1.Size = new Size(953, 30);
+            menuStrip1.Size = new Size(834, 24);
             menuStrip1.TabIndex = 2;
             menuStrip1.Text = "menuStrip1";
             // 
             // cadastrosMenuItem
             // 
-            cadastrosMenuItem.DropDownItems.AddRange(new ToolStripItem[] { parceirosMenuItem, grupoToolStripMenuItem, taxaServicoMenuItem, planosDeToolStripMenuItem });
+            cadastrosMenuItem.DropDownItems.AddRange(new ToolStripItem[] { parceirosMenuItem, grupoToolStripMenuItem, taxaServicoMenuItem, planosDeToolStripMenuItem, funcionárioToolStripMenuItem });
             cadastrosMenuItem.Name = "cadastrosMenuItem";
-            cadastrosMenuItem.Size = new Size(88, 24);
+            cadastrosMenuItem.Size = new Size(71, 20);
             cadastrosMenuItem.Text = "Cadastros";
             // 
             // parceirosMenuItem
             // 
             parceirosMenuItem.Name = "parceirosMenuItem";
-            parceirosMenuItem.Size = new Size(229, 26);
+            parceirosMenuItem.Size = new Size(183, 22);
             parceirosMenuItem.Text = "Parceiros";
             parceirosMenuItem.Click += parceirosMenuItem_Click;
             // 
             // grupoToolStripMenuItem
             // 
             grupoToolStripMenuItem.Name = "grupoToolStripMenuItem";
-            grupoToolStripMenuItem.Size = new Size(229, 26);
+            grupoToolStripMenuItem.Size = new Size(183, 22);
             grupoToolStripMenuItem.Text = "Grupo de automóvel";
             grupoToolStripMenuItem.Click += grupoToolStripMenuItem_Click;
             // 
             // taxaServicoMenuItem
             // 
             taxaServicoMenuItem.Name = "taxaServicoMenuItem";
-            taxaServicoMenuItem.Size = new Size(229, 26);
+            taxaServicoMenuItem.Size = new Size(183, 22);
             taxaServicoMenuItem.Text = "Taxa ou Serviços";
             taxaServicoMenuItem.Click += taxaServicoMenuItem_Click;
-            // 
-            // painelRegistros
-            // 
-            painelRegistros.Dock = DockStyle.Fill;
-            painelRegistros.Location = new Point(0, 71);
-            painelRegistros.Margin = new Padding(3, 4, 3, 4);
-            painelRegistros.Name = "painelRegistros";
-            painelRegistros.Size = new Size(953, 451);
-            painelRegistros.TabIndex = 3;
             // 
             // planosDeToolStripMenuItem
             // 
             planosDeToolStripMenuItem.Name = "planosDeToolStripMenuItem";
-            planosDeToolStripMenuItem.Size = new Size(229, 26);
+            planosDeToolStripMenuItem.Size = new Size(183, 22);
             planosDeToolStripMenuItem.Text = "Planos de cobrança";
             planosDeToolStripMenuItem.Click += planosDeToolStripMenuItem_Click;
             // 
+            // painelRegistros
+            // 
+            painelRegistros.Dock = DockStyle.Fill;
+            painelRegistros.Location = new Point(0, 65);
+            painelRegistros.Name = "painelRegistros";
+            painelRegistros.Size = new Size(834, 324);
+            painelRegistros.TabIndex = 3;
+            // 
+            // funcionárioToolStripMenuItem
+            // 
+            funcionárioToolStripMenuItem.Name = "funcionárioToolStripMenuItem";
+            funcionárioToolStripMenuItem.Size = new Size(183, 22);
+            funcionárioToolStripMenuItem.Text = "Funcionário";
+            funcionárioToolStripMenuItem.Click += funcionárioToolStripMenuItem_Click;
+            // 
             // TelaPrincipalForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(953, 548);
+            ClientSize = new Size(834, 411);
             Controls.Add(painelRegistros);
             Controls.Add(toolStrip1);
             Controls.Add(sRodape);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "TelaPrincipalForm";
             ShowIcon = false;
             ShowInTaskbar = false;
@@ -231,5 +235,6 @@
         private ToolStripMenuItem grupoToolStripMenuItem;
         private ToolStripMenuItem taxaServicoMenuItem;
         private ToolStripMenuItem planosDeToolStripMenuItem;
+        private ToolStripMenuItem funcionárioToolStripMenuItem;
     }
 }
