@@ -14,14 +14,14 @@ namespace LocadoraAutomoveis.Dominio.ModuloCupom
         {
         }
 
-        public Cupom(Guid id)
-        {
-            Id = Id;
-        }
-
-        public Cupom(Guid id, string nome) : this(id)
+        public Cupom(string nome)
         {
             Nome = nome;
+        }
+
+        public Cupom(Guid id, string nome) : this(nome)
+        {
+            Id = id;
         }
         public Cupom(Guid id, string nome, decimal valor, DateTime dataValidade, Parceiro parceiro) : this(id, nome)
         {
