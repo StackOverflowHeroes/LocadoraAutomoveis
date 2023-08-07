@@ -44,8 +44,9 @@
             grupoToolStripMenuItem = new ToolStripMenuItem();
             taxaServicoMenuItem = new ToolStripMenuItem();
             planosDeToolStripMenuItem = new ToolStripMenuItem();
-            painelRegistros = new Panel();
             funcionárioToolStripMenuItem = new ToolStripMenuItem();
+            painelRegistros = new Panel();
+            clienteToolStripMenuItem = new ToolStripMenuItem();
             sRodape.SuspendLayout();
             toolStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -144,7 +145,7 @@
             // 
             // cadastrosMenuItem
             // 
-            cadastrosMenuItem.DropDownItems.AddRange(new ToolStripItem[] { parceirosMenuItem, grupoToolStripMenuItem, taxaServicoMenuItem, planosDeToolStripMenuItem, funcionárioToolStripMenuItem });
+            cadastrosMenuItem.DropDownItems.AddRange(new ToolStripItem[] { parceirosMenuItem, grupoToolStripMenuItem, taxaServicoMenuItem, planosDeToolStripMenuItem, funcionárioToolStripMenuItem, clienteToolStripMenuItem });
             cadastrosMenuItem.Name = "cadastrosMenuItem";
             cadastrosMenuItem.Size = new Size(71, 20);
             cadastrosMenuItem.Text = "Cadastros";
@@ -177,6 +178,13 @@
             planosDeToolStripMenuItem.Text = "Planos de cobrança";
             planosDeToolStripMenuItem.Click += planosDeToolStripMenuItem_Click;
             // 
+            // funcionárioToolStripMenuItem
+            // 
+            funcionárioToolStripMenuItem.Name = "funcionárioToolStripMenuItem";
+            funcionárioToolStripMenuItem.Size = new Size(183, 22);
+            funcionárioToolStripMenuItem.Text = "Funcionário";
+            funcionárioToolStripMenuItem.Click += funcionárioToolStripMenuItem_Click;
+            // 
             // painelRegistros
             // 
             painelRegistros.Dock = DockStyle.Fill;
@@ -185,12 +193,12 @@
             painelRegistros.Size = new Size(834, 324);
             painelRegistros.TabIndex = 3;
             // 
-            // funcionárioToolStripMenuItem
+            // clienteToolStripMenuItem
             // 
-            funcionárioToolStripMenuItem.Name = "funcionárioToolStripMenuItem";
-            funcionárioToolStripMenuItem.Size = new Size(183, 22);
-            funcionárioToolStripMenuItem.Text = "Funcionário";
-            funcionárioToolStripMenuItem.Click += funcionárioToolStripMenuItem_Click;
+            clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
+            clienteToolStripMenuItem.Size = new Size(183, 22);
+            clienteToolStripMenuItem.Text = "Cliente";
+            clienteToolStripMenuItem.Click += clienteToolStripMenuItem_Click;
             // 
             // TelaPrincipalForm
             // 
@@ -236,5 +244,6 @@
         private ToolStripMenuItem taxaServicoMenuItem;
         private ToolStripMenuItem planosDeToolStripMenuItem;
         private ToolStripMenuItem funcionárioToolStripMenuItem;
+        private ToolStripMenuItem clienteToolStripMenuItem;
     }
 }

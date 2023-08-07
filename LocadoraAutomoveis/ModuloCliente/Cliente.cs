@@ -92,10 +92,6 @@ namespace LocadoraAutomoveis.Dominio.ModuloCliente
     }
     public enum Tipo
     {
-        [Description("CPF")]
-        CPF = 1,
-
-        [Description("CNPJ")]
-        CNPJ = 2
+        PessoaFisica, PessoaJuridica
     }
 }
