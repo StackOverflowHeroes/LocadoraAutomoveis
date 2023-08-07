@@ -92,6 +92,6 @@ namespace LocadoraAutomoveis.Dominio.ModuloCliente
     }
     public enum Tipo
     {
-        PessoaFisica, PessoaJuridica
+        Fisica, Juridica
     }
 }
