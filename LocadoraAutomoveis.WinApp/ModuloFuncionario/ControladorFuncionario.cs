@@ -28,7 +28,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloFuncionario
 
             tabelaFuncionario.AtualizarRegistros(funcionarios);
 
-            mensagemRodape = string.Format("Visualizando {0} funcionario{1}", funcionarios.Count, funcionarios.Count == 1 ? "" : "s");
+            mensagemRodape = string.Format("Visualizando {0} funcionário{1}", funcionarios.Count, funcionarios.Count == 1 ? "" : "s");
 
             TelaPrincipalForm.Instancia.AtualizarRodape(mensagemRodape, TipoStatusEnum.Visualizando);
         }
@@ -43,7 +43,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloFuncionario
                 return;
             }
             TelaFuncionarioForm telaFuncionario = new TelaFuncionarioForm();
-
+               telaFuncionario.Text = "Edição de Funcionário";
             telaFuncionario.onGravarRegistro += servicoFuncionario.Editar;
 
             telaFuncionario.ConfigurarTelaFuncionario(funcionarioSelecionado);

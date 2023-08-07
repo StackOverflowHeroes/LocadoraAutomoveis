@@ -24,7 +24,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloCliente
         {
             var colunas = new DataGridViewColumn[]
             {
-                new DataGridViewTextBoxColumn { Name = "Id", HeaderText = "Id", FillWeight = 15F },
+                new DataGridViewTextBoxColumn { Name = "Id", HeaderText = "Id", FillWeight = 15F, Visible = false },
                 new DataGridViewTextBoxColumn { Name = "Nome", HeaderText = "Nome", FillWeight = 35F },
                 new DataGridViewTextBoxColumn { Name = "Telefone", HeaderText = "Telefone", FillWeight = 25F },
                 new DataGridViewTextBoxColumn { Name = "Email", HeaderText = "Email", FillWeight = 25F },

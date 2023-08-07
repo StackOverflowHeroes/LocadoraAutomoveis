@@ -79,11 +79,12 @@ namespace LocadoraAutomoveis.WinApp.ModuloCliente
             Cliente clienteSelecionado = repositorioCliente.SelecionarPorId(id);
             if (clienteSelecionado == null)
             {
-                MessageBox.Show("Selecione um cliente primeiro",
+                MessageBox.Show("Selecione um cliente primeiro.",
                 "Edição de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             TelaClienteForm telaCliente = new TelaClienteForm();
+               telaCliente.Text = "Edição de Cliente";
             telaCliente.onGravarRegistro += servicoCliente.Editar;
             telaCliente.ConfigurarCliente(clienteSelecionado);
             DialogResult resultado = telaCliente.ShowDialog();

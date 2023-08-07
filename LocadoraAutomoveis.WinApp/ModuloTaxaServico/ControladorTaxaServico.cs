@@ -49,13 +49,13 @@ namespace LocadoraAutomoveis.WinApp.ModuloTaxaServico
 
                if (taxaServicoSelecionado == null)
                {
-                    MessageBox.Show("Selecione uma  Taxa ou Serviço primeiro.",
-                    "Edição de Taxa/Serviços", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Selecione uma taxa ou serviço primeiro.",
+                    "Edição de Taxas/Serviços", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                }
 
                TelaTaxaServicoForm telaTaxaServico = new TelaTaxaServicoForm();
-
+               telaTaxaServico.Text = "Edição de Taxa/Serviço";
                telaTaxaServico.onGravarRegistro += servicoTaxaServico.Editar;
 
                telaTaxaServico.ConfigurarTelaTaxaServico(taxaServicoSelecionado);
@@ -76,13 +76,13 @@ namespace LocadoraAutomoveis.WinApp.ModuloTaxaServico
 
                if (taxaServicoSelecionado == null)
                {
-                    MessageBox.Show("Selecione uma Taxa ou Serviço primeiro.",
+                    MessageBox.Show("Selecione uma taxa ou serviço primeiro.",
                     "Exclusão de Taxas/Serviços", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                }
 
-               DialogResult opcaoEscolhida = MessageBox.Show("Deseja realmente excluir a Taxa/Serviço?",
-                  "Exclusão de Taxa/Serviços", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+               DialogResult opcaoEscolhida = MessageBox.Show("Deseja realmente excluir a taxa/serviço?",
+                  "Exclusão de Taxas/Serviços", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                if (opcaoEscolhida == DialogResult.OK)
                {
@@ -90,7 +90,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloTaxaServico
 
                     if (resultado.IsFailed)
                     {
-                         MessageBox.Show(resultado.Errors[0].Message, "Exclusão de Taxa/Serviços",
+                         MessageBox.Show(resultado.Errors[0].Message, "Exclusão de Taxas/Serviços",
                              MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                          return;

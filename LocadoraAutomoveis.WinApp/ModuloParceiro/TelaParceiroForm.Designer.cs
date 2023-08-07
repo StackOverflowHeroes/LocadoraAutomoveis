@@ -84,7 +84,7 @@
                Controls.Add(txtNome);
                Controls.Add(label2);
                Name = "TelaParceiroForm";
-               Text = "Cadastro de Parceiros";
+               Text = "Cadastro de Parceiro";
                ResumeLayout(false);
                PerformLayout();
           }

@@ -5,7 +5,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloParceiro
      public partial class TelaParceiroForm : Form
      {
           private Parceiro parceiro;
-          public event GravarRegistroDelegate<Parceiro> onGravarRegistro; 
+          public event GravarRegistroDelegate<Parceiro> onGravarRegistro;
           public TelaParceiroForm()
           {
                InitializeComponent();

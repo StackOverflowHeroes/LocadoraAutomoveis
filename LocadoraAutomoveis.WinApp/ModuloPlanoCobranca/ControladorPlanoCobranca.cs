@@ -41,12 +41,12 @@ namespace LocadoraAutomoveis.WinApp.ModuloPlanoCobranca
             if (planoCobrancaSelecionado == null)
             {
                 MessageBox.Show("Selecione um plano de cobrança primeiro.",
-                "Edição de Parceiros", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                "Edição de Planos de Cobrança", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             TelaPlanoCobrancaForm telaPlanoCobranca = new TelaPlanoCobrancaForm();
-
+               telaPlanoCobranca.Text = "Edição de Plano de Cobrança";
             telaPlanoCobranca.PopularComboBox(repositorioGrupoAutomovel.SelecionarTodos());
 
             telaPlanoCobranca.onGravarRegistro += servicoPlanoCobranca.Editar;
@@ -69,12 +69,12 @@ namespace LocadoraAutomoveis.WinApp.ModuloPlanoCobranca
             if (planoCobrancaSelecionado == null)
             {
                 MessageBox.Show("Selecione um plano de cobrança primeiro primeiro.",
-                "Exclusão de Planos de cobrança", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                "Exclusão de Planos de Cobrança", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             DialogResult opcaoEscolhida = MessageBox.Show("Deseja realmente excluir o plano de cobrança?",
-               "Exclusão de plano de cobrança", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+               "Exclusão de Planos de Cobrança", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (opcaoEscolhida == DialogResult.OK)
             {
@@ -82,7 +82,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloPlanoCobranca
 
                 if (resultado.IsFailed)
                 {
-                    MessageBox.Show(resultado.Errors[0].Message, "Exclusão de plano de cobrança",
+                    MessageBox.Show(resultado.Errors[0].Message, "Exclusão de Planos de Cobrança",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     return;

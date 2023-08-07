@@ -40,12 +40,13 @@ namespace LocadoraAutomoveis.WinApp.ModuloGrupoAutomovel
             if (grupoAutomovelSelecionado == null)
             {
                 MessageBox.Show("Selecione um grupo de automóveis primeiro.",
-                "Edição de Parceiros", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                "Edição de Grupo de Automóveis", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             TelaGrupoAutomovelForm telaGrupoAutomovel = new TelaGrupoAutomovelForm();
 
+               telaGrupoAutomovel.Text = "Edição de Grupo de Automóveis";
             telaGrupoAutomovel.onGravarRegistro += servicoGrupoAutomovel.Editar;
 
             telaGrupoAutomovel.ConfigurarTelaGrupoAutomovel(grupoAutomovelSelecionado);
@@ -65,8 +66,8 @@ namespace LocadoraAutomoveis.WinApp.ModuloGrupoAutomovel
 
             if (grupoAutomovelSelecionado == null)
             {
-                MessageBox.Show("Selecione um parceiro primeiro.",
-                "Exclusão de Parceiros", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um grupo de automóveis primeiro.",
+                "Exclusão de Grupo de Automóveis", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -79,7 +80,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloGrupoAutomovel
 
                 if (resultado.IsFailed)
                 {
-                    MessageBox.Show(resultado.Errors[0].Message, "Exclusão de Parceiros",
+                    MessageBox.Show(resultado.Errors[0].Message, "Exclusão de Grupo de Automóveis",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     return;
@@ -99,7 +100,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloGrupoAutomovel
 
             tabelaGrupoAutomovel.AtualizarRegistros(gruposAutomovels);
 
-            mensagemRodape = string.Format("Visualizando {0} grupos de automóveis", gruposAutomovels.Count, gruposAutomovels.Count == 1 ? "" : "s");
+            mensagemRodape = string.Format("Visualizando {0} grupo{1} de automóvei{1}", gruposAutomovels.Count, gruposAutomovels.Count == 1 ? "" : "s");
 
             TelaPrincipalForm.Instancia.AtualizarRodape(mensagemRodape, TipoStatusEnum.Visualizando);
         }

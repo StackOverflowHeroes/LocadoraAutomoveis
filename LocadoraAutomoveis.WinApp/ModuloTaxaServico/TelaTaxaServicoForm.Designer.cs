@@ -149,7 +149,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloTaxaServico
                Controls.Add(txtNome);
                Controls.Add(label2);
                Name = "TelaTaxaServicoForm";
-               Text = "Cadastro de Taxas ou Serviços";
+               Text = "Cadastro de Taxa ou Serviço";
                ((System.ComponentModel.ISupportInitialize)campoPreco).EndInit();
                planoCalculo.ResumeLayout(false);
                planoCalculo.PerformLayout();

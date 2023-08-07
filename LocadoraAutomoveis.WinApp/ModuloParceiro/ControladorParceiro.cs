@@ -88,7 +88,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloParceiro
                }
 
                TelaParceiroForm telaParceiro = new TelaParceiroForm();
-
+               telaParceiro.Text = "Edição de Parceiro";
                telaParceiro.onGravarRegistro += servicoParceiro.Editar;
 
                telaParceiro.ConfigurarTelaParceiro(parceiroSelecionado);
