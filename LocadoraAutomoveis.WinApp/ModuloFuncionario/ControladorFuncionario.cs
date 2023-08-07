@@ -39,7 +39,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloFuncionario
             if (funcionarioSelecionado == null)
             {
                 MessageBox.Show("Selecione um funcionário primeiro.",
-                    "Exclusão de Funcionários", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    "Edição de Funcionários", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             TelaFuncionarioForm telaFuncionario = new TelaFuncionarioForm();

@@ -13,6 +13,7 @@ namespace LocadoraAutomoveis.Dominio.ModuloFuncionario
         public decimal Salario { get; set; }
         public Funcionario()
         {  
+               DataAdmissao = DateTime.Now;
         }
 
         public Funcionario(string nome, DateTime dataAdmissao, decimal salario) : this()

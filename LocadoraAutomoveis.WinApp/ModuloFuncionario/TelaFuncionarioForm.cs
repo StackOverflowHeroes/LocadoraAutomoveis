@@ -2,43 +2,46 @@
 
 namespace LocadoraAutomoveis.WinApp.ModuloFuncionario
 {
-    public partial class TelaFuncionarioForm : Form
-    {
-        private Funcionario funcionario;
-        public event GravarRegistroDelegate<Funcionario> onGravarRegistro;
+     public partial class TelaFuncionarioForm : Form
+     {
+          private Funcionario funcionario;
+          public event GravarRegistroDelegate<Funcionario> onGravarRegistro;
 
-        public TelaFuncionarioForm()
-        {
-            InitializeComponent();
-            this.ConfigurarDialog();
-        }
-        public Funcionario ObterFuncionario()
-        {
-            decimal salario;
-            funcionario.Nome = txtNome.Text;
-            decimal.TryParse(txtSalario.Text, out salario);
-            funcionario.Salario = salario;
-            return funcionario;
-        }
-        public void ConfigurarTelaFuncionario(Funcionario funcionario)
-        {
-            this.funcionario = funcionario;
-            txtNome.Text = funcionario.Nome;
-            txtSalario.Text = funcionario.Salario.ToString();
-        }
+          public TelaFuncionarioForm()
+          {
+               InitializeComponent();
+               this.ConfigurarDialog();
+          }
+          public Funcionario ObterFuncionario()
+          {            
+               funcionario.Nome = txtNome.Text;
+               funcionario.Salario = campoSalario.Value;
+               funcionario.DataAdmissao = dateAdmissao.Value;
 
-        private void btnGravar_Click(object sender, EventArgs e)
-        {
-            this.funcionario = ObterFuncionario();
-            Result resultado = onGravarRegistro(funcionario);
-            if (resultado.IsFailed)
-            {
-                string erro = resultado.Errors[0].Message;
+               return funcionario;
+          }
+          public void ConfigurarTelaFuncionario(Funcionario funcionario)
+          {
+               this.funcionario = funcionario;
+               txtNome.Text = funcionario.Nome;
+               campoSalario.Value = funcionario.Salario;
 
-                TelaPrincipalForm.Instancia.AtualizarRodape(erro, TipoStatusEnum.Erro);
+               if (funcionario != null)
+                    dateAdmissao.Value = funcionario.DataAdmissao;
+          }
 
-                DialogResult = DialogResult.None;
-            }
-        }
-    }
+          private void btnGravar_Click(object sender, EventArgs e)
+          {
+               this.funcionario = ObterFuncionario();
+               Result resultado = onGravarRegistro(funcionario);
+               if (resultado.IsFailed)
+               {
+                    string erro = resultado.Errors[0].Message;
+
+                    TelaPrincipalForm.Instancia.AtualizarRodape(erro, TipoStatusEnum.Erro);
+
+                    DialogResult = DialogResult.None;
+               }
+          }
+     }
 }

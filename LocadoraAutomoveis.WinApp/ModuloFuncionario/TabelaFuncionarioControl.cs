@@ -28,7 +28,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloFuncionario
 
                 new DataGridViewTextBoxColumn { Name = "Nome", HeaderText = "Nome", FillWeight=85F },
 
-                new DataGridViewTextBoxColumn { Name = "Salario", HeaderText = "Salário", FillWeight=85F },
+                new DataGridViewTextBoxColumn { Name = "Salario", HeaderText = "Salário (R$)", FillWeight=85F },
 
                 new DataGridViewTextBoxColumn { Name = "DataAdmissao", HeaderText = "Data Admissão", FillWeight=50F }
             };
@@ -45,7 +45,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloFuncionario
 
             foreach (Funcionario funcionario in funcionarios)
             {
-                gridFuncionario.Rows.Add(funcionario.Id, funcionario.Nome, funcionario.Salario, funcionario.DataAdmissao);
+                gridFuncionario.Rows.Add(funcionario.Id, funcionario.Nome, $"R$ {funcionario.Salario}", funcionario.DataAdmissao.ToShortDateString());
             }
         }
     }
