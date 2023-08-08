@@ -26,42 +26,36 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloAluguel
             //builder.HasOne(x => x.GrupoAutomovel)
             //       .WithMany()
             //       .IsRequired()
-            //       .HasForeignKey("GrupoAutomoveisId") ????
             //       .HasConstraintName("FK_TBAluguel_TBGrupoAutomovel")
             //       .OnDelete(DeleteBehavior.NoAction);
 
             //builder.HasOne(x => x.Funcionario)
             //       .WithMany()
             //       .IsRequired()
-            //       .HasForeignKey("FuncionarioId") ?????
             //       .HasConstraintName("FK_TBAluguel_TBFuncionario")
             //       .OnDelete(DeleteBehavior.NoAction);
 
             //builder.HasOne(x => x.Cliente)
             //       .WithMany()
             //       .IsRequired()
-            //       .HasForeignKey("ClienteId") ?????
             //       .HasConstraintName("FK_TBAluguel_TBCliente")
             //       .OnDelete(DeleteBehavior.NoAction);
 
             ////builder.HasOne(x => x.Condutor)
             ////       .WithMany()
             ////       .IsRequired()
-            ////       .HasForeignKey("CondutorId") ??????????
             ////       .HasConstraintName("FK_TBAluguel_TBCondutor")
             ////       .OnDelete(DeleteBehavior.NoAction);
 
             ////builder.HasOne(x => x.Automovel)
             ////       .WithMany()
             ////       .IsRequired()
-            ////       .HasForeignKey("AutomovelId") ?????????
             ////       .HasConstraintName("FK_TBAluguel_TBAutomovel")
             ////       .OnDelete(DeleteBehavior.NoAction);
 
             //builder.HasOne(x => x.Cupom)
             //       .WithMany()
             //       .IsRequired(false)
-            //       .HasForeignKey("CupomId")
             //       .HasConstraintName("FK_TBAluguel_TBCupom")
             //       .OnDelete(DeleteBehavior.NoAction);
 
