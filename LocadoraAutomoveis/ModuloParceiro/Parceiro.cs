@@ -33,5 +33,6 @@ namespace LocadoraAutomoveis.Dominio.ModuloParceiro
         {
             return Nome;
         }
+
     }
 }

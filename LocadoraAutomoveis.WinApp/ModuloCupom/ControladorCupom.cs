@@ -1,11 +1,7 @@
 ﻿
 using LocadoraAutomoveis.Aplicacao.ModuloCupom;
-using LocadoraAutomoveis.Aplicacao.ModuloPlanoCobranca;
 using LocadoraAutomoveis.Dominio.ModuloCupom;
-using LocadoraAutomoveis.Dominio.ModuloGrupoAutomovel;
 using LocadoraAutomoveis.Dominio.ModuloParceiro;
-using LocadoraAutomoveis.Dominio.ModuloPlanoCobranca;
-using LocadoraAutomoveis.WinApp.ModuloPlanoCobranca;
 
 namespace LocadoraAutomoveis.WinApp.ModuloCupom
 {
@@ -30,6 +26,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloCupom
             telaCupom.PopularComboBox(repositorioParceiro.SelecionarTodos());
             telaCupom.ConfigurarTelaCupom(new Cupom());
 
+            telaCupom.Text = "Cadastro de cupom";
             telaCupom.onGravarRegistro += servicoCupom.Inserir;
             DialogResult resultado = telaCupom.ShowDialog();
 
@@ -55,6 +52,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloCupom
 
             telaCupom.PopularComboBox(repositorioParceiro.SelecionarTodos());
 
+            telaCupom.Text = "Editar um cupom";
             telaCupom.onGravarRegistro += servicoCupom.Editar;
 
             telaCupom.ConfigurarTelaCupom(cupomSelecionado);
@@ -106,7 +104,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloCupom
 
             tabelaCupom.AtualizarRegistros(cupons);
 
-            mensagemRodape = string.Format("Visualizando {0} cupons", cupons.Count);
+            mensagemRodape = string.Format("Visualizando {0} {1}", cupons.Count, cupons.Count > 1 ? "cupons" : "cupom");
 
             TelaPrincipalForm.Instancia.AtualizarRodape(mensagemRodape, TipoStatusEnum.Visualizando);
         }

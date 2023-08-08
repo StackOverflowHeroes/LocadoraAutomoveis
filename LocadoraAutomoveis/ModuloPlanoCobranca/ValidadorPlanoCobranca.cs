@@ -13,14 +13,22 @@ namespace LocadoraAutomoveis.Dominio.ModuloPlanoCobranca
                     .GreaterThan(0);
 
             RuleFor(x => x.KM_disponivel)
-                  .GreaterThan(0);
+                   .NotNull()
+                   .NotEmpty()
+                   .When(x => x.Plano == FormasCobrancasEnum.Controlado)
+                   .GreaterThan(0);
 
             RuleFor(x => x.Preco_KM)
+                    .NotNull()
+                    .NotEmpty()
+                    .When(x => x.Plano == FormasCobrancasEnum.Controlado || x.Plano == FormasCobrancasEnum.Diario)
                     .GreaterThan(0);
 
             RuleFor(x => x.grupoAutomovel)
                     .NotNull().WithMessage("'Grupo de automóveis' deve ser informado")
                     .NotEmpty().WithMessage("'Grupo de automóveis' não pode ser vazio.");
+
+
         }
 
     }
