@@ -4,12 +4,12 @@ namespace LocadoraAutomoveis.Dominio.ModuloCondutor
 {
      public class Condutor : EntidadeBase<Condutor>
      {
-          public Condutor(string nome, string email, string telefone, string cPF, string cnh, DateTime dataValidade, Cliente cliente)
+          public Condutor(string nome, string email, string telefone, string cpf, string cnh, DateTime dataValidade, Cliente cliente)
           {
                Nome = nome;
                Email = email;
                Telefone = telefone;
-               CPF = cPF;
+               CPF = cpf;
                CNH = cnh;
                DataValidade = dataValidade;
                Cliente = cliente;

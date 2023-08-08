@@ -66,7 +66,7 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloCondutor
                     if (CondutorExiste == false)
                     {
                          Log.Warning("Condutor {@id : @nome} não encontrado para excluir.", condutor.Id, condutor.Nome);
-                         return Result.Fail("Condutor não encontrado.");
+                         return Result.Fail("Falha ao tentar excluir condutor.");
                     }
 
                     repositorioCondutor.Excluir(condutor);
@@ -127,7 +127,7 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloCondutor
                if (ex.Message.Contains("FK_TBCondutor_TBCliente"))
                     msgErro = "Este condutor está relacionado com um cliente e não pode ser excluído.";
                else
-                    msgErro = "Este condutor não pode ser excluído.";
+                    msgErro = "Falha ao tentar excluir condutor.";
 
                return msgErro;
           }
