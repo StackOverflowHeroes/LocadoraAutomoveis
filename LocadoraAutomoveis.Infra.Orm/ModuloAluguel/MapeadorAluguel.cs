@@ -20,7 +20,7 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloAluguel
             //builder.Property(x => x.DataDevolucao).IsRequired();
             //builder.Property(x => x.DataLocacao).IsRequired();
             //builder.Property(x => x.QuilometrosRodados).HasConversion<decimal>().IsRequired();
-            ////builder.Property(x => x.KmAutomovel).HasConversion<decimal>().IsRequired();
+            ////builder.Property(x => x.KmAutomovel).HasConversion<decimal>().IsRequired(); ??
             //builder.Property(x => x.QuilometrosRodados).HasConversion<decimal>().IsRequired();
 
             //builder.HasOne(x => x.GrupoAutomovel)

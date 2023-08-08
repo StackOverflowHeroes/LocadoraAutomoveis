@@ -223,5 +223,11 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação
             resultado.Should().BeFailure();
             resultado.Reasons[0].Message.Should().Be("Falha ao tentar excluir cliente.");
         }
+        //[TestMethod]
+        //public void Nao_deve_excluir_quando_relacionado_a_aluguel()
+        //{
+        //    var dbUpdate = SqlExceptionCreator.NewSqlException("FK_TBAluguel_TBCliente");
+        //    repositorioClienteMoq.Setup(x => x.Existe(It.IsAny<Cliente>(), true)).Returns(true);
+        //}
     }
 }
