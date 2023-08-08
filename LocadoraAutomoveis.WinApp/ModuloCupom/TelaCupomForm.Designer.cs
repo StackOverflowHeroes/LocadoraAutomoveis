@@ -88,6 +88,7 @@
             // 
             NumericInputValor.DecimalPlaces = 2;
             NumericInputValor.Location = new Point(50, 113);
+            NumericInputValor.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             NumericInputValor.Name = "NumericInputValor";
             NumericInputValor.Size = new Size(358, 27);
             NumericInputValor.TabIndex = 5;
