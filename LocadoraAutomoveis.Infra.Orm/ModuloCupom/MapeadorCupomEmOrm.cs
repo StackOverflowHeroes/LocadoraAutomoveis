@@ -11,6 +11,7 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloCupom
             CupomBuilder.Property(c => c.Id).IsRequired().ValueGeneratedNever();
             CupomBuilder.Property(c => c.Nome).HasColumnType("varchar(100)").IsRequired();
             CupomBuilder.Property(c => c.DataValidade).IsRequired();
+            CupomBuilder.Property(c => c.Valor).HasColumnType("decimal(18,2)").IsRequired();
 
             CupomBuilder.HasOne(x => x.Parceiro)
                 .WithMany(x => x.Cupons)

@@ -14,8 +14,8 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloFuncionario
             funcionarioBuilder.ToTable("TBFuncionario");
             funcionarioBuilder.Property(f => f.Id).IsRequired().ValueGeneratedNever();
             funcionarioBuilder.Property(f => f.Nome).HasColumnType("varchar(200)").IsRequired().ValueGeneratedNever();
-            funcionarioBuilder.Property(f => f.Salario).HasColumnType("Decimal").IsRequired();
-            funcionarioBuilder.Property(f => f.DataAdmissao).HasColumnType("Date").IsRequired();
+            funcionarioBuilder.Property(f => f.Salario).HasColumnType("decimal(18,2)").IsRequired();
+            funcionarioBuilder.Property(f => f.DataAdmissao).HasColumnType("date").IsRequired();
         }
     }
 }

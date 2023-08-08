@@ -22,31 +22,6 @@ namespace LocadoraAutomoveis.Infra.Orm.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("LocadoraAutomoveis.Dominio.ModuloCupom.Cupom", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DataValidade")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<Guid>("ParceiroId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("Valor")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ParceiroId");
-
-                    b.ToTable("TBCupom", (string)null);
-                });
-
             modelBuilder.Entity("LocadoraAutomoveis.Dominio.ModuloCliente.Cliente", b =>
                 {
                     b.Property<Guid>("Id")
@@ -96,20 +71,45 @@ namespace LocadoraAutomoveis.Infra.Orm.Migrations
                     b.ToTable("TBCliente", (string)null);
                 });
 
+            modelBuilder.Entity("LocadoraAutomoveis.Dominio.ModuloCupom.Cupom", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DataValidade")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<Guid>("ParceiroId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParceiroId");
+
+                    b.ToTable("TBCupom", (string)null);
+                });
+
             modelBuilder.Entity("LocadoraAutomoveis.Dominio.ModuloFuncionario.Funcionario", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DataAdmissao")
-                        .HasColumnType("Date");
+                        .HasColumnType("date");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("varchar(200)");
 
                     b.Property<decimal>("Salario")
-                        .HasColumnType("Decimal");
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -152,8 +152,8 @@ namespace LocadoraAutomoveis.Infra.Orm.Migrations
                     b.Property<decimal>("Diaria")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("KM_disponivel")
-                        .HasColumnType("int");
+                    b.Property<decimal?>("KM_disponivel")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -163,7 +163,7 @@ namespace LocadoraAutomoveis.Infra.Orm.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal?>("Preco_KM")
-                        .HasColumnType("decimal(18, 0)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<Guid>("grupoAutomovelId")
                         .HasColumnType("uniqueidentifier");
@@ -188,7 +188,7 @@ namespace LocadoraAutomoveis.Infra.Orm.Migrations
                         .HasColumnType("bit");
 
                     b.Property<decimal>("Preco")
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
