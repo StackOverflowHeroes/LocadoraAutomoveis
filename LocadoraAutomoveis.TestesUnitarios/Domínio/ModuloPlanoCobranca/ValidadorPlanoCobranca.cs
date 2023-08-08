@@ -1,6 +1,5 @@
 ﻿
 using FluentValidation.TestHelper;
-using LocadoraAutomoveis.Dominio.ModuloGrupoAutomovel;
 using LocadoraAutomoveis.Dominio.ModuloPlanoCobranca;
 
 namespace LocadoraAutomoveis.TestesUnitarios.Domínio.ModuloPlanoCobranca
@@ -95,6 +94,98 @@ namespace LocadoraAutomoveis.TestesUnitarios.Domínio.ModuloPlanoCobranca
             var resultado = validadorPlanoCobranca.TestValidate(planoCobranca);
 
             resultado.ShouldHaveValidationErrorFor(x => x.grupoAutomovel);
+        }
+
+        [TestMethod]
+
+        public void Quando_plano_controlado_KM_disponivel_nao_deve_ser_nulo()
+        {
+            planoCobranca.Plano = FormasCobrancasEnum.Controlado;
+            var resultado = validadorPlanoCobranca.TestValidate(planoCobranca);
+
+            resultado.ShouldHaveValidationErrorFor(x => x.KM_disponivel);
+        }
+
+        [TestMethod]
+        public void Quando_plano_diario_KM_disponivel_deve_ser_nulo()
+        {
+            planoCobranca.Plano = FormasCobrancasEnum.Diario;
+            var resultado = validadorPlanoCobranca.TestValidate(planoCobranca);
+
+            resultado.ShouldNotHaveValidationErrorFor(x => x.KM_disponivel);
+        }
+
+        [TestMethod]
+        public void Quando_plano_controlado_KM_disponivel_deve_ser_maior_que_zero()
+        {
+            planoCobranca.Plano = FormasCobrancasEnum.Controlado;
+            planoCobranca.KM_disponivel = 10;
+
+            var resultado = validadorPlanoCobranca.TestValidate(planoCobranca);
+
+            resultado.ShouldNotHaveValidationErrorFor(x => x.KM_disponivel);
+        }
+
+        [TestMethod]
+        public void Quando_plano_controlado_KM_disponivel_nao_deve_ser_maior_que_zero()
+        {
+            planoCobranca.Plano = FormasCobrancasEnum.Diario;
+            planoCobranca.KM_disponivel = -10;
+
+            var resultado = validadorPlanoCobranca.TestValidate(planoCobranca);
+
+            resultado.ShouldHaveValidationErrorFor(x => x.KM_disponivel);
+        }
+
+        [TestMethod]
+
+        public void Quando_plano_controlado_preco_KM_nao_deve_ser_nulo()
+        {
+            planoCobranca.Plano = FormasCobrancasEnum.Controlado;
+            var resultado = validadorPlanoCobranca.TestValidate(planoCobranca);
+
+            resultado.ShouldHaveValidationErrorFor(x => x.Preco_KM);
+        }
+
+        [TestMethod]
+        public void Quando_plano_diario_preco_KM_nao_deve_ser_nulo()
+        {
+            planoCobranca.Plano = FormasCobrancasEnum.Controlado;
+            var resultado = validadorPlanoCobranca.TestValidate(planoCobranca);
+
+            resultado.ShouldHaveValidationErrorFor(x => x.Preco_KM);
+        }
+
+        [TestMethod]
+
+        public void Quando_plano_livre_preco_KM_deve_ser_nulo()
+        {
+            planoCobranca.Plano = FormasCobrancasEnum.Livre;
+            var resultado = validadorPlanoCobranca.TestValidate(planoCobranca);
+
+            resultado.ShouldNotHaveValidationErrorFor(x => x.Preco_KM);
+        }
+
+        [TestMethod]
+        public void Quando_plano_controlado_preco_KM_deve_ser_maior_que_zero()
+        {
+            planoCobranca.Plano = FormasCobrancasEnum.Diario;
+            planoCobranca.Preco_KM = 10;
+
+            var resultado = validadorPlanoCobranca.TestValidate(planoCobranca);
+
+            resultado.ShouldNotHaveValidationErrorFor(x => x.Preco_KM);
+        }
+
+        [TestMethod]
+        public void Quando_plano_controlado_preco_KM_nao_deve_ser_maior_que_zero()
+        {
+            planoCobranca.Plano = FormasCobrancasEnum.Controlado;
+            planoCobranca.Preco_KM = -10;
+
+            var resultado = validadorPlanoCobranca.TestValidate(planoCobranca);
+
+            resultado.ShouldHaveValidationErrorFor(x => x.Preco_KM);
         }
     }
 }
