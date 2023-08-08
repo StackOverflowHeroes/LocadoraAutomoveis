@@ -20,6 +20,7 @@ namespace LocadoraAutomoveis.Dominio.ModuloAluguel
         public PlanoCobranca PlanoCobranca { get; set; }
         //public Condutor Condutor { get; set; }
         //public Automovel Automovel { get; set; }
+        //public decimal KmAutomovel { get; set; }
         public Cupom? Cupom { get; set; }
         public List<TaxaServico> TaxaServicos { get; set; }
         public DateTime DataLocacao { get; set; }
@@ -35,7 +36,7 @@ namespace LocadoraAutomoveis.Dominio.ModuloAluguel
         }
 
         public Aluguel(Funcionario funcionario, Cliente cliente, GrupoAutomovel grupoAutomovel,
-            PlanoCobranca planoCobranca/*, Condutor condutor, Automovel automovel*/, Cupom? cupom,
+            PlanoCobranca planoCobranca/*, Condutor condutor, Automovel automovel, decimal KmAutomovel*/, Cupom? cupom,
             List<TaxaServico> taxaServicos, DateTime dataLocacao, DateTime? dataPrevisaoRetorno,
             DateTime? dataDevolucao, decimal? quilometrosRodados, NivelTanque? combustivelRestante,
             decimal valorTotal, bool concluido) : this()
@@ -46,6 +47,7 @@ namespace LocadoraAutomoveis.Dominio.ModuloAluguel
             PlanoCobranca = planoCobranca;
             //Condutor = condutor;
             //Automovel = automovel;
+            //KmAutomovel = kmAutomovel;
             Cupom = cupom;
             TaxaServicos = taxaServicos;
             DataLocacao = dataLocacao;
@@ -57,10 +59,10 @@ namespace LocadoraAutomoveis.Dominio.ModuloAluguel
             Concluido = concluido;
         }
         public Aluguel(Guid id, Funcionario funcionario, Cliente cliente, GrupoAutomovel grupoAutomovel,
-            PlanoCobranca planoCobranca/*, Condutor condutor, Automovel automovel*/, Cupom? cupom,
+            PlanoCobranca planoCobranca/*, Condutor condutor, Automovel automovel, decimal KmAutomovel*/, Cupom? cupom,
             List<TaxaServico> taxaServicos, DateTime dataLocacao, DateTime? dataPrevisaoRetorno,
             DateTime? dataDevolucao, decimal? quilometrosRodados, NivelTanque? combustivelRestante,
-            decimal valorTotal, bool concluido) : this(funcionario, cliente, grupoAutomovel, planoCobranca/*, condutor, automovel*/, cupom, taxaServicos, dataLocacao, dataPrevisaoRetorno, dataDevolucao, quilometrosRodados, combustivelRestante, valorTotal, concluido)
+            decimal valorTotal, bool concluido) : this(funcionario, cliente, grupoAutomovel, planoCobranca/*, condutor, automovel, kmAutomovel*/, cupom, taxaServicos, dataLocacao, dataPrevisaoRetorno, dataDevolucao, quilometrosRodados, combustivelRestante, valorTotal, concluido)
         {
             Id = id;
         }
@@ -73,6 +75,7 @@ namespace LocadoraAutomoveis.Dominio.ModuloAluguel
             PlanoCobranca = aluguel.PlanoCobranca;
             //Condutor = aluguel.Condutor;
             //Automovel = aluguel.Automovel;
+            //KmAutomovel = aluguel.KmAutomovel;
             Cupom = aluguel.Cupom;
             TaxaServicos = aluguel.TaxaServicos;
             DataLocacao = aluguel.DataLocacao;
@@ -95,6 +98,7 @@ namespace LocadoraAutomoveis.Dominio.ModuloAluguel
                 //EqualityComparer<Automovel>.Default.Equals(Automovel, aluguel.Automovel) &&
                 EqualityComparer<Cupom?>.Default.Equals(Cupom, aluguel.Cupom) &&
                 EqualityComparer<List<TaxaServico>>.Default.Equals(TaxaServicos, aluguel.TaxaServicos) &&
+                //KmAutomovel == aluguel.KmAutomovel &&
                 DataLocacao == aluguel.DataLocacao &&
                 DataPrevisaoRetorno == aluguel.DataPrevisaoRetorno &&
                 DataDevolucao == aluguel.DataDevolucao &&
