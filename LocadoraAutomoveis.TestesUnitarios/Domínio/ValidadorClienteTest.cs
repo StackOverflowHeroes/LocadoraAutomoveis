@@ -14,14 +14,19 @@ namespace LocadoraAutomoveis.TestesUnitarios.Domínio
         ValidadorCliente validadorCliente;
         Cliente cliente;
 
-        public ValidadorClienteTest()
-        {
-            cliente = new Cliente();
-            validadorCliente = new ValidadorCliente();
-        }
-        [TestMethod]
+          [TestInitialize]
+          public void Setup()
+          {
+               validadorCliente = new ValidadorCliente();
+               cliente = new("Pedro", "pedro@gmail.com", "(48) 91234-1234", Tipo.Fisica, "123.123.321.10",
+                   "Santa Catarina", "Florianópolis", "Santa Mônica", "Rua Velha", 103);
+          }
+
+
+          [TestMethod]
         public void Nome_cliente_nao_deve_ser_nulo_ou_vazio()
         {
+            cliente.Nome = "";
             var resultado = validadorCliente.TestValidate(cliente);
 
             resultado.ShouldHaveValidationErrorFor(x => x.Nome);
