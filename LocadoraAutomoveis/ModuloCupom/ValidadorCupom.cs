@@ -8,7 +8,7 @@ namespace LocadoraAutomoveis.Dominio.ModuloCupom
             RuleFor(x => x.Nome)
                     .NotNull().WithMessage("'Nome' deve ser informado.")
                     .NotEmpty().WithMessage("'Nome' não pode ser vazio.")
-                    .MinimumLength(2).WithMessage("'Nome' deve possuir no mínimo 3 caracteres.");
+                    .MinimumLength(2).WithMessage("'Nome' deve possuir no mínimo 2 caracteres.");
 
             RuleFor(x => x.Valor)
                     .NotNull().WithMessage("'Valor' deve ser informado")

@@ -20,7 +20,7 @@ namespace LocadoraAutomoveis.Dominio.ModuloCliente
                 .Must(ValidarFormatoEmail).WithMessage("'Email' deve possuir um formato válido.");
 
             RuleFor(x => x.Telefone)
-                .Must(ValidarTelefone).WithMessage("'Telefone' inválido!")
+                .Must(ValidarTelefone).WithMessage("'Telefone' inválido.")
                 .NotEmpty().WithMessage("'Telefone' não pode ser vazio.");
 
 
