@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LocadoraAutomoveis.Dominio.ModuloCondutor;
+using LocadoraAutomoveis.Dominio.ModuloCupom;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +20,8 @@ namespace LocadoraAutomoveis.Dominio.ModuloCliente
         public string Bairro { get; set; }
         public string Rua { get; set; }
         public int Numero { get; set; }
-        public Cliente()
+
+          public Cliente()
         {
         }
         public Cliente(string nome, string email, string telefone, Tipo tipoPessoa, string documento, string estado, string cidade, string bairro, string rua, int numero) : this()
