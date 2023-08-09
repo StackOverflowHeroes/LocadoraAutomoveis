@@ -112,9 +112,38 @@ namespace LocadoraAutomoveis.WinApp.ModuloAutomovel
             TelaPrincipalForm.Instancia.AtualizarRodape(mensagemRodape, TipoStatusEnum.Visualizando);
         }
 
+        public void CarregarRegistros(List<Automovel> ListaFiltrada)
+        {
+
+            tabelaAutomovel.AtualizarRegistros(ListaFiltrada);
+
+            mensagemRodape = string.Format("Visualizando {0} {1}", ListaFiltrada.Count, ListaFiltrada.Count > 1 ? "automóveis" : "automóvel");
+
+            TelaPrincipalForm.Instancia.AtualizarRodape(mensagemRodape, TipoStatusEnum.Visualizando);
+        }
+
         public override void Filtrar()
         {
-            MessageBox.Show("Filtrado");
+            TelaFiltroAutomovelForm telaFiltroAutomovel = new TelaFiltroAutomovelForm();
+            telaFiltroAutomovel.PopularComboBox(repositorioGrupoAutomovel.SelecionarTodos());
+
+            List<Automovel> ListaAutomovelFiltrada;
+
+            if (telaFiltroAutomovel.ShowDialog() == DialogResult.OK)
+            {
+                GrupoAutomovel grupoSelecionado = telaFiltroAutomovel.GrupoAutomovel;
+
+                if (grupoSelecionado != null)
+                {
+                    ListaAutomovelFiltrada = repositorioAutomovel.SelecionarPorGrupoAutomovel(grupoSelecionado);
+                    CarregarRegistros(ListaAutomovelFiltrada);
+                }
+                else
+                    CarregarRegistros();
+            }
+
+
+
         }
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()

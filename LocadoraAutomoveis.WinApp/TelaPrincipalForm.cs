@@ -207,6 +207,7 @@ namespace LocadoraAutomoveis.WinApp
             btnInserir.Enabled = configuracao.InserirHabilitado;
             btnEditar.Enabled = configuracao.EditarHabilitado;
             btnExcluir.Enabled = configuracao.ExcluirHabilitado;
+            BtnFiltrar.Enabled = configuracao.FiltrarHabilitado;
         }
 
         private void ConfigurarTooltips(ConfiguracaoToolboxBase configuracao)
@@ -214,6 +215,7 @@ namespace LocadoraAutomoveis.WinApp
             btnInserir.ToolTipText = configuracao.TooltipInserir;
             btnEditar.ToolTipText = configuracao.TooltipEditar;
             btnExcluir.ToolTipText = configuracao.TooltipExcluir;
+            BtnFiltrar.ToolTipText = configuracao.TooltipFiltrar;
         }
 
         private void btnInserir_Click(object sender, EventArgs e)
@@ -296,6 +298,11 @@ namespace LocadoraAutomoveis.WinApp
         {
             ConfigurarTelaPrincipal(controladores["ControladorAutomovel"]);
 
+        }
+
+        private void BtnFiltrar_Click(object sender, EventArgs e)
+        {
+            controlador.Filtrar();
         }
     }
 }
