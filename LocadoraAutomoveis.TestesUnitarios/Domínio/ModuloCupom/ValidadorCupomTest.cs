@@ -1,7 +1,6 @@
 ﻿
 using FluentValidation.TestHelper;
 using LocadoraAutomoveis.Dominio.ModuloCupom;
-using LocadoraAutomoveis.Dominio.ModuloPlanoCobranca;
 
 namespace LocadoraAutomoveis.TestesUnitarios.Domínio.ModuloCupom
 {
