@@ -26,6 +26,18 @@ namespace LocadoraAutomoveis.Dominio.ModuloAutomovel
                     .MinimumLength(3).WithMessage("'Marca' deve possuir no mínimo 3 caracteres.")
                     .NaoPodeCaracteresEspeciais();
 
+            RuleFor(x => x.Ano)
+                    .NotNull().WithMessage("'Ano' deve ser informado")
+                    .NotEmpty().WithMessage("'Ano' não pode ser vazio.")
+                    .Must(ano => ano <= (DateTime.Now.Year + 1))
+                    .WithMessage($"Um modelo de carro não pode ser maior que {DateTime.Now.Year + 1}")
+                    .GreaterThan(0);
+
+            RuleFor(x => x.Quilometragem)
+                    .NotNull().WithMessage("'Quilometragem' deve ser informado")
+                    .NotEmpty().WithMessage("'Quilometragem' não pode ser vazio.")
+                    .GreaterThan(0);
+
             RuleFor(x => x.Cor)
                    .NotNull().WithMessage("'Cor' deve ser informado.")
                    .NotEmpty().WithMessage("'Cor' não pode ser vazio.")
@@ -35,6 +47,7 @@ namespace LocadoraAutomoveis.Dominio.ModuloAutomovel
             RuleFor(x => x.Placa)
                     .NotNull().WithMessage("'Placa' deve ser informado.")
                     .NotEmpty().WithMessage("'Placa' não pode ser vazio.")
+                    .NaoPodeCaracteresEspeciais()
                     .Must(ValidarPlaca)
                     .WithMessage("A placa informada não é válida.");
 
