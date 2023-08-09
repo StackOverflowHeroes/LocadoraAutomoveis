@@ -17,30 +17,36 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloAluguel
     {
         private IRepositorioAluguel repositorioAluguel;
         private IValidadorAluguel validadorAluguel;
-        //public IServicoFuncionario servicoFuncionario;
-        //public IServicoCliente servicoCliente;
-        //public IServicoGrupoAutomovel servicoGrupoAutomovel;
-        //public IServicoPlanoCobranca servicoPlanoCobranca;
-        //public IServicoTaxaServico servicoTaxaServico;
-        //public IServicoCupom servicoCupom;
+        public IServicoFuncionario servicoFuncionario;
+        public IServicoCliente servicoCliente;
+        public IServicoGrupoAutomovel servicoGrupoAutomovel;
+        public IServicoPlanoCobranca servicoPlanoCobranca;
+        public IServicoTaxaServico servicoTaxaServico;
+        public IServicoCupom servicoCupom;
         //public IServicoCondutor servicoCondutor;
         //public IServicoAutomovel servicoAutomovel;
 
-        public ServicoAluguel(IRepositorioAluguel repositorioAluguel, IValidadorAluguel validadorAluguel//IServicoFuncionario servicoFuncionario, IServicoCliente servicoCliente,
-            //IServicoGrupoAutomovel servicoGrupoAutomovel, IServicoPlanoCobranca servicoPlanoCobranca,
-            //IServicoTaxaServico servicoTaxaServico, IServicoCupom servicoCupom
+        public ServicoAluguel(IRepositorioAluguel repositorioAluguel, IValidadorAluguel validadorAluguel, IServicoFuncionario servicoFuncionario, IServicoCliente servicoCliente,
+            IServicoGrupoAutomovel servicoGrupoAutomovel, IServicoPlanoCobranca servicoPlanoCobranca,
+            IServicoTaxaServico servicoTaxaServico, IServicoCupom servicoCupom
             /*, IServicoCondutor servicoCondutor, IServicoAutomovel servicoAutomovel*/)
         {
             this.repositorioAluguel = repositorioAluguel;
             this.validadorAluguel = validadorAluguel;
-            //this.servicoFuncionario = servicoFuncionario;
-            //this.servicoCliente = servicoCliente;
-            //this.servicoGrupoAutomovel = servicoGrupoAutomovel;
-            //this.servicoPlanoCobranca = servicoPlanoCobranca;
-            //this.servicoTaxaServico = servicoTaxaServico;
-            //this.servicoCupom = servicoCupom;
+            this.servicoFuncionario = servicoFuncionario;
+            this.servicoCliente = servicoCliente;
+            this.servicoGrupoAutomovel = servicoGrupoAutomovel;
+            this.servicoPlanoCobranca = servicoPlanoCobranca;
+            this.servicoTaxaServico = servicoTaxaServico;
+            this.servicoCupom = servicoCupom;
             //this.servicoCondutor = servicoCondutor;
             //this.servicoAutomovel = servicoAutomovel;
+        }
+
+        public ServicoAluguel(IRepositorioAluguel repositorioAluguel, IValidadorAluguel validadorAluguel)
+        {
+            this.repositorioAluguel = repositorioAluguel;
+            this.validadorAluguel = validadorAluguel;
         }
 
         public Result Editar(Aluguel aluguel)
@@ -69,22 +75,29 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloAluguel
         public Result Excluir(Aluguel aluguel)
         {
             Log.Debug("Tentando excluir aluguel...{@a}", aluguel);
+            bool clienteExiste = repositorioAluguel.Existe(aluguel);
+
+            if (clienteExiste == false)
+            {
+                Log.Warning("Aluguel {@id} não encontrado para excluir", aluguel.Id);
+                return Result.Fail("Aluguel não encontrada");
+            }
 
             try
             {
-                bool clienteExiste = repositorioAluguel.Existe(aluguel);
-
-                if (clienteExiste == false)
+                if (validadorAluguel.ValidarAluguelConcluido(aluguel))
                 {
-                    Log.Warning("Aluguel {@id : @nome} não encontrado para excluir", aluguel.Id, aluguel.Cliente.Nome);
-                    return Result.Fail("Aluguel não encontrada");
+                    repositorioAluguel.Excluir(aluguel);
+                    Log.Debug("Excluindo o Aluguel '{@Cliente : Id}' com sucesso!", aluguel.Cliente.Nome, aluguel.Id);
+                    return Result.Ok();
                 }
-
-                repositorioAluguel.Excluir(aluguel);
-
-                Log.Debug("Aluguel {@id : @nome} não encontrada para excluir", aluguel.Id, aluguel.Cliente.Nome);
-
-                return Result.Ok();
+                else
+                {
+                    Log.Warning("Falha ao tentar excluir o Aluguel '{@Cliente : Id}'. Aluguel está em aberto", aluguel.Cliente.Nome, aluguel.Id);
+                    string msgErro = "Esse Aluguel está em aberto. Finalize o Aluguel antes de excluir";
+                    Log.Error(msgErro + "{@a}", aluguel);
+                    return Result.Fail(msgErro);
+                }
             }
             catch (Exception excecao)
             {
