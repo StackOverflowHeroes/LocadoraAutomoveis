@@ -101,12 +101,56 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloCondutor
                if (NomeDuplicado(Condutor))
                     erros.Add($"Nome '{Condutor.Nome}', já está sendo utilizado.");
 
+               if (CPFDuplicado(Condutor))
+                    erros.Add($"CPF '{Condutor.CPF}', já está sendo utilizado.");
+
+               if (CNHDuplicada(Condutor))
+                    erros.Add($"CNH '{Condutor.CNH}' já está sendo utilizada.");
+
                foreach (string erro in erros)
                {
                     Log.Warning(erro);
                }
 
                return erros;
+          }
+
+          private bool CNHDuplicada(Condutor condutor)
+          {
+               List<Condutor> condutores = repositorioCondutor.SelecionarTodos();
+
+               if (condutores != null)
+               {
+                    foreach (Condutor c in condutores)
+                    {
+                         if (c.Id != condutor.Id && c.CNH == condutor.CNH)
+                              return true;
+
+                         else
+                              return false;
+                    }
+               }
+
+               return false;
+          }
+
+          public bool CPFDuplicado(Condutor condutor)
+          {
+               List<Condutor> condutores = repositorioCondutor.SelecionarTodos();
+
+               if (condutores != null)
+               {
+                    foreach (Condutor c in condutores)
+                    {
+                         if (c.Id != condutor.Id && c.CPF == condutor.CPF)
+                              return true;
+
+                         else
+                              return false;
+                    }
+               }
+
+               return false;
           }
 
           public bool NomeDuplicado(Condutor Condutor)

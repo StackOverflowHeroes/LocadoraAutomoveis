@@ -33,6 +33,7 @@ using System;
 using LocadoraAutomoveis.Dominio.ModuloCondutor;
 using LocadoraAutomoveis.Infra.Orm.ModuloCondutor;
 using LocadoraAutomoveis.Aplicacao.ModuloCondutor;
+using LocadoraAutomoveis.WinApp.ModuloCondutor;
 
 namespace LocadoraAutomoveis.WinApp
 {
@@ -111,6 +112,7 @@ namespace LocadoraAutomoveis.WinApp
                controladores.Add("ControladorFuncionario", new ControladorFuncionario(repositorioFuncionario, servicoFuncionario));
                controladores.Add("ControladorCliente", new ControladorCliente(repositorioCliente, servicoCliente));
                controladores.Add("ControladorCupom", new ControladorCupom(repositorioCupom, repositorioParceiro, servicoCupom));
+               controladores.Add("ControladorCondutor", new ControladorCondutor(repositorioCliente, repositorioCondutor, servicoCondutor));
 
           }
 
@@ -281,7 +283,7 @@ namespace LocadoraAutomoveis.WinApp
 
           private void condutoresMenuItem_Click(object sender, EventArgs e)
           {
-
+               ConfigurarTelaPrincipal(controladores["ControladorCondutor"]);
           }
 
           private void alugueisMenuItem_Click(object sender, EventArgs e)

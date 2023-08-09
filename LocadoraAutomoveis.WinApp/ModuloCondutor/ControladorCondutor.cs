@@ -34,6 +34,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloCondutor
 
                TelaCondutorForm telaCondutor = new TelaCondutorForm();
                telaCondutor.Text = "Edição de Condutor";
+               telaCondutor.PopularComboBox(repositorioCliente.SelecionarTodos());
                telaCondutor.onGravarRegistro += servicoCondutor.Editar;
 
                telaCondutor.ConfigurarTelaCondutor(condutorSelecionado);
