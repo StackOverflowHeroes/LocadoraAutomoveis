@@ -23,11 +23,11 @@ namespace LocadoraAutomoveis.Dominio.ModuloAluguel
             RuleFor(a => a.PlanoCobranca)
                 .NotNull().WithMessage("'Plano de Cobrança' é obrigatório.");
 
-            //RuleFor(a => a.Condutor)
-            //    .NotNull().WithMessage("'Condutor' é obrigatório.");
+            RuleFor(a => a.Condutor)
+                .NotNull().WithMessage("'Condutor' é obrigatório.");
 
-            //RuleFor(a => a.Automovel)
-            //    .NotNull().WithMessage("'Automóvel' é obrigatório.");
+            RuleFor(a => a.Automovel)
+                .NotNull().WithMessage("'Automóvel' é obrigatório.");
 
             RuleFor(a => a.Cupom)
                 .NotNull().WithMessage("'Cupom' é obrigatório.");

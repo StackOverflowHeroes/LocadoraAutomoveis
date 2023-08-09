@@ -1,4 +1,6 @@
-﻿using LocadoraAutomoveis.Aplicacao.ModuloCliente;
+﻿using LocadoraAutomoveis.Aplicacao.ModuloAutomovel;
+using LocadoraAutomoveis.Aplicacao.ModuloCliente;
+using LocadoraAutomoveis.Aplicacao.ModuloCondutor;
 using LocadoraAutomoveis.Aplicacao.ModuloCupom;
 using LocadoraAutomoveis.Aplicacao.ModuloFuncionario;
 using LocadoraAutomoveis.Aplicacao.ModuloGrupoAutomovel;
@@ -23,13 +25,13 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloAluguel
         public IServicoPlanoCobranca servicoPlanoCobranca;
         public IServicoTaxaServico servicoTaxaServico;
         public IServicoCupom servicoCupom;
-        //public IServicoCondutor servicoCondutor;
-        //public IServicoAutomovel servicoAutomovel;
+        public IServicoCondutor servicoCondutor;
+        public IServicoAutomovel servicoAutomovel;
 
         public ServicoAluguel(IRepositorioAluguel repositorioAluguel, IValidadorAluguel validadorAluguel, IServicoFuncionario servicoFuncionario, IServicoCliente servicoCliente,
             IServicoGrupoAutomovel servicoGrupoAutomovel, IServicoPlanoCobranca servicoPlanoCobranca,
             IServicoTaxaServico servicoTaxaServico, IServicoCupom servicoCupom
-            /*, IServicoCondutor servicoCondutor, IServicoAutomovel servicoAutomovel*/)
+            , IServicoCondutor servicoCondutor, IServicoAutomovel servicoAutomovel)
         {
             this.repositorioAluguel = repositorioAluguel;
             this.validadorAluguel = validadorAluguel;
@@ -39,8 +41,8 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloAluguel
             this.servicoPlanoCobranca = servicoPlanoCobranca;
             this.servicoTaxaServico = servicoTaxaServico;
             this.servicoCupom = servicoCupom;
-            //this.servicoCondutor = servicoCondutor;
-            //this.servicoAutomovel = servicoAutomovel;
+            this.servicoCondutor = servicoCondutor;
+            this.servicoAutomovel = servicoAutomovel;
         }
 
         public ServicoAluguel(IRepositorioAluguel repositorioAluguel, IValidadorAluguel validadorAluguel)

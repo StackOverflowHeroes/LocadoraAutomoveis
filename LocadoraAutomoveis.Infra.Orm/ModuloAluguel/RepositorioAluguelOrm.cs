@@ -29,8 +29,8 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloAluguel
                 .Include(x => x.Cliente)
                 .Include(x => x.Cupom)
                 .Include(x => x.PlanoCobranca)
-                //.Include(x => x.Automovel)
-                //.Include(x => x.Condutor)
+                .Include(x => x.Automovel)
+                .Include(x => x.Condutor)
                 .Include(x => x.TaxaServicos)
                 .Include(x => x.Funcionario).ToList();
         }

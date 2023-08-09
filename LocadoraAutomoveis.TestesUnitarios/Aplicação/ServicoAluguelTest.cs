@@ -28,6 +28,10 @@ using static LocadoraAutomoveis.Dominio.ModuloAluguel.Aluguel;
 using System.ComponentModel.DataAnnotations;
 using FluentValidation.Results;
 using ValidationResult = FluentValidation.Results.ValidationResult;
+using LocadoraAutomoveis.Dominio.ModuloCondutor;
+using LocadoraAutomoveis.Dominio.ModuloAutomovel;
+using LocadoraAutomoveis.Aplicacao.ModuloCondutor;
+using LocadoraAutomoveis.Aplicacao.ModuloAutomovel;
 
 namespace LocadoraAutomoveis.TestesUnitarios.Aplicação
 {
@@ -42,8 +46,8 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação
         private Mock<IServicoPlanoCobranca> servicoPlanoCobrancaMoq;
         private Mock<IServicoCupom> servicoCupomMoq;
         private Mock<IServicoTaxaServico> servicoTaxaServicoMoq;
-        //private Mock<IServicoCondutor> servicoCondutorMoq;
-        //private Mock<IservicoAutomovel> servicoAutomovelMoq;
+        private Mock<IServicoCondutor> servicoCondutorMoq;
+        private Mock<IServicoAutomovel> servicoAutomovelMoq;
         private ServicoAluguel servicoAluguel;
         private Aluguel aluguel;
         private Cupom cupom;
@@ -61,18 +65,20 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação
             servicoPlanoCobrancaMoq = new Mock<IServicoPlanoCobranca>();
             servicoCupomMoq = new Mock<IServicoCupom>();
             servicoTaxaServicoMoq = new Mock<IServicoTaxaServico>();
-            //servicoCondutorMoq = new Mock<IServicoCondutor>();
-            //servicoAutomovelMoq = new Mock<IservicoAutomovel>();
+            servicoCondutorMoq = new Mock<IServicoCondutor>();
+            servicoAutomovelMoq = new Mock<IServicoAutomovel>();
 
-            servicoAluguel = new ServicoAluguel(repositorioAluguelMoq.Object, validadorAluguelMoq.Object,
-                servicoFuncionarioMoq.Object, servicoClienteMoq.Object, servicoGrupoAutomovelMoq.Object,
-                servicoPlanoCobrancaMoq.Object, servicoTaxaServicoMoq.Object, servicoCupomMoq.Object);
+            servicoAluguel = new ServicoAluguel(repositorioAluguelMoq.Object, validadorAluguelMoq.Object);
+            //(repositorioAluguelMoq.Object, validadorAluguelMoq.Object,
+            //    servicoFuncionarioMoq.Object, servicoClienteMoq.Object, servicoGrupoAutomovelMoq.Object,
+            //    servicoPlanoCobrancaMoq.Object, servicoTaxaServicoMoq.Object, servicoCupomMoq.Object, servicoCondutorMoq.Object);
             Funcionario funcionario = Builder<Funcionario>.CreateNew().Build();
             Cliente cliente = Builder<Cliente>.CreateNew().Build();
             GrupoAutomovel grupoAutomovel = Builder<GrupoAutomovel>.CreateNew().Build();
             PlanoCobranca plano = Builder<PlanoCobranca>.CreateNew().With(x => x.grupoAutomovel = grupoAutomovel).Build();
-            //Condutor condutor = Builder<Condutor>.CreateNew().With(c => c.Cliente = cliente).Build();
-            //Automovel automovel = Builder<Automovel>.CreateNew().With(a => a.Categoria = categoria).Build();
+            Condutor condutor = Builder<Condutor>.CreateNew().With(c => c.Cliente = cliente).Build();
+            Automovel automovel = Builder<Automovel>.CreateNew().With(a => a.GrupoAutomovel = grupoAutomovel).Build();
+            int quilometroAutomovel = 1000;
             Parceiro parceiro = Builder<Parceiro>.CreateNew().Build();
             Cupom cupom = Builder<Cupom>.CreateNew().With(c => c.Parceiro = parceiro).Build();
             List<TaxaServico> listTaxa = Builder<TaxaServico>.CreateListOfSize(5).Build().ToList();
@@ -83,7 +89,10 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação
             NivelTanque nivelTanque = NivelTanque.MeioTanque;
             decimal valorTotal = 1000;
 
-            aluguel = new Aluguel(funcionario, cliente, grupoAutomovel, plano, cupom, listTaxa, dataLocacao, dataPrevista, dataDevolucao, quilometrosRodados, nivelTanque, valorTotal, true);
+            aluguel = new Aluguel(funcionario, cliente, grupoAutomovel,
+                plano, condutor, automovel, quilometroAutomovel, cupom, listTaxa, dataLocacao,
+                dataPrevista, dataDevolucao, quilometrosRodados, nivelTanque,
+                valorTotal, true);
         }
         [TestMethod]
         public void Deve_inserir_aluguel_caso_valido()

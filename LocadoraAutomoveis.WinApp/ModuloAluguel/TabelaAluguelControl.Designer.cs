@@ -35,6 +35,7 @@
             // gridAluguel
             // 
             gridAluguel.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridAluguel.Dock = DockStyle.Fill;
             gridAluguel.Location = new Point(0, 0);
             gridAluguel.Name = "gridAluguel";
             gridAluguel.RowTemplate.Height = 25;

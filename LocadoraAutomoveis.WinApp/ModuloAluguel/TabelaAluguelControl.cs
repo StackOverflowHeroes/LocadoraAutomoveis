@@ -7,7 +7,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloAluguel
         public TabelaAluguelControl()
         {
             InitializeComponent();
-            
+
             gridAluguel.ConfigurarGridZebrado();
             gridAluguel.ConfigurarGridSomenteLeitura();
             gridAluguel.Columns.AddRange(ObterColunas());
@@ -36,8 +36,8 @@ namespace LocadoraAutomoveis.WinApp.ModuloAluguel
             foreach (Aluguel aluguel in alugueis)
             {
                 gridAluguel.Rows.Add(aluguel.Id,
-                                    //aluguel.Condutor.Nome,
-                                    //aluguel.Automovel.Placa,
+                                    aluguel.Condutor.Nome,
+                                    aluguel.Automovel.Placa,
                                     aluguel.PlanoCobranca,
                                     aluguel.DataLocacao,
                                     aluguel.DataPrevisaoRetorno,
