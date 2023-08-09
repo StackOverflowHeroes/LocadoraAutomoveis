@@ -30,263 +30,274 @@ using LocadoraAutomoveis.Infra.Orm.ModuloCupom;
 using LocadoraAutomoveis.Aplicacao.ModuloCupom;
 using LocadoraAutomoveis.WinApp.ModuloCupom;
 using System;
+using LocadoraAutomoveis.Dominio.ModuloAluguel;
+using LocadoraAutomoveis.Infra.Orm.ModuloAluguel;
+using LocadoraAutomoveis.WinApp.ModuloAluguel;
+using LocadoraAutomoveis.Aplicacao.ModuloAluguel;
 
 namespace LocadoraAutomoveis.WinApp
 {
-     public partial class TelaPrincipalForm : Form
-     {
-          private Dictionary<string, ControladorBase> controladores;
+    public partial class TelaPrincipalForm : Form
+    {
+        private Dictionary<string, ControladorBase> controladores;
 
-          private ControladorBase controlador;
-          public TelaPrincipalForm()
-          {
-               InitializeComponent();
-               ConfiguracaoInicialTimer();
-               Instancia = this;
+        private ControladorBase controlador;
+        public TelaPrincipalForm()
+        {
+            InitializeComponent();
+            ConfiguracaoInicialTimer();
+            Instancia = this;
 
-               textoRodape.Text = null;
-               textoTipoCadastro.Text = null;
+            textoRodape.Text = null;
+            textoTipoCadastro.Text = null;
 
-               controladores = new Dictionary<string, ControladorBase>();
+            controladores = new Dictionary<string, ControladorBase>();
 
-               ConfigurarControladores();
-          }
+            ConfigurarControladores();
+        }
 
-          private void ConfigurarControladores()
-          {
-               var configuracao = new ConfigurationBuilder()
-               .SetBasePath(Directory.GetCurrentDirectory())
-               .AddJsonFile("appsettings.json")
-               .Build();
+        private void ConfigurarControladores()
+        {
+            var configuracao = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json")
+            .Build();
 
-               var connectionString = configuracao.GetConnectionString("SqlServer");
+            var connectionString = configuracao.GetConnectionString("SqlServer");
 
-               var optionsBuilder = new DbContextOptionsBuilder<GeradorTestesDbContext>();
+            var optionsBuilder = new DbContextOptionsBuilder<GeradorTestesDbContext>();
 
-               optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseSqlServer(connectionString);
 
-               var dbContext = new GeradorTestesDbContext(optionsBuilder.Options);
+            var dbContext = new GeradorTestesDbContext(optionsBuilder.Options);
 
-               var migracoesPendentes = dbContext.Database.GetPendingMigrations();
+            var migracoesPendentes = dbContext.Database.GetPendingMigrations();
 
-               if (migracoesPendentes.Count() > 0)
-               {
-                    dbContext.Database.Migrate();
-               }
+            if (migracoesPendentes.Count() > 0)
+            {
+                dbContext.Database.Migrate();
+            }
 
-               IRepositorioParceiro repositorioParceiro = new RepositorioParceiroEmOrm(dbContext);
-               IRepositorioGrupoAutomovel repositorioGrupoAutomovel = new RepositorioGrupoAutomovelEmOrm(dbContext);
-               IRepositorioTaxaServico repositorioTaxaServico = new RepositorioTaxaServicoEmOrm(dbContext);
-               IRepositorioPlanoCobranca repositorioPlanoCobranca = new RepositorioPlanoCobrancaEmOrm(dbContext);
-               IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionarioEmOrm(dbContext);
-               IRepositorioCliente repositorioCliente = new RepositorioClienteOrm(dbContext);
-               IRepositorioCupom repositorioCupom = new RepositorioCupomEmOrm(dbContext);
+            IRepositorioParceiro repositorioParceiro = new RepositorioParceiroEmOrm(dbContext);
+            IRepositorioGrupoAutomovel repositorioGrupoAutomovel = new RepositorioGrupoAutomovelEmOrm(dbContext);
+            IRepositorioTaxaServico repositorioTaxaServico = new RepositorioTaxaServicoEmOrm(dbContext);
+            IRepositorioPlanoCobranca repositorioPlanoCobranca = new RepositorioPlanoCobrancaEmOrm(dbContext);
+            IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionarioEmOrm(dbContext);
+            IRepositorioCliente repositorioCliente = new RepositorioClienteOrm(dbContext);
+            IRepositorioCupom repositorioCupom = new RepositorioCupomEmOrm(dbContext);
+            IRepositorioAluguel repositorioAluguel = new RepositorioAluguelOrm(dbContext);
 
-               ValidadorParceiro validadorParceiro = new ValidadorParceiro();
-               ValidadorGrupoAutomovel validadorGrupoAutomovel = new ValidadorGrupoAutomovel();
-               ValidadorTaxaServico validadorTaxaServico = new ValidadorTaxaServico();
-               ValidadorPlanoCobranca validadorPlanoCobranca = new ValidadorPlanoCobranca();
-               ValidadorFuncionario validadorFuncionario = new ValidadorFuncionario();
-               ValidadorCliente validadorCliente = new ValidadorCliente();
-               ValidadorCupom validadorCupom = new ValidadorCupom();
+            ValidadorParceiro validadorParceiro = new ValidadorParceiro();
+            ValidadorGrupoAutomovel validadorGrupoAutomovel = new ValidadorGrupoAutomovel();
+            ValidadorTaxaServico validadorTaxaServico = new ValidadorTaxaServico();
+            ValidadorPlanoCobranca validadorPlanoCobranca = new ValidadorPlanoCobranca();
+            ValidadorFuncionario validadorFuncionario = new ValidadorFuncionario();
+            ValidadorCliente validadorCliente = new ValidadorCliente();
+            ValidadorCupom validadorCupom = new ValidadorCupom();
+            ValidadorAluguel validadorAluguel = new ValidadorAluguel();
 
-               ServicoParceiro servicoParceiro = new ServicoParceiro(repositorioParceiro, validadorParceiro);
-               ServicoGrupoAutomovel servicoGrupoAutomovel = new ServicoGrupoAutomovel(repositorioGrupoAutomovel, validadorGrupoAutomovel);
-               ServicoTaxaServico servicoTaxaServico = new ServicoTaxaServico(repositorioTaxaServico, validadorTaxaServico);
-               ServicoPlanoCobranca servicoPlanoCobranca = new ServicoPlanoCobranca(repositorioPlanoCobranca, validadorPlanoCobranca);
-               ServicoFuncionario servicoFuncionario = new ServicoFuncionario(repositorioFuncionario, validadorFuncionario);
-               ServicoCliente servicoCliente = new ServicoCliente(repositorioCliente, validadorCliente);
-               ServicoCupom servicoCupom = new ServicoCupom(repositorioCupom, validadorCupom);
+            ServicoParceiro servicoParceiro = new ServicoParceiro(repositorioParceiro, validadorParceiro);
+            ServicoGrupoAutomovel servicoGrupoAutomovel = new ServicoGrupoAutomovel(repositorioGrupoAutomovel, validadorGrupoAutomovel);
+            ServicoTaxaServico servicoTaxaServico = new ServicoTaxaServico(repositorioTaxaServico, validadorTaxaServico);
+            ServicoPlanoCobranca servicoPlanoCobranca = new ServicoPlanoCobranca(repositorioPlanoCobranca, validadorPlanoCobranca);
+            ServicoFuncionario servicoFuncionario = new ServicoFuncionario(repositorioFuncionario, validadorFuncionario);
+            ServicoCliente servicoCliente = new ServicoCliente(repositorioCliente, validadorCliente);
+            ServicoCupom servicoCupom = new ServicoCupom(repositorioCupom, validadorCupom);
+            //ServicoAluguel servicoAluguel = new ServicoAluguel(repositorioAluguel, validadorAluguel);
+            ServicoAluguel servicoAluguel = new ServicoAluguel(repositorioAluguel, validadorAluguel/*servicoFuncionario, servicoCliente, servicoGrupoAutomovel, servicoPlanoCobranca, servicoTaxaServico, servicoCupom*/);
 
 
-               controladores.Add("ControladorParceiro", new ControladorParceiro(repositorioParceiro, servicoParceiro));
-               controladores.Add("ControladorGrupoAutomovel", new ControladorGrupoAutomovel(repositorioGrupoAutomovel, servicoGrupoAutomovel));
-               controladores.Add("ControladorTaxaServico", new ControladorTaxaServico(repositorioTaxaServico, servicoTaxaServico));
-               controladores.Add("ControladorPlanoCobranca", new ControladorPlanoCobranca(repositorioPlanoCobranca, servicoPlanoCobranca, repositorioGrupoAutomovel));
-               controladores.Add("ControladorFuncionario", new ControladorFuncionario(repositorioFuncionario, servicoFuncionario));
-               controladores.Add("ControladorCliente", new ControladorCliente(repositorioCliente, servicoCliente));
-               controladores.Add("ControladorCupom", new ControladorCupom(repositorioCupom, repositorioParceiro, servicoCupom));
+            controladores.Add("ControladorParceiro", new ControladorParceiro(repositorioParceiro, servicoParceiro));
+            controladores.Add("ControladorGrupoAutomovel", new ControladorGrupoAutomovel(repositorioGrupoAutomovel, servicoGrupoAutomovel));
+            controladores.Add("ControladorTaxaServico", new ControladorTaxaServico(repositorioTaxaServico, servicoTaxaServico));
+            controladores.Add("ControladorPlanoCobranca", new ControladorPlanoCobranca(repositorioPlanoCobranca, servicoPlanoCobranca, repositorioGrupoAutomovel));
+            controladores.Add("ControladorFuncionario", new ControladorFuncionario(repositorioFuncionario, servicoFuncionario));
+            controladores.Add("ControladorCliente", new ControladorCliente(repositorioCliente, servicoCliente));
+            controladores.Add("ControladorCupom", new ControladorCupom(repositorioCupom, repositorioParceiro, servicoCupom));
+            controladores.Add("ControladorAluguel", new ControladorAluguel(repositorioAluguel, repositorioFuncionario,
+                repositorioCliente, repositorioGrupoAutomovel, repositorioPlanoCobranca, repositorioTaxaServico, repositorioCupom/*, repositorioCondutor, repositorioAutomovel */));
 
-          }
 
-          private void ConfiguracaoInicialTimer()
-          {
-               temporizador.Interval = 1000;
-               temporizador.Tick += Timer_tick;
-          }
+        }
 
-          private int contadorTemporizador = 5;
-          public static TelaPrincipalForm Instancia
-          {
-               get;
-               private set;
-          }
-          public void AtualizarRodape(string mensagem, TipoStatusEnum tipoStatus)
-          {
-               contadorTemporizador = 5;
-               Color cor = default;
+        private void ConfiguracaoInicialTimer()
+        {
+            temporizador.Interval = 1000;
+            temporizador.Tick += Timer_tick;
+        }
 
-               switch (tipoStatus)
-               {
-                    case TipoStatusEnum.Nenhum: break;
-                    case TipoStatusEnum.Erro: cor = Color.Red; break;
-                    case TipoStatusEnum.Sucesso: cor = Color.Green; break;
-                    case TipoStatusEnum.Visualizando: cor = Color.Blue; break;
-               }
+        private int contadorTemporizador = 5;
+        public static TelaPrincipalForm Instancia
+        {
+            get;
+            private set;
+        }
+        public void AtualizarRodape(string mensagem, TipoStatusEnum tipoStatus)
+        {
+            contadorTemporizador = 5;
+            Color cor = default;
 
-               textoRodape.ForeColor = cor;
-               textoRodape.Text = mensagem;
+            switch (tipoStatus)
+            {
+                case TipoStatusEnum.Nenhum: break;
+                case TipoStatusEnum.Erro: cor = Color.Red; break;
+                case TipoStatusEnum.Sucesso: cor = Color.Green; break;
+                case TipoStatusEnum.Visualizando: cor = Color.Blue; break;
+            }
 
-               if (tipoStatus != TipoStatusEnum.Visualizando)
-                    temporizador.Start();
-          }
-          private void Timer_tick(object? sender, EventArgs e)
-          {
-               contadorTemporizador--;
+            textoRodape.ForeColor = cor;
+            textoRodape.Text = mensagem;
 
-               if (contadorTemporizador == 0)
-               {
-                    textoRodape.ForeColor = default;
-                    textoRodape.Text = "Status";
-                    temporizador.Stop();
-               }
-          }
+            if (tipoStatus != TipoStatusEnum.Visualizando)
+                temporizador.Start();
+        }
+        private void Timer_tick(object? sender, EventArgs e)
+        {
+            contadorTemporizador--;
 
-          private void ConfigurarTelaPrincipal(ControladorBase controlador)
-          {
-               this.controlador = controlador;
+            if (contadorTemporizador == 0)
+            {
+                textoRodape.ForeColor = default;
+                textoRodape.Text = "Status";
+                temporizador.Stop();
+            }
+        }
 
-               ConfigurarToolbox();
+        private void ConfigurarTelaPrincipal(ControladorBase controlador)
+        {
+            this.controlador = controlador;
 
-               ConfigurarListagem();
+            ConfigurarToolbox();
 
-               string mensagemRodape = controlador.ObterMensagemRodape();
+            ConfigurarListagem();
 
-               AtualizarRodape(mensagemRodape, TipoStatusEnum.Visualizando);
-          }
+            string mensagemRodape = controlador.ObterMensagemRodape();
 
-          private void ConfigurarListagem()
-          {
-               AtualizarRodape("", TipoStatusEnum.Visualizando);
+            AtualizarRodape(mensagemRodape, TipoStatusEnum.Visualizando);
+        }
 
-               var listagemControl = controlador.ObtemListagem();
+        private void ConfigurarListagem()
+        {
+            AtualizarRodape("", TipoStatusEnum.Visualizando);
 
-               painelRegistros.Controls.Clear();
+            var listagemControl = controlador.ObtemListagem();
 
-               listagemControl.Dock = DockStyle.Fill;
+            painelRegistros.Controls.Clear();
 
-               painelRegistros.Controls.Add(listagemControl);
-          }
+            listagemControl.Dock = DockStyle.Fill;
 
-          private void ConfigurarToolbox()
-          {
-               ConfiguracaoToolboxBase configuracao = controlador.ObtemConfiguracaoToolbox();
+            painelRegistros.Controls.Add(listagemControl);
+        }
 
-               if (configuracao != null)
-               {
-                    toolStrip1.Enabled = true;
+        private void ConfigurarToolbox()
+        {
+            ConfiguracaoToolboxBase configuracao = controlador.ObtemConfiguracaoToolbox();
 
-                    textoTipoCadastro.Text = configuracao.TipoCadastro;
+            if (configuracao != null)
+            {
+                toolStrip1.Enabled = true;
 
-                    ConfigurarTooltips(configuracao);
+                textoTipoCadastro.Text = configuracao.TipoCadastro;
 
-                    ConfigurarBotoes(configuracao);
-               }
-          }
+                ConfigurarTooltips(configuracao);
 
-          private void ConfigurarBotoes(ConfiguracaoToolboxBase configuracao)
-          {
-               btnInserir.Enabled = configuracao.InserirHabilitado;
-               btnEditar.Enabled = configuracao.EditarHabilitado;
-               btnExcluir.Enabled = configuracao.ExcluirHabilitado;
-          }
+                ConfigurarBotoes(configuracao);
+            }
+        }
 
-          private void ConfigurarTooltips(ConfiguracaoToolboxBase configuracao)
-          {
-               btnInserir.ToolTipText = configuracao.TooltipInserir;
-               btnEditar.ToolTipText = configuracao.TooltipEditar;
-               btnExcluir.ToolTipText = configuracao.TooltipExcluir;
-          }
+        private void ConfigurarBotoes(ConfiguracaoToolboxBase configuracao)
+        {
+            btnInserir.Enabled = configuracao.InserirHabilitado;
+            btnEditar.Enabled = configuracao.EditarHabilitado;
+            btnExcluir.Enabled = configuracao.ExcluirHabilitado;
+        }
 
-          private void btnInserir_Click(object sender, EventArgs e)
-          {
-               controlador.Inserir();
-          }
+        private void ConfigurarTooltips(ConfiguracaoToolboxBase configuracao)
+        {
+            btnInserir.ToolTipText = configuracao.TooltipInserir;
+            btnEditar.ToolTipText = configuracao.TooltipEditar;
+            btnExcluir.ToolTipText = configuracao.TooltipExcluir;
+        }
 
-          private void btnEditar_Click(object sender, EventArgs e)
-          {
-               controlador.Editar();
-          }
+        private void btnInserir_Click(object sender, EventArgs e)
+        {
+            controlador.Inserir();
+        }
 
-          private void btnExcluir_Click(object sender, EventArgs e)
-          {
-               controlador.Excluir();
-          }
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            controlador.Editar();
+        }
 
-          private void parceirosMenuItem_Click(object sender, EventArgs e)
-          {
-               ConfigurarTelaPrincipal(controladores["ControladorParceiro"]);
-          }
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            controlador.Excluir();
+        }
 
-          private void gruposMenuItem_Click(object sender, EventArgs e)
-          {
-               ConfigurarTelaPrincipal(controladores["ControladorGrupoAutomovel"]);
-          }
+        private void parceirosMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal(controladores["ControladorParceiro"]);
+        }
 
-          private void taxaServicoMenuItem_Click(object sender, EventArgs e)
-          {
-               ConfigurarTelaPrincipal(controladores["ControladorTaxaServico"]);
-          }
+        private void gruposMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal(controladores["ControladorGrupoAutomovel"]);
+        }
 
-          private void planosMenuItem_Click(object sender, EventArgs e)
-          {
-               ConfigurarTelaPrincipal(controladores["ControladorPlanoCobranca"]);
-          }
+        private void taxaServicoMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal(controladores["ControladorTaxaServico"]);
+        }
 
-          private void funcionariosMenuItem_Click(object sender, EventArgs e)
-          {
-               ConfigurarTelaPrincipal(controladores["ControladorFuncionario"]);
-          }
+        private void planosMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal(controladores["ControladorPlanoCobranca"]);
+        }
 
-          private void clientesMenuItem_Click(object sender, EventArgs e)
-          {
-               ConfigurarTelaPrincipal(controladores["ControladorCliente"]);
-          }
+        private void funcionariosMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal(controladores["ControladorFuncionario"]);
+        }
 
-          private void cuponsMenuItem_Click(object sender, EventArgs e)
-          {
-               ConfigurarTelaPrincipal(controladores["ControladorCupom"]);
+        private void clientesMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal(controladores["ControladorCliente"]);
+        }
 
-          }
+        private void cuponsMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal(controladores["ControladorCupom"]);
 
-          private void btnDevolucao_Click(object sender, EventArgs e)
-          {
+        }
 
-          }
+        private void btnDevolucao_Click(object sender, EventArgs e)
+        {
 
-          private void btnGerarPDF_Click(object sender, EventArgs e)
-          {
+        }
 
-          }
+        private void btnGerarPDF_Click(object sender, EventArgs e)
+        {
 
-          private void btnConfigurarPreco_Click(object sender, EventArgs e)
-          {
+        }
 
-          }
+        private void btnConfigurarPreco_Click(object sender, EventArgs e)
+        {
 
-          private void condutoresMenuItem_Click(object sender, EventArgs e)
-          {
+        }
 
-          }
+        private void condutoresMenuItem_Click(object sender, EventArgs e)
+        {
 
-          private void alugueisMenuItem_Click(object sender, EventArgs e)
-          {
+        }
 
-          }
+        private void alugueisMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal(controladores["ControladorAluguel"]);
+        }
 
-          private void automoveisMenuItem_Click(object sender, EventArgs e)
-          {
+        private void automoveisMenuItem_Click(object sender, EventArgs e)
+        {
 
-          }
-     }
+        }
+    }
 }

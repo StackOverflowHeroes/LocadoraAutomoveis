@@ -19,9 +19,6 @@ namespace LocadoraAutomoveis.WinApp.ModuloCliente
             cliente.Telefone = txtTelefone.Text;
             cliente.TipoPessoa = rdbFisica.Checked ? Tipo.Fisica : Tipo.Juridica;
             cliente.Documento = rdbFisica.Checked ? txtCpf.Text : txtCnpj.Text;
-            //rdbJuridica.Checked = cliente.TipoPessoa == Tipo.PessoaJuridica;
-            //cliente.Documento = txtCpf.Text;
-            //cliente.Documento = txtCnpj.Text;
             cliente.Estado = txtEstado.Text;
             cliente.Cidade = txtCidade.Text;
             cliente.Bairro = txtBairro.Text;
@@ -38,10 +35,6 @@ namespace LocadoraAutomoveis.WinApp.ModuloCliente
             txtEmail.Text = cliente.Email;
             txtTelefone.Text = cliente.Telefone;
             rdbJuridica.Checked = cliente.TipoPessoa == Tipo.Juridica;
-            //if (cliente.TipoPessoa == Tipo.PessoaFisica)
-            //    rdbFisica.Checked = true;
-            //else
-            //    rdbJuridica.Checked = true;
             txtCpf.Text = cliente.Documento;
             txtCnpj.Text = cliente.Documento;
             txtEstado.Text = cliente.Estado;

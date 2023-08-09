@@ -11,28 +11,25 @@
 //    {
 //        public void Configure(EntityTypeBuilder<Aluguel> builder)
 //        {
-//            //builder.ToTable("TBAluguel");
-//            //builder.Property(x => x.Id).IsRequired().ValueGeneratedNever();
-//            //builder.Property(x => x.DataPrevisaoRetorno).IsRequired();
-//            //builder.Property(x => x.ValorTotal).HasConversion<decimal>().IsRequired();
-//            //builder.Property(x => x.CombustivelRestante).HasConversion<decimal>().IsRequired();
-//            //builder.Property(x => x.ValorTotal).HasConversion<decimal>().IsRequired();
-//            //builder.Property(x => x.DataDevolucao).IsRequired();
-//            //builder.Property(x => x.DataLocacao).IsRequired();
-//            //builder.Property(x => x.QuilometrosRodados).HasConversion<decimal>().IsRequired();
-//            ////builder.Property(x => x.KmAutomovel).HasConversion<decimal>().IsRequired();
-//            //builder.Property(x => x.QuilometrosRodados).HasConversion<decimal>().IsRequired();
+//            builder.ToTable("TBAluguel");
+//            builder.HasKey(a => a.Id);
+            //builder.Property(a => a.DataLocacao).IsRequired();
+            //builder.Property(a => a.DataPrevistaRetorno).IsRequired();
+            //builder.Property(a => a.ValorTotal).IsRequired();
+            //builder.Property(a => a.Concluido).IsRequired();
+            //builder.Property(a => a.DataDevolucao);
+            //builder.Property(a => a.QuilometrosRodados);
+            //builder.Property(a => a.CombustivelRestante);
+//            //builder.HasOne(x => x.Funcionario)
+//            //       .WithMany()
+//            //       .IsRequired()
+//            //       .HasConstraintName("FK_TBAluguel_TBFuncionario")
+//            //       .OnDelete(DeleteBehavior.NoAction);
 
 //            //builder.HasOne(x => x.GrupoAutomovel)
 //            //       .WithMany()
 //            //       .IsRequired()
 //            //       .HasConstraintName("FK_TBAluguel_TBGrupoAutomovel")
-//            //       .OnDelete(DeleteBehavior.NoAction);
-
-//            //builder.HasOne(x => x.Funcionario)
-//            //       .WithMany()
-//            //       .IsRequired()
-//            //       .HasConstraintName("FK_TBAluguel_TBFuncionario")
 //            //       .OnDelete(DeleteBehavior.NoAction);
 
 //            //builder.HasOne(x => x.Cliente)

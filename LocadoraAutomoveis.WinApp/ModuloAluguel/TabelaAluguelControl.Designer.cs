@@ -28,10 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            gridAluguel = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)gridAluguel).BeginInit();
+            SuspendLayout();
+            // 
+            // gridAluguel
+            // 
+            gridAluguel.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridAluguel.Location = new Point(0, 0);
+            gridAluguel.Name = "gridAluguel";
+            gridAluguel.RowTemplate.Height = 25;
+            gridAluguel.Size = new Size(360, 324);
+            gridAluguel.TabIndex = 1;
+            // 
+            // TabelaAluguelControl
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(gridAluguel);
+            Name = "TabelaAluguelControl";
+            Size = new Size(360, 324);
+            ((System.ComponentModel.ISupportInitialize)gridAluguel).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private DataGridView gridAluguel;
     }
 }
