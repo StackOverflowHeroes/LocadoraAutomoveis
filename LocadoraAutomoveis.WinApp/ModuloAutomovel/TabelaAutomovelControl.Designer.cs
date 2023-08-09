@@ -1,6 +1,6 @@
 ﻿namespace LocadoraAutomoveis.WinApp.ModuloAutomovel
 {
-    partial class TabelaAutomovelForm
+    partial class TabelaAutomovelControl
     {
         /// <summary> 
         /// Required designer variable.

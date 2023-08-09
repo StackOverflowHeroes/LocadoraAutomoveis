@@ -4,9 +4,9 @@ using LocadoraAutomoveis.Dominio.ModuloCupom;
 
 namespace LocadoraAutomoveis.WinApp.ModuloAutomovel
 {
-    public partial class TabelaAutomovelForm : UserControl
+    public partial class TabelaAutomovelControl : UserControl
     {
-        public TabelaAutomovelForm()
+        public TabelaAutomovelControl()
         {
             InitializeComponent();
             gridAutomovel.ConfigurarGridZebrado();

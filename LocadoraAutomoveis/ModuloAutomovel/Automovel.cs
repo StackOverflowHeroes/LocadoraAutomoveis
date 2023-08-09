@@ -30,12 +30,14 @@ namespace LocadoraAutomoveis.Dominio.ModuloAutomovel
             Id = id;
         }
 
-        public Automovel(Guid id, GrupoAutomovel grupoAutomovel, string modelo, string marca, string cor, TipoCombustivelEnum combustivel, int capacidadeLitros) : this(id, modelo)
+        public Automovel(Guid id, byte[] imagem, GrupoAutomovel grupoAutomovel, string modelo, string marca, string cor, string placa, TipoCombustivelEnum combustivel, int capacidadeLitros) : this(id, modelo)
         {
+            ImagemAutomovel = imagem;
             GrupoAutomovel = grupoAutomovel;
             Modelo = modelo;
             Marca = marca;
             Cor = cor;
+            Placa = placa;
             Combustivel = combustivel;
             CapacidadeLitros = capacidadeLitros;
         }

@@ -118,5 +118,18 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloAutomovel
 
             return erros;
         }
+
+        public  byte[] TransformarImagemEmArrayByte(string path)
+        {
+
+            byte[] imageBytes;
+            using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+            {
+                imageBytes = new byte[fs.Length];
+                fs.Read(imageBytes, 0, (int)fs.Length);
+            }
+
+            return imageBytes;
+        }
     }
 }
