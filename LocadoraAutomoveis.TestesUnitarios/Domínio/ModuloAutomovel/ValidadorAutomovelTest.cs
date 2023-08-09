@@ -1,7 +1,7 @@
 ﻿
 using FluentValidation.TestHelper;
 using LocadoraAutomoveis.Dominio.ModuloAutomovel;
-using LocadoraAutomoveis.Dominio.ModuloCupom;
+using LocadoraAutomoveis.Dominio.ModuloGrupoAutomovel;
 
 namespace LocadoraAutomoveis.TestesUnitarios.Domínio.ModuloAutomovel
 {
@@ -14,7 +14,17 @@ namespace LocadoraAutomoveis.TestesUnitarios.Domínio.ModuloAutomovel
 
         public ValidadorAutomovelTest()
         {
-            automovel = new Automovel();
+            automovel = new Automovel(new Guid(), 
+                GenerateRandomByteArray(2), 
+                new GrupoAutomovel("Caminhonete"), 
+                "Modelo X",
+                "Marca X",
+                "preto",
+                "ABC1234",
+                TipoCombustivelEnum.Gasolina,
+                40
+                );
+
             validadorAutomovel = new ValidadorAutomovel();
            
         }
@@ -43,6 +53,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Domínio.ModuloAutomovel
         [TestMethod]
         public void Imagem_automovel_nao_deve_ser_nula()
         {
+            automovel.ImagemAutomovel = null;
             var resultado = validadorAutomovel.TestValidate(automovel);
 
             resultado.ShouldHaveValidationErrorFor(x => x.ImagemAutomovel);
@@ -51,6 +62,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Domínio.ModuloAutomovel
         [TestMethod]
         public void Modelo_nao_deve_ser_nulo_ou_vazio()
         {
+            automovel.Modelo = null;
             var resultado = validadorAutomovel.TestValidate(automovel);
 
             resultado.ShouldHaveValidationErrorFor(x => x.Modelo);
@@ -69,6 +81,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Domínio.ModuloAutomovel
 
         public void Marca_nao_deve_ser_nulo_ou_vazio()
         {
+            automovel.Marca = null;
             var resultado = validadorAutomovel.TestValidate(automovel);
 
             resultado.ShouldHaveValidationErrorFor(x => x.Marca);
@@ -170,6 +183,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Domínio.ModuloAutomovel
         [TestMethod]
         public void Cor_nao_deve_ser_nulo_ou_vazio()
         {
+            automovel.Cor = null;
             var resultado = validadorAutomovel.TestValidate(automovel);
 
             resultado.ShouldHaveValidationErrorFor(x => x.Cor);
@@ -207,7 +221,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Domínio.ModuloAutomovel
         {
             var resultado = validadorAutomovel.TestValidate(automovel);
 
-            resultado.ShouldHaveValidationErrorFor(x => x.Combustivel);
+            resultado.ShouldNotHaveValidationErrorFor(x => x.Combustivel);
         }
 
         [TestMethod]
@@ -219,13 +233,13 @@ namespace LocadoraAutomoveis.TestesUnitarios.Domínio.ModuloAutomovel
             resultado.ShouldNotHaveValidationErrorFor(x => x.Combustivel);
         }
 
-
         [TestMethod]
         public void Capacidade_litros_nao_deve_ser_nulo_ou_vazio()
         {
+
             var resultado = validadorAutomovel.TestValidate(automovel);
 
-            resultado.ShouldHaveValidationErrorFor(x => x.CapacidadeLitros);
+            resultado.ShouldNotHaveValidationErrorFor(x => x.CapacidadeLitros);
         }
 
         [TestMethod]
@@ -246,24 +260,23 @@ namespace LocadoraAutomoveis.TestesUnitarios.Domínio.ModuloAutomovel
             resultado.ShouldHaveValidationErrorFor(x => x.CapacidadeLitros);
         }
 
-        //[TestMethod]
+        [TestMethod]
+        public void Deve_aceitar_placa_automovel_modelo_antigo()
+        {
+            automovel.Placa = "BTU 1750";
+            var resultado = validadorAutomovel.TestValidate(automovel);
 
-        //public void Deve_aceitar_placa_automovel_modelo_antigo()
-        //{
-        //    automovel.Placa = "MTV 1359";
-        //    var resultado = validadorAutomovel.TestValidate(automovel);
+            resultado.ShouldNotHaveValidationErrorFor(x => x.Placa);
+        }
 
-        //    resultado.ShouldNotHaveValidationErrorFor(x => x.Placa);
-        //}
+        [TestMethod]
+        public void Deve_aceitar_placa_automovel_modelo_novo()
+        {
+            automovel.Placa = "ABC1B34";
+            var resultado = validadorAutomovel.TestValidate(automovel);
 
-        //[TestMethod]
-        //public void Deve_aceitar_placa_automovel_modelo_novo()
-        //{
-        //    automovel.Placa = "MTV 1A59";
-        //    var resultado = validadorAutomovel.TestValidate(automovel);
-
-        //    resultado.ShouldNotHaveValidationErrorFor(x => x.Placa);
-        //}
+            resultado.ShouldNotHaveValidationErrorFor(x => x.Placa);
+        }
 
         private byte[] GenerateRandomByteArray(int size)
         {
