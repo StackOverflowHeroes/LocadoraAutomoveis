@@ -127,7 +127,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Domínio.ModuloCondutor
         {
             condutor.DataValidade = DateTime.Now.AddDays(-2);
             var resultado = validadorCondutor.TestValidate(condutor);
-            resultado.ShouldNotHaveValidationErrorFor(x => x.DataValidade);
+            resultado.ShouldHaveValidationErrorFor(x => x.DataValidade);
         }
 
         [TestMethod]

@@ -19,6 +19,8 @@ using LocadoraAutomoveis.Dominio.ModuloCupom;
 using LocadoraAutomoveis.Infra.Orm.ModuloCupom;
 using LocadoraAutomoveis.Dominio.ModuloCondutor;
 using LocadoraAutomoveis.Infra.Orm.ModuloCondutor;
+using LocadoraAutomoveis.Dominio.ModuloAutomovel;
+using LocadoraAutomoveis.Infra.Orm.ModuloAutomovel;
 
 namespace LocadoraAutomoveis.TestesIntegracao.Compartilhado
 {
@@ -32,6 +34,7 @@ namespace LocadoraAutomoveis.TestesIntegracao.Compartilhado
         protected IRepositorioPlanoCobranca repositorioPlanoCobranca;
         protected IRepositorioCupom repositorioCupom;
         protected IRepositorioCondutor repositorioCondutor;
+        protected IRepositorioAutomovel repositorioAutomovel;
 
         protected IRepositorioTaxaServico repositorioTaxaServico;
         public TestesIntegracaoBase()
@@ -56,6 +59,7 @@ namespace LocadoraAutomoveis.TestesIntegracao.Compartilhado
             repositorioGrupoAutomovel = new RepositorioGrupoAutomovelEmOrm(dbContext);
             repositorioCupom = new RepositorioCupomEmOrm(dbContext);
             repositorioCondutor = new RepositorioCondutorEmOrm(dbContext);
+            repositorioAutomovel = new RepositorioAutomovelEmOrm(dbContext);
 
             BuilderSetup.SetCreatePersistenceMethod<Parceiro>(repositorioParceiro.Inserir);
             BuilderSetup.SetCreatePersistenceMethod<GrupoAutomovel>(repositorioGrupoAutomovel.Inserir);
@@ -66,6 +70,7 @@ namespace LocadoraAutomoveis.TestesIntegracao.Compartilhado
             BuilderSetup.SetCreatePersistenceMethod<Cupom>(repositorioCupom.Inserir);
             BuilderSetup.SetCreatePersistenceMethod<TaxaServico>(repositorioTaxaServico.Inserir);
             BuilderSetup.SetCreatePersistenceMethod<Condutor>(repositorioCondutor.Inserir);
+            BuilderSetup.SetCreatePersistenceMethod<Automovel>(repositorioAutomovel.Inserir);
 
         }
 
@@ -94,6 +99,7 @@ namespace LocadoraAutomoveis.TestesIntegracao.Compartilhado
                 DELETE FROM [DBO].[TBPARCEIRO];
                 DELETE FROM [DBO].[TBTAXASERVICO];
                 DELETE FROM [DBO].[TBFUNCIONARIO];
+                DELETE FROM [DBO].[TBAUTOMOVEL];
                 DELETE FROM [DBO].[TBPLANOCOBRANCA];
                 DELETE FROM [DBO].[TBGRUPOAUTOMOVEL];
                 ";

@@ -10,7 +10,6 @@ namespace LocadoraAutomoveis.WinApp.ModuloAutomovel
         private Automovel Automovel { get; set; }
 
         public event GravarRegistroDelegate<Automovel> onGravarRegistro;
-        public event ManipularImagemDelegate onTransformToByte;
         public TelaAutomovelForm()
         {
             InitializeComponent();
@@ -92,6 +91,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloAutomovel
             {
 
                 string imagePath = openFileDialog1.FileName;
+
                 Image selectedImage = Image.FromFile(imagePath);
                 PictureBoxCarro.Image = selectedImage;
 

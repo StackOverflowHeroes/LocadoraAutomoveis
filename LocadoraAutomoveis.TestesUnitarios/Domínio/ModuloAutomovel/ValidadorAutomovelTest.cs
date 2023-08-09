@@ -16,6 +16,36 @@ namespace LocadoraAutomoveis.TestesUnitarios.Domínio.ModuloAutomovel
         {
             automovel = new Automovel();
             validadorAutomovel = new ValidadorAutomovel();
+           
+        }
+
+        [TestMethod]
+
+        public void Imagem_automovel_deve_ser_menor_que_2_MB()
+        {
+            automovel.ImagemAutomovel = GenerateRandomByteArray(3);
+            var resultado = validadorAutomovel.TestValidate(automovel);
+
+
+            resultado.ShouldHaveValidationErrorFor(x => x.ImagemAutomovel);
+        }
+
+        [TestMethod]
+
+        public void Imagem_automovel_nao_deve_ser_maior_que_2_MB()
+        {
+            automovel.ImagemAutomovel = GenerateRandomByteArray(1);
+            var resultado = validadorAutomovel.TestValidate(automovel);
+
+            resultado.ShouldNotHaveValidationErrorFor(x => x.ImagemAutomovel);
+        }
+
+        [TestMethod]
+        public void Imagem_automovel_nao_deve_ser_nula()
+        {
+            var resultado = validadorAutomovel.TestValidate(automovel);
+
+            resultado.ShouldHaveValidationErrorFor(x => x.ImagemAutomovel);
         }
 
         [TestMethod]
@@ -234,5 +264,17 @@ namespace LocadoraAutomoveis.TestesUnitarios.Domínio.ModuloAutomovel
 
         //    resultado.ShouldNotHaveValidationErrorFor(x => x.Placa);
         //}
+
+        private byte[] GenerateRandomByteArray(int size)
+        {
+            int sizeInBytes = size * 1024 * 1024;
+
+            byte[] byteArray = new byte[sizeInBytes];
+            Random random = new Random();
+
+            random.NextBytes(byteArray); 
+
+            return byteArray;
+        }
     }
 }

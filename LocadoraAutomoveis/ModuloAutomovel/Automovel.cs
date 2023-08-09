@@ -62,10 +62,14 @@ namespace LocadoraAutomoveis.Dominio.ModuloAutomovel
         {
             return obj is Automovel automovel &&
                    Id.Equals(automovel.Id) &&
+                   EqualityComparer<byte[]>.Default.Equals(ImagemAutomovel, automovel.ImagemAutomovel) &&
                    EqualityComparer<GrupoAutomovel>.Default.Equals(GrupoAutomovel, automovel.GrupoAutomovel) &&
                    Modelo == automovel.Modelo &&
                    Marca == automovel.Marca &&
+                   Ano == automovel.Ano &&
+                   Quilometragem == automovel.Quilometragem &&
                    Cor == automovel.Cor &&
+                   Placa == automovel.Placa &&
                    Combustivel == automovel.Combustivel &&
                    CapacidadeLitros == automovel.CapacidadeLitros;
         }

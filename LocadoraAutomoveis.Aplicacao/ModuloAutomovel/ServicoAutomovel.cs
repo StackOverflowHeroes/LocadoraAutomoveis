@@ -118,9 +118,5 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloAutomovel
             return erros;
         }
 
-        public  byte[] TransformarImagemEmArrayByte(string image)
-        {
-            return new byte[byte.MaxValue];
-        }
     }
 }

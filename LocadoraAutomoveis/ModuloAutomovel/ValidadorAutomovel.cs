@@ -7,9 +7,9 @@ namespace LocadoraAutomoveis.Dominio.ModuloAutomovel
     {
         public ValidadorAutomovel()
         {
-            //RuleFor(x => x.ImagemAutomovel)
-            //        .NotNull().WithMessage("Deve enviar uma foto do automóvel")
-            //        .Must(ImagemAutomovel => ImagemAutomovel.Length <= 2 * 1024 * 1024).WithMessage("A foto deve ter no máximo 2MB.");
+            RuleFor(x => x.ImagemAutomovel)
+                    .NotNull().WithMessage("Deve enviar uma foto do automóvel")
+                    .Must(ImagemAutomovel => ImagemAutomovel?.Length <= 2 * 1024 * 1024).WithMessage("A foto deve ter no máximo 2MB.");
 
             RuleFor(x => x.GrupoAutomovel)
                     .NotNull().WithMessage("'GrupoAutomovel' deve ser informado.")
