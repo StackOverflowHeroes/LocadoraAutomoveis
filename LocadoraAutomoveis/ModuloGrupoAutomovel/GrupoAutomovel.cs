@@ -1,4 +1,5 @@
 ﻿
+using LocadoraAutomoveis.Dominio.ModuloAutomovel;
 using LocadoraAutomoveis.Dominio.ModuloPlanoCobranca;
 
 namespace LocadoraAutomoveis.Dominio.ModuloGrupoAutomovel
@@ -7,6 +8,8 @@ namespace LocadoraAutomoveis.Dominio.ModuloGrupoAutomovel
     {
         public string Nome { get; set; }
         public List<PlanoCobranca> Plano { get; set; }
+
+        public List<Automovel> Automoveis { get; set; }
 
         public GrupoAutomovel()
         {

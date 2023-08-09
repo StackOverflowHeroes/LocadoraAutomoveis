@@ -5,7 +5,7 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloCupom
 {
     public interface IServicoCupom : IServico<Cupom>
     {
-        List<string> ValidarGrupoAutomovel(Cupom cupom);
+        List<string> ValidarCupom(Cupom cupom);
         bool NomeDuplicado(Cupom cupom);
     }
 }

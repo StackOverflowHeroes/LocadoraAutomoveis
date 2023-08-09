@@ -3,7 +3,7 @@ using LocadoraAutomoveis.Dominio.ModuloCupom;
 
 namespace LocadoraAutomoveis.Aplicacao.ModuloCupom
 {
-    public class ServicoCupom : IServico<Cupom>
+    public class ServicoCupom : IServicoCupom
     {
         private IRepositorioCupom repositorioCupom;
         private IValidadorCupom ValidadorCupom;
@@ -115,6 +115,6 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloCupom
 
             return false;
         }
-
+       
     }
 }

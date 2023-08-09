@@ -97,7 +97,6 @@ namespace LocadoraAutomoveis.WinApp.ModuloCupom
             }
         }
 
-
         public override void CarregarRegistros()
         {
             List<Cupom> cupons = repositorioCupom.SelecionarTodos(true);
