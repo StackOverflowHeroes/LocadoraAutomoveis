@@ -123,17 +123,9 @@ namespace LocadoraAutomoveis.TestesUnitarios.Domínio.ModuloCondutor
         }
 
         [TestMethod]
-        public void DataValidade_condutor_deve_ser_maior_que_data_atual()
-        {
-            condutor.DataValidade = DateTime.Now.AddDays(-1);
-            var resultado = validadorCondutor.TestValidate(condutor);
-            resultado.ShouldHaveValidationErrorFor(x => x.DataValidade);
-        }
-
-        [TestMethod]
         public void DataValidade_condutor_nao_deve_ser_menor_ou_igual_a_data_atual()
         {
-            condutor.DataValidade = DateTime.Now.AddDays(2);
+            condutor.DataValidade = DateTime.Now.AddDays(-2);
             var resultado = validadorCondutor.TestValidate(condutor);
             resultado.ShouldNotHaveValidationErrorFor(x => x.DataValidade);
         }

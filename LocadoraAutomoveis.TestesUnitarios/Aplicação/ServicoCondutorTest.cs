@@ -29,7 +29,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação
           }
 
           [TestMethod]
-          public void Deve_inserir_registro_caso_valido()
+          public void Deve_inserir_condutor_caso_valido()
           {
 
                Result resultado = servicoCondutor.Inserir(Condutor);
@@ -57,7 +57,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação
           }
 
           [TestMethod]
-          public void Nao_deve_inserir_plano_cobranca_caso_nome_ja_registrado()
+          public void Nao_deve_inserir_condutor_caso_nome_ja_registrado()
           {
                string nomeCondutor = "Condutor generics";
                repositorioCondutorMoq.Setup(x => x.SelecionarPorNome(nomeCondutor))
@@ -74,7 +74,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação
           }
 
           [TestMethod]
-          public void Deve_tratar_erro_caso_ocorra_falha_ao_inserir_registro()
+          public void Deve_tratar_erro_caso_ocorra_falha_ao_inserir_condutor()
           {
                repositorioCondutorMoq.Setup(x => x.Inserir(It.IsAny<Condutor>()))
                    .Throws(() =>
@@ -89,7 +89,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação
           }
 
           [TestMethod]
-          public void Deve_editar_registro_caso_valido()
+          public void Deve_editar_condutor_caso_valido()
           {
                Result resultado = servicoCondutor.Editar(Condutor);
 
@@ -99,7 +99,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação
 
           [TestMethod]
 
-          public void Nao_deve_editar_registro_caso_invalido()
+          public void Nao_deve_editar_condutor_caso_invalido()
           {
                validadorCondutorMoq.Setup(x => x.Validate(It.IsAny<Condutor>()))
                     .Returns(() =>
@@ -118,7 +118,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação
 
           [TestMethod]
 
-          public void Deve_editar_grupo_de_automoveis_com_mesmo_nome()
+          public void Deve_editar_condutor_com_mesmo_nome()
           {
                repositorioCondutorMoq.Setup(x => x.SelecionarPorNome("Condutor generics"))
                     .Returns(() =>
@@ -136,7 +136,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação
           }
 
           [TestMethod]
-          public void Nao_deve_editar_plano_cobranca_caso_nome_ja_registrado()
+          public void Nao_deve_editar_condutor_caso_nome_ja_registrado()
           {
                repositorioCondutorMoq.Setup(x => x.SelecionarPorNome("Condutor1"))
                     .Returns(() =>
@@ -155,7 +155,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação
 
           [TestMethod]
 
-          public void Deve_tratar_erro_caso_ocorra_falha_ao_editar_registro()
+          public void Deve_tratar_erro_caso_ocorra_falha_ao_editar_condutor()
           {
                repositorioCondutorMoq.Setup(x => x.Editar(It.IsAny<Condutor>()))
                     .Throws(() =>
@@ -171,7 +171,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação
 
           [TestMethod]
 
-          public void Deve_excluir_registro_caso_esteja_registrado()
+          public void Deve_excluir_condutor_caso_esteja_registrado()
           {
                var Condutor = new Condutor("Condutor1");
 
@@ -188,7 +188,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação
           }
 
           [TestMethod]
-          public void Nao_deve_excluir_registro_caso_nao_esteja_cadastrado()
+          public void Nao_deve_excluir_condutor_caso_nao_esteja_cadastrado()
           {
                var Condutor = new Condutor("Condutor1");
 
@@ -206,7 +206,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação
           }
 
           [TestMethod]
-          public void Deve_tratar_erro_caso_ocorra_falha_ao_excluir_registro()
+          public void Deve_tratar_erro_caso_ocorra_falha_ao_excluir_condutor()
           {
                var Condutor = new Condutor("Condutor1");
 

@@ -17,23 +17,19 @@ namespace LocadoraAutomoveis.WinApp.ModuloCondutor
           {
                Condutor = condutor;
 
-               Condutor.Cliente = ComboBoxCliente.SelectedItem as Cliente;
+               if (condutor.Cliente != null)
+               {
+                    ComboBoxCliente.SelectedItem = condutor.Cliente;
+                    cBoxCliente.Checked = true;
+               }
 
-               if (cBoxCliente.Checked)
-               {
-                    txtNome.Text = condutor.Cliente.Nome;
-                    txtEmail.Text = condutor.Cliente.Email;
-                    txtTelefone.Text = condutor.Cliente.Telefone;
-               }
-               else
-               {
-                    txtNome.Text = condutor.Nome;
-                    txtEmail.Text = condutor.Email;
-                    txtTelefone.Text = condutor.Telefone;
-                    txtCPF.Text = condutor.CPF;
-                    txtCNH.Text = condutor.CNH;
-                    dateDataValidade.Value = condutor.DataValidade;
-               }
+               txtNome.Text = condutor.Nome;
+               txtEmail.Text = condutor.Email;
+               txtTelefone.Text = condutor.Telefone;
+               txtCPF.Text = condutor.CPF;
+               txtCNH.Text = condutor.CNH;
+               dateDataValidade.Value = condutor.DataValidade;
+
           }
           private Condutor ObterCondutor()
           {
@@ -65,6 +61,40 @@ namespace LocadoraAutomoveis.WinApp.ModuloCondutor
                     TelaPrincipalForm.Instancia.AtualizarRodape(erro, TipoStatusEnum.Erro);
 
                     DialogResult = DialogResult.None;
+               }
+          }
+
+          private void cBoxCliente_CheckedChanged(object sender, EventArgs e)
+          {
+               if (cBoxCliente.Checked)
+               {
+                    if (ComboBoxCliente.SelectedItem as Cliente != null)
+                    {
+                         Cliente cliente = ComboBoxCliente.SelectedItem as Cliente;
+
+                         txtNome.Text = string.Empty;
+                         txtEmail.Text = string.Empty;
+                         txtTelefone.Text = string.Empty;
+
+                         txtNome.Text = cliente.Nome;
+                         txtEmail.Text = cliente.Email;
+                         txtTelefone.Text = cliente.Telefone;
+
+                         txtNome.ReadOnly = true;
+                         txtEmail.ReadOnly = true;
+                         txtTelefone.ReadOnly = true;
+
+                    }
+               }
+               else
+               {
+                    txtNome.Text = string.Empty;
+                    txtEmail.Text = string.Empty;
+                    txtTelefone.Text = string.Empty;
+
+                    txtNome.ReadOnly = false;
+                    txtEmail.ReadOnly = false;
+                    txtTelefone.ReadOnly = false;
                }
           }
      }

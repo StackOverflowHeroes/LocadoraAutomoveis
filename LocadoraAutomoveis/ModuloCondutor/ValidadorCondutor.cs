@@ -51,7 +51,7 @@ namespace LocadoraAutomoveis.Dominio.ModuloCondutor
 
           private bool DataVencimento(DateTime date)
           {
-               return date > DateTime.Now;
+               return date > DateTime.Now.Date;
           }
 
           //private bool ValidarFormatoCNH(string telefone)
