@@ -5,10 +5,12 @@ namespace LocadoraAutomoveis.Dominio.ModuloAutomovel
 {
     public class Automovel : EntidadeBase<Automovel>
     {
+        public byte[] ImagemAutomovel { get; set; }
         public GrupoAutomovel GrupoAutomovel { get; set; } 
         public string Modelo { get; set; }  
         public string Marca { get; set; }   
         public string Cor { get; set; }
+        public string Placa { get; set; }
         public TipoCombustivelEnum Combustivel { get; set; }    
         public int CapacidadeLitros { get; set; }
 
