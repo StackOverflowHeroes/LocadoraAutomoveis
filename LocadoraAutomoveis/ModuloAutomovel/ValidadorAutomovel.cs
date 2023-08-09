@@ -44,12 +44,11 @@ namespace LocadoraAutomoveis.Dominio.ModuloAutomovel
                    .MinimumLength(3).WithMessage("'Cor' deve possuir no mínimo 3 caracteres.")
                    .NaoPodeCaracteresEspeciais();
 
-            //RuleFor(x => x.Placa)
-            //        .NotNull().WithMessage("'Placa' deve ser informado.")
-            //        .NotEmpty().WithMessage("'Placa' não pode ser vazio.")
-            //        .NaoPodeCaracteresEspeciais()
-            //        .Must(ValidarPlaca)
-            //        .WithMessage("A placa informada não é válida.");
+            RuleFor(x => x.Placa)
+                    .NotNull().WithMessage("'Placa' deve ser informado.")
+                    .NotEmpty().WithMessage("'Placa' não pode ser vazio.")
+                    .Must(ValidarPlaca)
+                    .WithMessage("A placa informada não é válida.");
 
             RuleFor(x => x.Combustivel)
                     .NotNull()
@@ -66,14 +65,11 @@ namespace LocadoraAutomoveis.Dominio.ModuloAutomovel
 
         }
 
-        //private bool ValidarPlaca(string placa)
-        //{
-        //    string pattern = @"^[A-Z]{3}\d[A-Z]\d{3}$|^[A-Z]{3}-\d[A-Z]\d{3}$";
-        //    string patternNew = @"[A-z]{3}-\d[A-j0-9]\d{2}";
+        private bool ValidarPlaca(string placa)
+        {
+            string pattern = @"^(?:[A-Z]{3}-?\d{4}|[A-Z]{3}\s?\d{4}|[A-Z]{3}-?\d[A-Z]\d{2}|[A-Z]{3}\s?\d[A-Z]\d{2})";
 
-        //    return Regex.IsMatch(placa, pattern, RegexOptions.IgnoreCase) ||
-        //           Regex.IsMatch(placa, patternNew, RegexOptions.IgnoreCase);
-
-        //}
+            return Regex.IsMatch(placa, pattern, RegexOptions.IgnoreCase);
+        }
     }
 }
