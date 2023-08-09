@@ -16,7 +16,7 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloCondutor
                condutorBuilder.Property(c => c.DataValidade).HasColumnType("date").IsRequired();
 
                condutorBuilder.HasOne(c => c.Cliente)
-                   .WithMany()
+                   .WithMany(x => x.Condutores)
                    .IsRequired()
                    .HasConstraintName("FK_TBCondutor_TBCliente")
                    .OnDelete(DeleteBehavior.NoAction);

@@ -17,6 +17,8 @@ using LocadoraAutomoveis.Dominio.ModuloPlanoCobranca;
 using LocadoraAutomoveis.Infra.Orm.ModuloPlanoCobranca;
 using LocadoraAutomoveis.Dominio.ModuloCupom;
 using LocadoraAutomoveis.Infra.Orm.ModuloCupom;
+using LocadoraAutomoveis.Dominio.ModuloCondutor;
+using LocadoraAutomoveis.Infra.Orm.ModuloCondutor;
 
 namespace LocadoraAutomoveis.TestesIntegracao.Compartilhado
 {
@@ -29,6 +31,7 @@ namespace LocadoraAutomoveis.TestesIntegracao.Compartilhado
         protected IRepositorioCliente repositorioCliente;
         protected IRepositorioPlanoCobranca repositorioPlanoCobranca;
         protected IRepositorioCupom repositorioCupom;
+        protected IRepositorioCondutor repositorioCondutor;
 
         protected IRepositorioTaxaServico repositorioTaxaServico;
         public TestesIntegracaoBase()
@@ -44,15 +47,15 @@ namespace LocadoraAutomoveis.TestesIntegracao.Compartilhado
             var dbContext = new GeradorTestesDbContext(optionsBuilder.Options);
 
             repositorioParceiro = new RepositorioParceiroEmOrm(dbContext);
-            repositorioTaxaServico = new RepositorioTaxaServicoEmOrm(dbContext);
+           
             repositorioPlanoCobranca = new RepositorioPlanoCobrancaEmOrm(dbContext);
-            repositorioParceiro = new RepositorioParceiroEmOrm(dbContext);
+          
             repositorioTaxaServico = new RepositorioTaxaServicoEmOrm(dbContext);
             repositorioFuncionario = new RepositorioFuncionarioEmOrm(dbContext);
             repositorioCliente = new RepositorioClienteOrm(dbContext);
-
             repositorioGrupoAutomovel = new RepositorioGrupoAutomovelEmOrm(dbContext);
             repositorioCupom = new RepositorioCupomEmOrm(dbContext);
+            repositorioCondutor = new RepositorioCondutorEmOrm(dbContext);
 
             BuilderSetup.SetCreatePersistenceMethod<Parceiro>(repositorioParceiro.Inserir);
             BuilderSetup.SetCreatePersistenceMethod<GrupoAutomovel>(repositorioGrupoAutomovel.Inserir);
@@ -61,8 +64,8 @@ namespace LocadoraAutomoveis.TestesIntegracao.Compartilhado
             BuilderSetup.SetCreatePersistenceMethod<Cliente>(repositorioCliente.Inserir);
             BuilderSetup.SetCreatePersistenceMethod<PlanoCobranca>(repositorioPlanoCobranca.Inserir);
             BuilderSetup.SetCreatePersistenceMethod<Cupom>(repositorioCupom.Inserir);
-
             BuilderSetup.SetCreatePersistenceMethod<TaxaServico>(repositorioTaxaServico.Inserir);
+            BuilderSetup.SetCreatePersistenceMethod<Condutor>(repositorioCondutor.Inserir);
 
         }
 
@@ -92,6 +95,7 @@ namespace LocadoraAutomoveis.TestesIntegracao.Compartilhado
                 DELETE FROM [DBO].[TBCLIENTE];
                 DELETE FROM [DBO].[TBPLANOCOBRANCA];
                 DELETE FROM [DBO].[TBGRUPOAUTOMOVEL];
+                DELETE FROM [DBO].[TBCONDUTOR];
                 ";
 
             SqlCommand comando = new SqlCommand(sqlLimpezaTabela, sqlConnection);
