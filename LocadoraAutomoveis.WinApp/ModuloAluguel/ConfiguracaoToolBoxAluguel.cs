@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace LocadoraAutomoveis.WinApp.ModuloAluguel
 {
-    internal class ConfiguracaoToolBoxAluguel
+    internal class ConfiguracaoToolBoxAluguel : ConfiguracaoToolboxBase
     {
+        public override string TipoCadastro => "Cadastro de aluguéis";
+
+        public override string TooltipInserir => "Inserir novo aluguel";
+
+        public override string TooltipEditar => "Editar aluguel existente";
+
+        public override string TooltipExcluir => "Excluir aluguel existente";
     }
 }

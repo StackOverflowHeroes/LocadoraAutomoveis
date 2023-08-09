@@ -18,7 +18,7 @@ namespace LocadoraAutomoveis.Dominio.ModuloAluguel
                 .NotNull().WithMessage("'Cliente' é obrigatório.");
 
             RuleFor(a => a.GrupoAutomovel)
-                .NotNull().WithMessage("'Categoria de Automóveis' é obrigatória.");
+                .NotNull().WithMessage("'Grupo de Automóveis' é obrigatória.");
 
             RuleFor(a => a.PlanoCobranca)
                 .NotNull().WithMessage("'Plano de Cobrança' é obrigatório.");
@@ -51,10 +51,9 @@ namespace LocadoraAutomoveis.Dominio.ModuloAluguel
                 .IsInEnum().WithMessage("'Combustível Restante' inválido.");
         }
 
-        public bool ValidarSeAluguelConcluido(Aluguel aluguelParaValidar)
+        public bool ValidarAluguelConcluido(Aluguel aluguelValidar)
         {
-            return aluguelParaValidar.Concluido;
+            return aluguelValidar.Concluido;
         }
-
     }
 }
