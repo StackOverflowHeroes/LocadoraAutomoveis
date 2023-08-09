@@ -88,14 +88,14 @@ namespace LocadoraAutomoveis.TestesIntegracao.Compartilhado
 
             string sqlLimpezaTabela =
                 @"         
+                DELETE FROM [DBO].[TBCONDUTOR];
+                DELETE FROM [DBO].[TBCLIENTE];
                 DELETE FROM [DBO].[TBCUPOM];
                 DELETE FROM [DBO].[TBPARCEIRO];
                 DELETE FROM [DBO].[TBTAXASERVICO];
                 DELETE FROM [DBO].[TBFUNCIONARIO];
-                DELETE FROM [DBO].[TBCLIENTE];
                 DELETE FROM [DBO].[TBPLANOCOBRANCA];
                 DELETE FROM [DBO].[TBGRUPOAUTOMOVEL];
-                DELETE FROM [DBO].[TBCONDUTOR];
                 ";
 
             SqlCommand comando = new SqlCommand(sqlLimpezaTabela, sqlConnection);
