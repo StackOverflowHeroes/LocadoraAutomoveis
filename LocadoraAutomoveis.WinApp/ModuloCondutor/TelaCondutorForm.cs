@@ -75,14 +75,17 @@ namespace LocadoraAutomoveis.WinApp.ModuloCondutor
                          txtNome.Text = string.Empty;
                          txtEmail.Text = string.Empty;
                          txtTelefone.Text = string.Empty;
+                         txtCPF.Text = string.Empty;
 
                          txtNome.Text = cliente.Nome;
                          txtEmail.Text = cliente.Email;
                          txtTelefone.Text = cliente.Telefone;
+                         txtCPF.Text = cliente.Documento;
 
                          txtNome.ReadOnly = true;
                          txtEmail.ReadOnly = true;
                          txtTelefone.ReadOnly = true;
+                         txtCPF.ReadOnly = true;
 
                     }
                }
@@ -95,6 +98,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloCondutor
                     txtNome.ReadOnly = false;
                     txtEmail.ReadOnly = false;
                     txtTelefone.ReadOnly = false;
+                    txtCPF.ReadOnly = false;
                }
           }
      }
