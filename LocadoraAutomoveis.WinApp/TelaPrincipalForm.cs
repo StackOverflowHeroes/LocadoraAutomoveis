@@ -30,6 +30,9 @@ using LocadoraAutomoveis.Infra.Orm.ModuloCupom;
 using LocadoraAutomoveis.Aplicacao.ModuloCupom;
 using LocadoraAutomoveis.WinApp.ModuloCupom;
 using System;
+using LocadoraAutomoveis.Dominio.ModuloCondutor;
+using LocadoraAutomoveis.Infra.Orm.ModuloCondutor;
+using LocadoraAutomoveis.Aplicacao.ModuloCondutor;
 
 namespace LocadoraAutomoveis.WinApp
 {
@@ -81,6 +84,7 @@ namespace LocadoraAutomoveis.WinApp
                IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionarioEmOrm(dbContext);
                IRepositorioCliente repositorioCliente = new RepositorioClienteOrm(dbContext);
                IRepositorioCupom repositorioCupom = new RepositorioCupomEmOrm(dbContext);
+               IRepositorioCondutor repositorioCondutor = new RepositorioCondutorEmOrm(dbContext);
 
                ValidadorParceiro validadorParceiro = new ValidadorParceiro();
                ValidadorGrupoAutomovel validadorGrupoAutomovel = new ValidadorGrupoAutomovel();
@@ -89,6 +93,7 @@ namespace LocadoraAutomoveis.WinApp
                ValidadorFuncionario validadorFuncionario = new ValidadorFuncionario();
                ValidadorCliente validadorCliente = new ValidadorCliente();
                ValidadorCupom validadorCupom = new ValidadorCupom();
+               ValidadorCondutor validadorCondutor = new ValidadorCondutor();
 
                ServicoParceiro servicoParceiro = new ServicoParceiro(repositorioParceiro, validadorParceiro);
                ServicoGrupoAutomovel servicoGrupoAutomovel = new ServicoGrupoAutomovel(repositorioGrupoAutomovel, validadorGrupoAutomovel);
@@ -97,7 +102,7 @@ namespace LocadoraAutomoveis.WinApp
                ServicoFuncionario servicoFuncionario = new ServicoFuncionario(repositorioFuncionario, validadorFuncionario);
                ServicoCliente servicoCliente = new ServicoCliente(repositorioCliente, validadorCliente);
                ServicoCupom servicoCupom = new ServicoCupom(repositorioCupom, validadorCupom);
-
+               ServicoCondutor servicoCondutor = new ServicoCondutor(repositorioCondutor, validadorCondutor);
 
                controladores.Add("ControladorParceiro", new ControladorParceiro(repositorioParceiro, servicoParceiro));
                controladores.Add("ControladorGrupoAutomovel", new ControladorGrupoAutomovel(repositorioGrupoAutomovel, servicoGrupoAutomovel));

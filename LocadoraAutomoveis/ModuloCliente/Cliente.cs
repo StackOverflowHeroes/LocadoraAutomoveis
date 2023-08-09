@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LocadoraAutomoveis.Dominio.ModuloCondutor;
+using LocadoraAutomoveis.Dominio.ModuloCupom;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,19 +8,21 @@ using System.Threading.Tasks;
 
 namespace LocadoraAutomoveis.Dominio.ModuloCliente
 {
-    public class Cliente : EntidadeBase<Cliente>
-    {
-        public string Nome { get; set; }
-        public string Email { get; set; }
-        public string Telefone { get; set; }
-        public Tipo TipoPessoa { get; set; } //enum??
-        public string Documento { get; set; }
-        public string Estado { get; set; }
-        public string Cidade { get; set; }
-        public string Bairro { get; set; }
-        public string Rua { get; set; }
-        public int Numero { get; set; }
-        public Cliente()
+     public class Cliente : EntidadeBase<Cliente>
+     {
+          public string Nome { get; set; }
+          public string Email { get; set; }
+          public string Telefone { get; set; }
+          public Tipo TipoPessoa { get; set; } //enum??
+          public string Documento { get; set; }
+          public string Estado { get; set; }
+          public string Cidade { get; set; }
+          public string Bairro { get; set; }
+          public string Rua { get; set; }
+          public int Numero { get; set; }
+          public List<Condutor> Condutores {get; set;}
+
+          public Cliente()
         {
         }
         public Cliente(string nome, string email, string telefone, Tipo tipoPessoa, string documento, string estado, string cidade, string bairro, string rua, int numero) : this()

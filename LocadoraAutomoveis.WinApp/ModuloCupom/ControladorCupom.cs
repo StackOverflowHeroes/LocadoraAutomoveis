@@ -44,7 +44,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloCupom
             if (cupomSelecionado == null)
             {
                 MessageBox.Show("Selecione um cupom primeiro.",
-                "Edição de cupom", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                "Edição de Cupons", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -52,7 +52,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloCupom
 
             telaCupom.PopularComboBox(repositorioParceiro.SelecionarTodos());
 
-            telaCupom.Text = "Editar um cupom";
+            telaCupom.Text = "Edição de Cupom";
             telaCupom.onGravarRegistro += servicoCupom.Editar;
 
             telaCupom.ConfigurarTelaCupom(cupomSelecionado);
@@ -74,12 +74,12 @@ namespace LocadoraAutomoveis.WinApp.ModuloCupom
             if (cupomSelecionado == null)
             {
                 MessageBox.Show("Selecione um cupom primeiro primeiro.",
-                "Exclusão de cupom", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                "Exclusão de Cupons", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             DialogResult opcaoEscolhida = MessageBox.Show("Deseja realmente excluir o cupom?",
-               "Exclusão de cupom", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+               "Exclusão de Cupons", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (opcaoEscolhida == DialogResult.OK)
             {
@@ -87,7 +87,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloCupom
 
                 if (resultado.IsFailed)
                 {
-                    MessageBox.Show(resultado.Errors[0].Message, "Exclusão de cupom",
+                    MessageBox.Show(resultado.Errors[0].Message, "Exclusão de Cupons",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     return;
