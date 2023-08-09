@@ -73,7 +73,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloCupom
 
             if (cupomSelecionado == null)
             {
-                MessageBox.Show("Selecione um cupom primeiro primeiro.",
+                MessageBox.Show("Selecione um cupom primeiro.",
                 "Exclusão de cupom", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -96,7 +96,6 @@ namespace LocadoraAutomoveis.WinApp.ModuloCupom
                 CarregarRegistros();
             }
         }
-
 
         public override void CarregarRegistros()
         {

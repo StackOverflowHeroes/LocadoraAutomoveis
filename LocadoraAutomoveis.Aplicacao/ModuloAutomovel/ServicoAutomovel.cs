@@ -1,5 +1,4 @@
-﻿
-using LocadoraAutomoveis.Dominio.ModuloAutomovel;
+﻿using LocadoraAutomoveis.Dominio.ModuloAutomovel;
 
 namespace LocadoraAutomoveis.Aplicacao.ModuloAutomovel
 {
@@ -119,17 +118,9 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloAutomovel
             return erros;
         }
 
-        public  byte[] TransformarImagemEmArrayByte(string path)
+        public  byte[] TransformarImagemEmArrayByte(string image)
         {
-
-            byte[] imageBytes;
-            using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
-            {
-                imageBytes = new byte[fs.Length];
-                fs.Read(imageBytes, 0, (int)fs.Length);
-            }
-
-            return imageBytes;
+            return new byte[byte.MaxValue];
         }
     }
 }

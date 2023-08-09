@@ -8,7 +8,6 @@ namespace LocadoraAutomoveis.WinApp.ModuloAutomovel
     public partial class TelaAutomovelForm : Form
     {
         private Automovel Automovel { get; set; }
-        private byte[] automovelImage { get; set; }
 
         public event GravarRegistroDelegate<Automovel> onGravarRegistro;
         public event ManipularImagemDelegate onTransformToByte;
@@ -20,9 +19,13 @@ namespace LocadoraAutomoveis.WinApp.ModuloAutomovel
 
         public void ConfigurarTelaAutomovel(Automovel automovel)
         {
+            this.Automovel = automovel;
+
             ComboBoxGrupoAutomovel.SelectedItem = automovel.GrupoAutomovel;
             TextBoxModelo.Text = automovel.Modelo;
             TextBoxMarca.Text = automovel.Marca;
+            NumericInputAno.Value = automovel.Ano;
+            NumericInputQuilometragem.Value = automovel.Quilometragem;
             TextBoxCor.Text = automovel.Cor;
             TextBoxPlaca.Text = automovel.Placa;
             ComboBoxTipoCombustivel.SelectedItem = automovel.Combustivel;
@@ -47,11 +50,12 @@ namespace LocadoraAutomoveis.WinApp.ModuloAutomovel
 
         private Automovel ObterAutomovel()
         {
-            Automovel.ImagemAutomovel = automovelImage;
             Automovel.GrupoAutomovel = ComboBoxGrupoAutomovel.SelectedItem as GrupoAutomovel;
             Automovel.Modelo = TextBoxModelo.Text;
             Automovel.Marca = TextBoxMarca.Text;
             Automovel.Cor = TextBoxCor.Text;
+            Automovel.Ano = Convert.ToInt32(Math.Round(NumericInputAno.Value, 0));
+            Automovel.Quilometragem = Convert.ToInt32(Math.Round(NumericInputQuilometragem.Value, 0));
             Automovel.Placa = TextBoxPlaca.Text;
             Automovel.Combustivel = (TipoCombustivelEnum)ComboBoxTipoCombustivel.SelectedItem;
             Automovel.CapacidadeLitros = Convert.ToInt32(Math.Round(NumericInputCapacidadeLitros.Value, 0));
@@ -61,7 +65,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloAutomovel
 
         public void PopularComboBox(List<GrupoAutomovel> gruposAutomoveis)
         {
-            gruposAutomoveis.ForEach(parceiro => ComboBoxGrupoAutomovel.Items.Add(gruposAutomoveis));
+            gruposAutomoveis.ForEach(grupo => ComboBoxGrupoAutomovel.Items.Add(grupo));
 
             var tiposCombustiveis = Enum.GetValues(typeof(TipoCombustivelEnum));
 
@@ -71,7 +75,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloAutomovel
             }
         }
 
-        public void TransformarImagemBytes()
+        public void PopularPictureBox()
         {
             using (MemoryStream memoryStream = new MemoryStream(Automovel.ImagemAutomovel))
             {
@@ -86,8 +90,19 @@ namespace LocadoraAutomoveis.WinApp.ModuloAutomovel
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                string imagePath = OpenFileDialog.FileName;
-                automovelImage = onTransformToByte(imagePath);
+
+                string imagePath = openFileDialog1.FileName;
+                Image selectedImage = Image.FromFile(imagePath);
+                PictureBoxCarro.Image = selectedImage;
+
+                byte[] imageBytes;
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    selectedImage.Save(memoryStream, selectedImage.RawFormat);
+                    imageBytes = memoryStream.ToArray();
+                }
+
+                Automovel.ImagemAutomovel = imageBytes;
             }
             else return;
 

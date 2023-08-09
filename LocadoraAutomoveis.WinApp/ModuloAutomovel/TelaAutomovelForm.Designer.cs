@@ -48,12 +48,19 @@
             OpenFileDialog = new OpenFileDialog();
             label8 = new Label();
             TextBoxPlaca = new TextBox();
+            label9 = new Label();
+            NumericInputQuilometragem = new NumericUpDown();
+            label10 = new Label();
+            NumericInputAno = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)PictureBoxCarro).BeginInit();
             ((System.ComponentModel.ISupportInitialize)NumericInputCapacidadeLitros).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)NumericInputQuilometragem).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)NumericInputAno).BeginInit();
             SuspendLayout();
             // 
             // PictureBoxCarro
             // 
+            PictureBoxCarro.BorderStyle = BorderStyle.FixedSingle;
             PictureBoxCarro.Location = new Point(176, 36);
             PictureBoxCarro.Name = "PictureBoxCarro";
             PictureBoxCarro.Size = new Size(136, 128);
@@ -93,7 +100,7 @@
             // 
             TextBoxModelo.Location = new Point(48, 309);
             TextBoxModelo.Name = "TextBoxModelo";
-            TextBoxModelo.Size = new Size(384, 27);
+            TextBoxModelo.Size = new Size(241, 27);
             TextBoxModelo.TabIndex = 4;
             // 
             // label3
@@ -108,7 +115,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(48, 345);
+            label4.Location = new Point(295, 286);
             label4.Name = "label4";
             label4.Size = new Size(50, 20);
             label4.TabIndex = 7;
@@ -116,9 +123,9 @@
             // 
             // TextBoxMarca
             // 
-            TextBoxMarca.Location = new Point(48, 368);
+            TextBoxMarca.Location = new Point(295, 309);
             TextBoxMarca.Name = "TextBoxMarca";
-            TextBoxMarca.Size = new Size(384, 27);
+            TextBoxMarca.Size = new Size(137, 27);
             TextBoxMarca.TabIndex = 6;
             // 
             // label5
@@ -134,13 +141,13 @@
             // 
             TextBoxCor.Location = new Point(48, 425);
             TextBoxCor.Name = "TextBoxCor";
-            TextBoxCor.Size = new Size(384, 27);
+            TextBoxCor.Size = new Size(241, 27);
             TextBoxCor.TabIndex = 8;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(48, 520);
+            label6.Location = new Point(50, 460);
             label6.Name = "label6";
             label6.Size = new Size(144, 20);
             label6.TabIndex = 11;
@@ -150,14 +157,14 @@
             // 
             ComboBoxTipoCombustivel.DropDownStyle = ComboBoxStyle.DropDownList;
             ComboBoxTipoCombustivel.FormattingEnabled = true;
-            ComboBoxTipoCombustivel.Location = new Point(48, 543);
+            ComboBoxTipoCombustivel.Location = new Point(50, 483);
             ComboBoxTipoCombustivel.Name = "ComboBoxTipoCombustivel";
             ComboBoxTipoCombustivel.Size = new Size(384, 28);
             ComboBoxTipoCombustivel.TabIndex = 10;
             // 
             // NumericInputCapacidadeLitros
             // 
-            NumericInputCapacidadeLitros.Location = new Point(48, 607);
+            NumericInputCapacidadeLitros.Location = new Point(50, 547);
             NumericInputCapacidadeLitros.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
             NumericInputCapacidadeLitros.Name = "NumericInputCapacidadeLitros";
             NumericInputCapacidadeLitros.Size = new Size(384, 27);
@@ -166,7 +173,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(48, 584);
+            label7.Location = new Point(50, 524);
             label7.Name = "label7";
             label7.Size = new Size(150, 20);
             label7.TabIndex = 13;
@@ -176,7 +183,7 @@
             // 
             btnCancelar.DialogResult = DialogResult.Cancel;
             btnCancelar.FlatStyle = FlatStyle.Popup;
-            btnCancelar.Location = new Point(344, 664);
+            btnCancelar.Location = new Point(346, 591);
             btnCancelar.Margin = new Padding(3, 4, 3, 4);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(86, 60);
@@ -188,7 +195,7 @@
             // 
             btnGravar.DialogResult = DialogResult.OK;
             btnGravar.FlatStyle = FlatStyle.Popup;
-            btnGravar.Location = new Point(251, 664);
+            btnGravar.Location = new Point(253, 591);
             btnGravar.Margin = new Padding(3, 4, 3, 4);
             btnGravar.Name = "btnGravar";
             btnGravar.Size = new Size(86, 60);
@@ -216,7 +223,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(48, 464);
+            label8.Location = new Point(295, 402);
             label8.Name = "label8";
             label8.Size = new Size(44, 20);
             label8.TabIndex = 18;
@@ -224,16 +231,54 @@
             // 
             // TextBoxPlaca
             // 
-            TextBoxPlaca.Location = new Point(48, 487);
+            TextBoxPlaca.Location = new Point(295, 425);
             TextBoxPlaca.Name = "TextBoxPlaca";
-            TextBoxPlaca.Size = new Size(384, 27);
+            TextBoxPlaca.Size = new Size(137, 27);
             TextBoxPlaca.TabIndex = 17;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(48, 349);
+            label9.Name = "label9";
+            label9.Size = new Size(114, 20);
+            label9.TabIndex = 20;
+            label9.Text = "Quilometragem";
+            // 
+            // NumericInputQuilometragem
+            // 
+            NumericInputQuilometragem.Location = new Point(48, 372);
+            NumericInputQuilometragem.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
+            NumericInputQuilometragem.Name = "NumericInputQuilometragem";
+            NumericInputQuilometragem.Size = new Size(241, 27);
+            NumericInputQuilometragem.TabIndex = 19;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(295, 349);
+            label10.Name = "label10";
+            label10.Size = new Size(36, 20);
+            label10.TabIndex = 22;
+            label10.Text = "Ano";
+            // 
+            // NumericInputAno
+            // 
+            NumericInputAno.Location = new Point(295, 372);
+            NumericInputAno.Maximum = new decimal(new int[] { 2024, 0, 0, 0 });
+            NumericInputAno.Name = "NumericInputAno";
+            NumericInputAno.Size = new Size(139, 27);
+            NumericInputAno.TabIndex = 21;
             // 
             // TelaAutomovelForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(488, 754);
+            ClientSize = new Size(488, 667);
+            Controls.Add(label10);
+            Controls.Add(NumericInputAno);
+            Controls.Add(label9);
+            Controls.Add(NumericInputQuilometragem);
             Controls.Add(label8);
             Controls.Add(TextBoxPlaca);
             Controls.Add(BotaoBuscarImagem);
@@ -257,6 +302,8 @@
             Text = "TelaAutomovelForm";
             ((System.ComponentModel.ISupportInitialize)PictureBoxCarro).EndInit();
             ((System.ComponentModel.ISupportInitialize)NumericInputCapacidadeLitros).EndInit();
+            ((System.ComponentModel.ISupportInitialize)NumericInputQuilometragem).EndInit();
+            ((System.ComponentModel.ISupportInitialize)NumericInputAno).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -283,5 +330,9 @@
         private OpenFileDialog OpenFileDialog;
         private Label label8;
         private TextBox TextBoxPlaca;
+        private Label label9;
+        private NumericUpDown NumericInputQuilometragem;
+        private Label label10;
+        private NumericUpDown NumericInputAno;
     }
 }

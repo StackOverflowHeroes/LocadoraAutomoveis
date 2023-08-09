@@ -20,7 +20,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloAutomovel
             {
                 new DataGridViewTextBoxColumn { Name = "Id", HeaderText = "Id", FillWeight=15F, Visible=false },
 
-                new DataGridViewTextBoxColumn { Name = "Placa", HeaderText = "Plado do automóvel", FillWeight=85F },
+                new DataGridViewTextBoxColumn { Name = "Placa", HeaderText = "Placa", FillWeight=85F },
 
                 new DataGridViewTextBoxColumn { Name = "Marca", HeaderText = "Marca", FillWeight=85F },
 
