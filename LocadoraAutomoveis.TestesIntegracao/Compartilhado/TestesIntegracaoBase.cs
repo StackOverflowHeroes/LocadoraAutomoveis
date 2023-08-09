@@ -21,6 +21,8 @@ using LocadoraAutomoveis.Dominio.ModuloCondutor;
 using LocadoraAutomoveis.Infra.Orm.ModuloCondutor;
 using LocadoraAutomoveis.Dominio.ModuloAutomovel;
 using LocadoraAutomoveis.Infra.Orm.ModuloAutomovel;
+using LocadoraAutomoveis.Dominio.ModuloAluguel;
+using LocadoraAutomoveis.Infra.Orm.ModuloAluguel;
 
 namespace LocadoraAutomoveis.TestesIntegracao.Compartilhado
 {
@@ -35,6 +37,7 @@ namespace LocadoraAutomoveis.TestesIntegracao.Compartilhado
         protected IRepositorioCupom repositorioCupom;
         protected IRepositorioCondutor repositorioCondutor;
         protected IRepositorioAutomovel repositorioAutomovel;
+        protected IRepositorioAluguel repositorioAluguel;
 
         protected IRepositorioTaxaServico repositorioTaxaServico;
         public TestesIntegracaoBase()
@@ -60,6 +63,7 @@ namespace LocadoraAutomoveis.TestesIntegracao.Compartilhado
             repositorioCupom = new RepositorioCupomEmOrm(dbContext);
             repositorioCondutor = new RepositorioCondutorEmOrm(dbContext);
             repositorioAutomovel = new RepositorioAutomovelEmOrm(dbContext);
+            repositorioAluguel = new RepositorioAluguelOrm(dbContext);
 
             BuilderSetup.SetCreatePersistenceMethod<Parceiro>(repositorioParceiro.Inserir);
             BuilderSetup.SetCreatePersistenceMethod<GrupoAutomovel>(repositorioGrupoAutomovel.Inserir);
@@ -71,6 +75,7 @@ namespace LocadoraAutomoveis.TestesIntegracao.Compartilhado
             BuilderSetup.SetCreatePersistenceMethod<TaxaServico>(repositorioTaxaServico.Inserir);
             BuilderSetup.SetCreatePersistenceMethod<Condutor>(repositorioCondutor.Inserir);
             BuilderSetup.SetCreatePersistenceMethod<Automovel>(repositorioAutomovel.Inserir);
+            BuilderSetup.SetCreatePersistenceMethod<Aluguel>(repositorioAluguel.Inserir);
 
         }
 
@@ -93,6 +98,7 @@ namespace LocadoraAutomoveis.TestesIntegracao.Compartilhado
 
             string sqlLimpezaTabela =
                 @"         
+                DELETE FROM [DBO].[TBALUGUEL];
                 DELETE FROM [DBO].[TBCONDUTOR];
                 DELETE FROM [DBO].[TBCLIENTE];
                 DELETE FROM [DBO].[TBCUPOM];

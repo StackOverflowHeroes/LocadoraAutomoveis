@@ -39,6 +39,11 @@ using LocadoraAutomoveis.Infra.Orm.ModuloCondutor;
 using LocadoraAutomoveis.Aplicacao.ModuloCondutor;
 using LocadoraAutomoveis.WinApp.ModuloCondutor;
 using LocadoraAutomoveis.WinApp.ModuloAluguel;
+using LocadoraAutomoveis.Dominio.ModuloAluguel;
+using LocadoraAutomoveis.Infra.Orm.ModuloAluguel;
+using LocadoraAutomoveis.WinApp.ModuloAluguel;
+using LocadoraAutomoveis.Aplicacao.ModuloAluguel;
+using LocadoraAutomoveis.Infra.Arquivos.Compartilhado;
 
 namespace LocadoraAutomoveis.WinApp
 {
@@ -92,6 +97,8 @@ namespace LocadoraAutomoveis.WinApp
             IRepositorioCupom repositorioCupom = new RepositorioCupomEmOrm(dbContext);
             IRepositorioAutomovel repositorioAutomovel = new RepositorioAutomovelEmOrm(dbContext);
             IRepositorioCondutor repositorioCondutor = new RepositorioCondutorEmOrm(dbContext);
+            IRepositorioAluguel repositorioAluguel = new RepositorioAluguelOrm(dbContext);
+            IRepositorioConfiguracaoPreco repositorioConfiguracaoPreco = new RepositorioConfiguracaoEmArquivo(true);
 
             ValidadorParceiro validadorParceiro = new ValidadorParceiro();
             ValidadorGrupoAutomovel validadorGrupoAutomovel = new ValidadorGrupoAutomovel();
@@ -102,16 +109,18 @@ namespace LocadoraAutomoveis.WinApp
             ValidadorCupom validadorCupom = new ValidadorCupom();
             ValidadorAutomovel validadorAutomovel = new ValidadorAutomovel();
             ValidadorCondutor validadorCondutor = new ValidadorCondutor();
+            ValidadorAluguel validadorAluguel = new ValidadorAluguel();
 
             ServicoParceiro servicoParceiro = new ServicoParceiro(repositorioParceiro, validadorParceiro);
-               ServicoGrupoAutomovel servicoGrupoAutomovel = new ServicoGrupoAutomovel(repositorioGrupoAutomovel, validadorGrupoAutomovel);
-               ServicoTaxaServico servicoTaxaServico = new ServicoTaxaServico(repositorioTaxaServico, validadorTaxaServico);
-               ServicoPlanoCobranca servicoPlanoCobranca = new ServicoPlanoCobranca(repositorioPlanoCobranca, validadorPlanoCobranca);
-               ServicoFuncionario servicoFuncionario = new ServicoFuncionario(repositorioFuncionario, validadorFuncionario);
-               ServicoCliente servicoCliente = new ServicoCliente(repositorioCliente, validadorCliente);
+            ServicoGrupoAutomovel servicoGrupoAutomovel = new ServicoGrupoAutomovel(repositorioGrupoAutomovel, validadorGrupoAutomovel);
+            ServicoTaxaServico servicoTaxaServico = new ServicoTaxaServico(repositorioTaxaServico, validadorTaxaServico);
+            ServicoPlanoCobranca servicoPlanoCobranca = new ServicoPlanoCobranca(repositorioPlanoCobranca, validadorPlanoCobranca);
+            ServicoFuncionario servicoFuncionario = new ServicoFuncionario(repositorioFuncionario, validadorFuncionario);
+            ServicoCliente servicoCliente = new ServicoCliente(repositorioCliente, validadorCliente);
             ServicoCupom servicoCupom = new ServicoCupom(repositorioCupom, validadorCupom);
             ServicoAutomovel servicoAutomovel = new ServicoAutomovel(repositorioAutomovel, validadorAutomovel);
             ServicoCondutor servicoCondutor = new ServicoCondutor(repositorioCondutor, validadorCondutor);
+            ServicoAluguel servicoAluguel = new ServicoAluguel(repositorioAluguel, validadorAluguel);
 
             controladores.Add("ControladorParceiro", new ControladorParceiro(repositorioParceiro, servicoParceiro));
             controladores.Add("ControladorGrupoAutomovel", new ControladorGrupoAutomovel(repositorioGrupoAutomovel, servicoGrupoAutomovel));
@@ -121,8 +130,10 @@ namespace LocadoraAutomoveis.WinApp
             controladores.Add("ControladorCliente", new ControladorCliente(repositorioCliente, servicoCliente));
             controladores.Add("ControladorCupom", new ControladorCupom(repositorioCupom, repositorioParceiro, servicoCupom));
             controladores.Add("ControladorAutomovel", new ControladorAutomovel(repositorioAutomovel, repositorioGrupoAutomovel, servicoAutomovel));
-               controladores.Add("ControladorCondutor", new ControladorCondutor(repositorioCliente, repositorioCondutor, servicoCondutor));
-          }
+            controladores.Add("ControladorCondutor", new ControladorCondutor(repositorioCliente, repositorioCondutor, servicoCondutor));
+            controladores.Add("ControladorAluguel", new ControladorAluguel(repositorioAluguel, repositorioFuncionario,
+                repositorioCliente, repositorioGrupoAutomovel, repositorioPlanoCobranca, repositorioTaxaServico, repositorioCupom, repositorioCondutor, repositorioAutomovel, servicoAluguel, repositorioConfiguracaoPreco));
+        }
 
         private void ConfiguracaoInicialTimer()
         {
@@ -214,8 +225,7 @@ namespace LocadoraAutomoveis.WinApp
             btnInserir.Enabled = configuracao.InserirHabilitado;
             btnEditar.Enabled = configuracao.EditarHabilitado;
             btnExcluir.Enabled = configuracao.ExcluirHabilitado;
-            BtnFiltrar.Enabled = configuracao.FiltrarHabilitado;
-               btnConfigurarPreco.Enabled = configuracao.ConfigurarPrecoHabilitado;
+            btnConfigurarPreco.Enabled = configuracao.ConfigurarPrecoHabilitado;
         }
 
         private void ConfigurarTooltips(ConfiguracaoToolboxBase configuracao)
@@ -223,9 +233,10 @@ namespace LocadoraAutomoveis.WinApp
             btnInserir.ToolTipText = configuracao.TooltipInserir;
             btnEditar.ToolTipText = configuracao.TooltipEditar;
             btnExcluir.ToolTipText = configuracao.TooltipExcluir;
-            BtnFiltrar.ToolTipText = configuracao.TooltipFiltrar;
-               btnConfigurarPreco.ToolTipText = configuracao.TooltipConfigurarPreco;
+            btnConfigurarPreco.ToolTipText = configuracao.TooltipConfigurarPreco;
         }
+
+
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
@@ -290,25 +301,23 @@ namespace LocadoraAutomoveis.WinApp
 
         private void btnConfigurarPreco_Click(object sender, EventArgs e)
         {
-               controlador.ConfigurarPreco();
-          }
+            controlador.ConfigurarPreco();
+        }
 
-          private void condutoresMenuItem_Click(object sender, EventArgs e)
-          {
-               ConfigurarTelaPrincipal(controladores["ControladorCondutor"]);
-          }
+        private void condutoresMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal(controladores["ControladorCondutor"]);
+        }
 
         private void alugueisMenuItem_Click(object sender, EventArgs e)
         {
-
+            ConfigurarTelaPrincipal(controladores["ControladorAluguel"]);
         }
 
         private void automoveisMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(controladores["ControladorAutomovel"]);
-
         }
-
         private void BtnFiltrar_Click(object sender, EventArgs e)
         {
             controlador.Filtrar();
