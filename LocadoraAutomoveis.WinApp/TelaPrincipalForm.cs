@@ -38,6 +38,7 @@ using LocadoraAutomoveis.Dominio.ModuloCondutor;
 using LocadoraAutomoveis.Infra.Orm.ModuloCondutor;
 using LocadoraAutomoveis.Aplicacao.ModuloCondutor;
 using LocadoraAutomoveis.WinApp.ModuloCondutor;
+using LocadoraAutomoveis.WinApp.ModuloAluguel;
 
 namespace LocadoraAutomoveis.WinApp
 {
@@ -214,6 +215,7 @@ namespace LocadoraAutomoveis.WinApp
             btnEditar.Enabled = configuracao.EditarHabilitado;
             btnExcluir.Enabled = configuracao.ExcluirHabilitado;
             BtnFiltrar.Enabled = configuracao.FiltrarHabilitado;
+               btnConfigurarPreco.Enabled = configuracao.ConfigurarPrecoHabilitado;
         }
 
         private void ConfigurarTooltips(ConfiguracaoToolboxBase configuracao)
@@ -222,6 +224,7 @@ namespace LocadoraAutomoveis.WinApp
             btnEditar.ToolTipText = configuracao.TooltipEditar;
             btnExcluir.ToolTipText = configuracao.TooltipExcluir;
             BtnFiltrar.ToolTipText = configuracao.TooltipFiltrar;
+               btnConfigurarPreco.ToolTipText = configuracao.TooltipConfigurarPreco;
         }
 
         private void btnInserir_Click(object sender, EventArgs e)
@@ -287,8 +290,8 @@ namespace LocadoraAutomoveis.WinApp
 
         private void btnConfigurarPreco_Click(object sender, EventArgs e)
         {
-
-        }
+               controlador.ConfigurarPreco();
+          }
 
           private void condutoresMenuItem_Click(object sender, EventArgs e)
           {

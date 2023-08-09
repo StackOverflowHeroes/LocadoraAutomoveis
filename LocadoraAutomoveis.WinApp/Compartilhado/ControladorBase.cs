@@ -1,30 +1,34 @@
-﻿namespace LocadoraAutomoveis.WinApp
+﻿using Microsoft.Identity.Client;
+
+namespace LocadoraAutomoveis.WinApp
 {
-    public abstract class ControladorBase
-    {
-        protected string mensagemRodape;
+     public abstract class ControladorBase
+     {
+          protected string mensagemRodape;
 
-        public abstract void Inserir();
+          public abstract void Inserir();
 
-        public virtual void Editar() { }
+          public virtual void Editar() { }
 
-        public abstract void Excluir();
+          public abstract void Excluir();
 
-        public virtual void Filtrar() { }
+          public virtual void Filtrar() { }
 
-        public virtual void GerarPdf() { }
+          public virtual void GerarPdf() { }
 
-        public virtual void Visualizar() { }
+          public virtual void Visualizar() { }
 
-        public abstract UserControl ObtemListagem();
+          public virtual void ConfigurarPreco() { }
+
+          public abstract UserControl ObtemListagem();
 
           public virtual void CarregarRegistros() { }
 
-        public abstract ConfiguracaoToolboxBase ObtemConfiguracaoToolbox();
+          public abstract ConfiguracaoToolboxBase ObtemConfiguracaoToolbox();
 
-        public string ObterMensagemRodape()
-        {
-            return mensagemRodape;
-        }
-    }
+          public string ObterMensagemRodape()
+          {
+               return mensagemRodape;
+          }
+     }
 }
