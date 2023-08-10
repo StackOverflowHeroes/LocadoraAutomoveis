@@ -226,6 +226,7 @@ namespace LocadoraAutomoveis.WinApp
             btnEditar.Enabled = configuracao.EditarHabilitado;
             btnExcluir.Enabled = configuracao.ExcluirHabilitado;
             btnConfigurarPreco.Enabled = configuracao.ConfigurarPrecoHabilitado;
+            btnDevolucao.Enabled = configuracao.FecharAluguel;
         }
 
         private void ConfigurarTooltips(ConfiguracaoToolboxBase configuracao)
@@ -234,6 +235,7 @@ namespace LocadoraAutomoveis.WinApp
             btnEditar.ToolTipText = configuracao.TooltipEditar;
             btnExcluir.ToolTipText = configuracao.TooltipExcluir;
             btnConfigurarPreco.ToolTipText = configuracao.TooltipConfigurarPreco;
+            btnDevolucao.ToolTipText = configuracao.TooltipFecharAluguel;
         }
 
 
@@ -291,7 +293,7 @@ namespace LocadoraAutomoveis.WinApp
 
         private void btnDevolucao_Click(object sender, EventArgs e)
         {
-
+               controlador.FecharAluguel();
         }
 
         private void btnGerarPDF_Click(object sender, EventArgs e)

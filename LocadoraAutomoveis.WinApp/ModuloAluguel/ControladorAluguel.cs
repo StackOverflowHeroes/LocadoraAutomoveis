@@ -143,21 +143,51 @@ namespace LocadoraAutomoveis.WinApp.ModuloAluguel
             CarregarRegistros();
             return tabelaAluguel;
         }
-    }
-    //public override void ConfigurarPreco()
-    //{
-    //    ConfiguracaoPreco configuracao = repositorioConfiguracaoPreco.ObterConfiguracaoDePreco();
 
-    //    TelaConfiguracaoPrecoForm telaConfiguracao = new TelaConfiguracaoPrecoForm(configuracao);
+          public override void ConfigurarPreco()
+          {
+               ConfiguracaoPreco configuracao = repositorioConfiguracaoPreco.ObterConfiguracaoDePreco();
+
+               TelaConfiguracaoPrecoForm telaConfiguracao = new TelaConfiguracaoPrecoForm(configuracao);
 
 
-    //    DialogResult opcaoEscolhida = telaConfiguracao.ShowDialog();
+               DialogResult opcaoEscolhida = telaConfiguracao.ShowDialog();
 
-    //    if (opcaoEscolhida == DialogResult.OK)
-    //    {
-    //        ConfiguracaoPreco novaConfiguracao = telaConfiguracao.ObterConfiguracaoPreco();
-    //        repositorioConfiguracaoPreco.GravarConfiguracoesPreco(novaConfiguracao);
-    //    }
+               if (opcaoEscolhida == DialogResult.OK)
+               {
+                    ConfiguracaoPreco novaConfiguracao = telaConfiguracao.ObterConfiguracaoPreco();
+                    repositorioConfiguracaoPreco.GravarConfiguracoesPreco(novaConfiguracao);
+               }
 
-    //}
+          }
+
+          public override void FecharAluguel()
+          {
+               Guid id = tabelaAluguel.ObtemIdSelecionado();
+               Aluguel aluguelSelecionado = repositorioAluguel.SelecionarPorId(id);
+
+               if (aluguelSelecionado == null)
+               {
+                    MessageBox.Show("Selecione um aluguel primeiro.",
+                    "Fechamento de aluguel", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+               }
+
+               TelaDevolucaoAluguelForm telaAluguelDevolucao = new TelaDevolucaoAluguelForm();
+
+               telaAluguelDevolucao.PopularComboBox(aluguelSelecionado);
+               telaAluguelDevolucao.PopularListBox(repositorioTaxaServico.SelecionarTodos());
+
+               telaAluguelDevolucao.onGravarRegistro += servicoAluguel.Editar;
+
+
+               DialogResult resultado = telaAluguelDevolucao.ShowDialog();
+
+               if (resultado == DialogResult.OK)
+               {
+                    CarregarRegistros();
+               }
+          }
+     }
+
 }
