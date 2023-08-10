@@ -94,6 +94,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloCondutor
                     txtNome.Text = string.Empty;
                     txtEmail.Text = string.Empty;
                     txtTelefone.Text = string.Empty;
+                    txtCPF.Text = string.Empty;
 
                     txtNome.ReadOnly = false;
                     txtEmail.ReadOnly = false;
