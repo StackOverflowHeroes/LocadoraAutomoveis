@@ -1,22 +1,17 @@
 ﻿using LocadoraAutomoveis.Dominio.ModuloAluguel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace LocadoraAutomoveis.Infra.Arquivos.Compartilhado
 {
      public class RepositorioConfiguracaoEmArquivo : IRepositorioConfiguracaoPreco
      {
-          private const string NOME_ARQUIVO = "Compartilhado\\Configuracoes.json";
+          private const string NOME_ARQUIVO = @"Compartilhado\ConfiguracoesPreco.json";
 
           public ConfiguracaoPreco configuracaoPreco;
 
           public RepositorioConfiguracaoEmArquivo(bool carregarDados)
           {
-               if (carregarDados)
+               if (carregarDados == true)
                     CarregarDoArquivoJson();
           }
 
@@ -26,7 +21,7 @@ namespace LocadoraAutomoveis.Infra.Arquivos.Compartilhado
 
                JsonSerializerOptions config = ObterConfiguracoesDeSerializacao();
 
-               string registrosJson = JsonSerializer.Serialize(this, config);
+               string registrosJson = JsonSerializer.Serialize(configuracaoPreco, config)!;
 
                File.WriteAllText(NOME_ARQUIVO, registrosJson);
           }
@@ -60,8 +55,7 @@ namespace LocadoraAutomoveis.Infra.Arquivos.Compartilhado
                JsonSerializerOptions opcoes = new JsonSerializerOptions();
                opcoes.IncludeFields = true;
                opcoes.WriteIndented = true;
-               opcoes.ReferenceHandler = ReferenceHandler.Preserve;
-
+               
                return opcoes;
           }
      }

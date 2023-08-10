@@ -12,4 +12,10 @@
     <PackageReference Include="SequentialGuid" Version="4.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="ModuloAluguel\ConfiguracaoPreco.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+
 </Project>
