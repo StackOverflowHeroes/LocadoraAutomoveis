@@ -18,6 +18,8 @@
 
         public virtual string TooltipConfigurarPreco { get; }
 
+        public virtual string TooltipFecharAluguel { get; }
+
         public virtual bool InserirHabilitado { get { return true; } }
 
         public virtual bool EditarHabilitado { get { return true; } }
@@ -31,5 +33,7 @@
         public virtual bool VisualizarHabilitado { get { return false; } }
 
         public virtual bool ConfigurarPrecoHabilitado { get { return false; } }
+
+        public virtual bool FecharAluguel { get { return false; } }
     }
 }

@@ -74,17 +74,18 @@ namespace LocadoraAutomoveis.WinApp.ModuloAluguel
         }
         public void ConfigurarTelaAluguel(Aluguel aluguel)
         {
-            this.aluguel = aluguel;
-            cboxFuncionario.SelectedItem = aluguel.Funcionario.Nome;
-            cboxCliente.SelectedItem = aluguel.Cliente.Nome;
-            cboxGrupoAutomoveis.SelectedItem = aluguel.GrupoAutomovel.Nome;
-            cmbPlanoCobranca.SelectedItem = aluguel.PlanoCobranca.Nome;
-            cboxCondutor.SelectedItem = aluguel.Condutor.Nome;
-            cboxAutomovel.SelectedItem = aluguel.Automovel.Placa;
-            listTaxas.Items.Clear();
-            listTaxas.Items.AddRange(aluguel.TaxaServicos.ToArray());
-            txtCupom.Text = aluguel.Cupom.Nome;
-        }
+               this.aluguel = aluguel;
+               cboxFuncionario.SelectedItem = aluguel.Funcionario;
+               cboxCliente.SelectedItem = aluguel.Cliente;
+               cboxGrupoAutomoveis.SelectedItem = aluguel.GrupoAutomovel;
+               cmbPlanoCobranca.SelectedItem = aluguel.PlanoCobranca;
+               cboxCondutor.SelectedItem = aluguel.Condutor;
+               cboxAutomovel.SelectedItem = aluguel.Automovel;
+               listTaxas.SelectedItem = aluguel.TaxaServicos;
+               dateLocacao.Value = aluguel.DataLocacao;
+               dateDevolucao.Value = (DateTime)aluguel.DataPrevisaoRetorno;
+               txtCupom.Text = aluguel?.Cupom?.Nome;
+          }
         private void btnGravar_Click(object sender, EventArgs e)
         {
             Aluguel aluguel = ObterAluguel();

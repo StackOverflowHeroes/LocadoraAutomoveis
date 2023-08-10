@@ -42,6 +42,7 @@
                label9 = new Label();
                cboxNivelTanque = new ComboBox();
                label8 = new Label();
+               btnCalcularValorTotal = new Button();
                tbControlTaxasAdicionadas.SuspendLayout();
                tbTaxas.SuspendLayout();
                ((System.ComponentModel.ISupportInitialize)valorKmPercorrido).BeginInit();
@@ -68,13 +69,14 @@
                btnGravar.TabIndex = 100;
                btnGravar.Text = "Gravar";
                btnGravar.UseVisualStyleBackColor = true;
+               btnGravar.Click += btnGravar_Click;
                // 
                // lbValorTotal
                // 
                lbValorTotal.AutoSize = true;
                lbValorTotal.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
                lbValorTotal.ForeColor = Color.Green;
-               lbValorTotal.Location = new Point(167, 347);
+               lbValorTotal.Location = new Point(175, 347);
                lbValorTotal.Name = "lbValorTotal";
                lbValorTotal.Size = new Size(15, 17);
                lbValorTotal.TabIndex = 99;
@@ -84,7 +86,7 @@
                // label11
                // 
                label11.AutoSize = true;
-               label11.Location = new Point(141, 349);
+               label11.Location = new Point(149, 349);
                label11.Name = "label11";
                label11.Size = new Size(20, 15);
                label11.TabIndex = 98;
@@ -93,7 +95,7 @@
                // label12
                // 
                label12.AutoSize = true;
-               label12.Location = new Point(28, 349);
+               label12.Location = new Point(141, 37);
                label12.Name = "label12";
                label12.Size = new Size(109, 15);
                label12.TabIndex = 97;
@@ -180,11 +182,24 @@
                label8.TabIndex = 106;
                label8.Text = "Nível do Tanque";
                // 
+               // btnCalcularValorTotal
+               // 
+               btnCalcularValorTotal.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+               btnCalcularValorTotal.DialogResult = DialogResult.OK;
+               btnCalcularValorTotal.Location = new Point(28, 345);
+               btnCalcularValorTotal.Name = "btnCalcularValorTotal";
+               btnCalcularValorTotal.Size = new Size(115, 22);
+               btnCalcularValorTotal.TabIndex = 108;
+               btnCalcularValorTotal.Text = "Calcular Total";
+               btnCalcularValorTotal.UseVisualStyleBackColor = true;
+               btnCalcularValorTotal.Click += btnCalcularValorTotal_Click;
+               // 
                // TelaDevolucaoAluguelForm
                // 
                AutoScaleDimensions = new SizeF(7F, 15F);
                AutoScaleMode = AutoScaleMode.Font;
                ClientSize = new Size(445, 398);
+               Controls.Add(btnCalcularValorTotal);
                Controls.Add(cboxNivelTanque);
                Controls.Add(label8);
                Controls.Add(valorKmPercorrido);
@@ -222,5 +237,6 @@
           private Label label9;
           private ComboBox cboxNivelTanque;
           private Label label8;
+          private Button btnCalcularValorTotal;
      }
 }
