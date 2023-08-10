@@ -59,15 +59,6 @@ namespace LocadoraAutomoveis.Dominio.ModuloCliente
         {
             return Regex.IsMatch(telefone, @"^\(?\d{2}\)?\s?9?\d{4}-?\d{4}");
         }
-
-        //private bool ValidarFormatoEmail(string email)
-        //{
-        //    string padraoEmail = @"^(([^<>()[\]\\.,;:\s@""]+(\.[^<>()[\]\\.,;:\s@""]+)*)|("".+""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$";
-
-        //    Regex regexEmail = new Regex(padraoEmail);
-
-        //    return regexEmail.IsMatch(email);
-        //}
         public bool ValidarClienteExiste(Cliente cliente, List<Cliente> clientes)
         {
             return clientes.Any(x => x.Id != cliente.Id);

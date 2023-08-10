@@ -20,6 +20,8 @@ namespace LocadoraAutomoveis.WinApp
 
           public virtual void ConfigurarPreco() { }
 
+          public virtual void FecharAluguel() { }
+
           public abstract UserControl ObtemListagem();
 
           public virtual void CarregarRegistros() { }

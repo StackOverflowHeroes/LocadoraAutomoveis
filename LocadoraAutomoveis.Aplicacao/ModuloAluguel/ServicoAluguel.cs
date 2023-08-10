@@ -7,6 +7,7 @@ using LocadoraAutomoveis.Aplicacao.ModuloGrupoAutomovel;
 using LocadoraAutomoveis.Aplicacao.ModuloPlanoCobranca;
 using LocadoraAutomoveis.Aplicacao.ModuloTaxaServico;
 using LocadoraAutomoveis.Dominio.ModuloAluguel;
+using LocadoraAutomoveis.Dominio.ModuloCondutor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -139,14 +140,26 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloAluguel
             if (resultadoValidacao != null)
                 erros.AddRange(resultadoValidacao.Errors.Select(x => x.ErrorMessage));
 
-            if (repositorioAluguel.Existe(aluguel))
-                erros.Add($"Aluguel já registrado");
+            if (NomeDuplicado(aluguel))
+                erros.Add($"Cliente já está sendo utilizado em um aluguel já registrado");
             foreach (string erro in erros)
             {
                 Log.Warning(erro);
             }
 
             return erros;
+        }
+        public bool NomeDuplicado(Aluguel aluguel)
+        {
+            List<Aluguel> alugueis = repositorioAluguel.SelecionarTodos();
+            foreach (Aluguel a in alugueis)
+            {
+                if (a.Id != aluguel.Id && a.Cliente == aluguel.Cliente)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

@@ -29,18 +29,21 @@ namespace LocadoraAutomoveis.Dominio.ModuloAluguel
         public DateTime? DataPrevisaoRetorno { get; set; }
         public DateTime? DataDevolucao { get; set; }
         public decimal? QuilometrosRodados { get; set; }
-        public NivelTanque? CombustivelRestante { get; set; }
+        public NivelTanqueEnum? CombustivelRestante { get; set; }
         public decimal ValorTotal { get; set; }
         public bool Concluido { get; set; }
 
         public Aluguel()
         {
+               DataDevolucao = DateTime.Now;
+               DataPrevisaoRetorno = DateTime.Now;
+               DataLocacao = DateTime.Now;
         }
 
         public Aluguel(Funcionario funcionario, Cliente cliente, GrupoAutomovel grupoAutomovel,
             PlanoCobranca planoCobranca, Condutor condutor, Automovel automovel, int quilometroAutomovel, Cupom? cupom,
             List<TaxaServico> taxaServicos, DateTime dataLocacao, DateTime? dataPrevisaoRetorno,
-            DateTime? dataDevolucao, decimal? quilometrosRodados, NivelTanque? combustivelRestante,
+            DateTime? dataDevolucao, decimal? quilometrosRodados, NivelTanqueEnum? combustivelRestante,
             decimal valorTotal, bool concluido) : this()
         {
             Funcionario = funcionario;
@@ -63,7 +66,7 @@ namespace LocadoraAutomoveis.Dominio.ModuloAluguel
         public Aluguel(Guid id, Funcionario funcionario, Cliente cliente, GrupoAutomovel grupoAutomovel,
             PlanoCobranca planoCobranca, Condutor condutor, Automovel automovel, int quilometroAutomovel, Cupom? cupom,
             List<TaxaServico> taxaServicos, DateTime dataLocacao, DateTime? dataPrevisaoRetorno,
-            DateTime? dataDevolucao, decimal? quilometrosRodados, NivelTanque? combustivelRestante,
+            DateTime? dataDevolucao, decimal? quilometrosRodados, NivelTanqueEnum? combustivelRestante,
             decimal valorTotal, bool concluido) : this(funcionario, cliente, grupoAutomovel, planoCobranca, condutor, automovel, quilometroAutomovel, cupom, taxaServicos, dataLocacao, dataPrevisaoRetorno, dataDevolucao, quilometrosRodados, combustivelRestante, valorTotal, concluido)
         {
             Id = id;
@@ -108,23 +111,6 @@ namespace LocadoraAutomoveis.Dominio.ModuloAluguel
                 CombustivelRestante == aluguel.CombustivelRestante &&
                 ValorTotal == aluguel.ValorTotal &&
                 Concluido == aluguel.Concluido;
-        }
-        public enum NivelTanque
-        {
-            [Description("Vazio")]
-            Vazio,
-
-            [Description("1/4")]
-            UmQuarto,
-
-            [Description("1/2")]
-            MeioTanque,
-
-            [Description("3/4")]
-            TresQuartos,
-
-            [Description("Cheio")]
-            Cheio
         }
     }
 }

@@ -2,57 +2,57 @@
 
 namespace LocadoraAutomoveis.WinApp.ModuloTaxaServico
 {
-     public partial class TelaTaxaServicoForm : Form
-     {
-          TaxaServico taxaServico;
-          public event GravarRegistroDelegate<TaxaServico> onGravarRegistro;
+    public partial class TelaTaxaServicoForm : Form
+    {
+        TaxaServico taxaServico;
+        public event GravarRegistroDelegate<TaxaServico> onGravarRegistro;
 
-          public TelaTaxaServicoForm()
-          {
-               InitializeComponent();
-               this.ConfigurarDialog();
-          }
+        public TelaTaxaServicoForm()
+        {
+            InitializeComponent();
+            this.ConfigurarDialog();
+        }
 
-          public TaxaServico ObterTaxaServico()
-          {
-               taxaServico.Nome = txtNome.Text;
-               taxaServico.Preco = campoPreco.Value;
+        public TaxaServico ObterTaxaServico()
+        {
+            taxaServico.Nome = txtNome.Text;
+            taxaServico.Preco = campoPreco.Value;
 
-               if (precoDiario.Checked)
-                    taxaServico.PlanoDiario = true;
+            if (precoDiario.Checked)
+                taxaServico.PlanoDiario = true;
 
-               else
-                    taxaServico.PlanoDiario = false;
+            else
+                taxaServico.PlanoDiario = false;
 
-               return taxaServico;
-          }
+            return taxaServico;
+        }
 
-          public void ConfigurarTelaTaxaServico(TaxaServico taxaServico)
-          {
-               this.taxaServico = taxaServico;
-               txtNome.Text = taxaServico.Nome;
-               campoPreco.Value = taxaServico.Preco;
+        public void ConfigurarTelaTaxaServico(TaxaServico taxaServico)
+        {
+            this.taxaServico = taxaServico;
+            txtNome.Text = taxaServico.Nome;
+            campoPreco.Value = taxaServico.Preco;
 
-               if (taxaServico.PlanoDiario)
-                    precoDiario.Checked = true;
-               else
-                    precoFixo.Checked = true;
-          }
+            if (taxaServico.PlanoDiario)
+                precoDiario.Checked = true;
+            else
+                precoFixo.Checked = true;
+        }
 
-          private void btnGravar_Click(object sender, EventArgs e)
-          {
-               taxaServico = ObterTaxaServico();
+        private void btnGravar_Click(object sender, EventArgs e)
+        {
+            taxaServico = ObterTaxaServico();
 
-               Result resultado = onGravarRegistro(taxaServico);
+            Result resultado = onGravarRegistro(taxaServico);
 
-               if (resultado.IsFailed)
-               {
-                    string erro = resultado.Errors[0].Message;
+            if (resultado.IsFailed)
+            {
+                string erro = resultado.Errors[0].Message;
 
-                    TelaPrincipalForm.Instancia.AtualizarRodape(erro, TipoStatusEnum.Erro);
+                TelaPrincipalForm.Instancia.AtualizarRodape(erro, TipoStatusEnum.Erro);
 
-                    DialogResult = DialogResult.None;
-               }
-          }
-     }
+                DialogResult = DialogResult.None;
+            }
+        }
+    }
 }
