@@ -143,21 +143,23 @@ namespace LocadoraAutomoveis.WinApp.ModuloAluguel
             CarregarRegistros();
             return tabelaAluguel;
         }
-    }
-    //public override void ConfigurarPreco()
-    //{
-    //    ConfiguracaoPreco configuracao = repositorioConfiguracaoPreco.ObterConfiguracaoDePreco();
 
-    //    TelaConfiguracaoPrecoForm telaConfiguracao = new TelaConfiguracaoPrecoForm(configuracao);
+          public override void ConfigurarPreco()
+          {
+               ConfiguracaoPreco configuracao = repositorioConfiguracaoPreco.ObterConfiguracaoDePreco();
+
+               TelaConfiguracaoPrecoForm telaConfiguracao = new TelaConfiguracaoPrecoForm(configuracao);
 
 
-    //    DialogResult opcaoEscolhida = telaConfiguracao.ShowDialog();
+               DialogResult opcaoEscolhida = telaConfiguracao.ShowDialog();
 
-    //    if (opcaoEscolhida == DialogResult.OK)
-    //    {
-    //        ConfiguracaoPreco novaConfiguracao = telaConfiguracao.ObterConfiguracaoPreco();
-    //        repositorioConfiguracaoPreco.GravarConfiguracoesPreco(novaConfiguracao);
-    //    }
+               if (opcaoEscolhida == DialogResult.OK)
+               {
+                    ConfiguracaoPreco novaConfiguracao = telaConfiguracao.ObterConfiguracaoPreco();
+                    repositorioConfiguracaoPreco.GravarConfiguracoesPreco(novaConfiguracao);
+               }
 
-    //}
+          }
+     }
+
 }
