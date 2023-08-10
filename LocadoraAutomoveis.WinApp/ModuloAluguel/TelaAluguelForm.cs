@@ -53,7 +53,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloAluguel
 
             condutores.ForEach(condutor => cboxCondutor.Items.Add(condutor));
 
-            //automoveis.ForEach(automovel => cboxAutomovel.Items.Add(automovel));
+
             taxaServicos.ForEach(taxa => listTaxas.Items.Add(taxa));
             listTaxas.ValueMember = "Nome";
 
@@ -90,17 +90,6 @@ namespace LocadoraAutomoveis.WinApp.ModuloAluguel
             aluguel.Cupom = txtCupom.Text == "" ? null : new Cupom() { Nome = txtCupom.Text };
             aluguel.ValorTotal = Convert.ToDecimal(lbValor.Text);
             aluguel.Concluido = false;
-            //aluguel.TaxaServicos = listTaxas.CheckedItems.Cast<TaxaServico>().ToList();
-            //for (int i = 0; i < listTaxas.Items.Count; i++)
-            //{
-            //    for (int j = 0; j < listTaxas.Items.Count; j++)
-            //    {
-            //        if (listTaxas.Items[j] == aluguel.TaxaServicos[i])
-            //            listTaxas.SetItemChecked(j, true);
-            //    }
-            //}
-
-
 
             return aluguel;
 
@@ -117,7 +106,6 @@ namespace LocadoraAutomoveis.WinApp.ModuloAluguel
             listTaxas.SelectedItem = aluguel.TaxaServicos;
             dateLocacao.Value = aluguel.DataLocacao;
             dateDevolucao.Value = (DateTime)aluguel.DataPrevisaoRetorno;
-            //listTaxas.Items.AddRange(aluguel.TaxaServicos.ToArray());
             txtCupom.Text = aluguel?.Cupom?.Nome;
         }
         private void btnGravar_Click(object sender, EventArgs e)
@@ -186,30 +174,10 @@ namespace LocadoraAutomoveis.WinApp.ModuloAluguel
             }
 
         }
-        //private void AtualizaValorTotal(bool x)
-        //{
-        //    if (x)
-        //    {
-        //        aluguel = ObterAluguel();
-        //        lbValorTotal.Text = CalcularValorTotalPrevisto(aluguel).ToString();
-        //    }
-        //}
-
         private void CalcularValorTotalPrevisto()
         {
 
         }
-
-        //private void CalcularTotal()
-        //{
-        //    aluguel = ObterAluguel();
-        //    lbValorTotal.Text = onCalcularAluguel(aluguel).ToString();
-        //}
-
-        //private void listTaxas_ItemCheck(object sender, ItemCheckEventArgs e)
-        //{
-
-        //}
 
         private void cmbPlanoCobranca_SelectedIndexChanged(object sender, EventArgs e)
         {

@@ -51,30 +51,30 @@ namespace LocadoraAutomoveis.WinApp.ModuloCliente
             {
                 string erro = resultado.Errors[0].Message;
 
-                    TelaPrincipalForm.Instancia.AtualizarRodape(erro, TipoStatusEnum.Erro);
+                TelaPrincipalForm.Instancia.AtualizarRodape(erro, TipoStatusEnum.Erro);
 
-                    DialogResult = DialogResult.None;
-               }
-          }
+                DialogResult = DialogResult.None;
+            }
+        }
 
-          private void rdbFisica_CheckedChanged(object sender, EventArgs e)
-          {
-               if (rdbFisica.Checked)
-               {
-                    txtCpf.Enabled = true;
-                    txtCnpj.Enabled = false;
-                    txtCnpj.Text = "";
-               }
-          }
+        private void rdbFisica_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbFisica.Checked)
+            {
+                txtCpf.Enabled = true;
+                txtCnpj.Enabled = false;
+                txtCnpj.Text = "";
+            }
+        }
 
-          private void rdbJuridica_CheckedChanged(object sender, EventArgs e)
-          {
-               if (rdbJuridica.Checked)
-               {
-                    txtCnpj.Enabled = true;
-                    txtCpf.Enabled = false;
-                    txtCpf.Text = "";
-               }
-          }
-     }
+        private void rdbJuridica_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbJuridica.Checked)
+            {
+                txtCnpj.Enabled = true;
+                txtCpf.Enabled = false;
+                txtCpf.Text = "";
+            }
+        }
+    }
 }

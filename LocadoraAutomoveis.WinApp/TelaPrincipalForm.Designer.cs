@@ -219,78 +219,79 @@
             // cadastrosMenuItem
             // 
             cadastrosMenuItem.DropDownItems.AddRange(new ToolStripItem[] { parceirosMenuItem, gruposMenuItem, taxaServicoMenuItem, planosMenuItem, funcionariosMenuItem, clientesMenuItem, alugueisMenuItem, automoveisMenuItem, condutoresMenuItem });
+            cadastrosMenuItem.Font = new Font("Comic Sans MS", 9F, FontStyle.Bold, GraphicsUnit.Point);
             cadastrosMenuItem.Name = "cadastrosMenuItem";
-            cadastrosMenuItem.Size = new Size(71, 20);
+            cadastrosMenuItem.Size = new Size(77, 20);
             cadastrosMenuItem.Text = "Cadastros";
             // 
             // parceirosMenuItem
             // 
             parceirosMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cuponsMenuItem });
             parceirosMenuItem.Name = "parceirosMenuItem";
-            parceirosMenuItem.Size = new Size(193, 22);
+            parceirosMenuItem.Size = new Size(198, 22);
             parceirosMenuItem.Text = "Parceiros";
             parceirosMenuItem.Click += parceirosMenuItem_Click;
             // 
             // cuponsMenuItem
             // 
             cuponsMenuItem.Name = "cuponsMenuItem";
-            cuponsMenuItem.Size = new Size(115, 22);
+            cuponsMenuItem.Size = new Size(111, 22);
             cuponsMenuItem.Text = "Cupons";
             cuponsMenuItem.Click += cuponsMenuItem_Click;
             // 
             // gruposMenuItem
             // 
             gruposMenuItem.Name = "gruposMenuItem";
-            gruposMenuItem.Size = new Size(193, 22);
+            gruposMenuItem.Size = new Size(198, 22);
             gruposMenuItem.Text = "Grupos de automóveis";
             gruposMenuItem.Click += gruposMenuItem_Click;
             // 
             // taxaServicoMenuItem
             // 
             taxaServicoMenuItem.Name = "taxaServicoMenuItem";
-            taxaServicoMenuItem.Size = new Size(193, 22);
+            taxaServicoMenuItem.Size = new Size(198, 22);
             taxaServicoMenuItem.Text = "Taxas ou serviços";
             taxaServicoMenuItem.Click += taxaServicoMenuItem_Click;
             // 
             // planosMenuItem
             // 
             planosMenuItem.Name = "planosMenuItem";
-            planosMenuItem.Size = new Size(193, 22);
+            planosMenuItem.Size = new Size(198, 22);
             planosMenuItem.Text = "Planos de cobrança";
             planosMenuItem.Click += planosMenuItem_Click;
             // 
             // funcionariosMenuItem
             // 
             funcionariosMenuItem.Name = "funcionariosMenuItem";
-            funcionariosMenuItem.Size = new Size(193, 22);
+            funcionariosMenuItem.Size = new Size(198, 22);
             funcionariosMenuItem.Text = "Funcionários";
             funcionariosMenuItem.Click += funcionariosMenuItem_Click;
             // 
             // clientesMenuItem
             // 
             clientesMenuItem.Name = "clientesMenuItem";
-            clientesMenuItem.Size = new Size(193, 22);
+            clientesMenuItem.Size = new Size(198, 22);
             clientesMenuItem.Text = "Clientes";
             clientesMenuItem.Click += clientesMenuItem_Click;
             // 
             // alugueisMenuItem
             // 
             alugueisMenuItem.Name = "alugueisMenuItem";
-            alugueisMenuItem.Size = new Size(193, 22);
+            alugueisMenuItem.Size = new Size(198, 22);
             alugueisMenuItem.Text = "Aluguéis";
             alugueisMenuItem.Click += alugueisMenuItem_Click;
             // 
             // automoveisMenuItem
             // 
             automoveisMenuItem.Name = "automoveisMenuItem";
-            automoveisMenuItem.Size = new Size(193, 22);
+            automoveisMenuItem.Size = new Size(198, 22);
             automoveisMenuItem.Text = "Automóveis";
             automoveisMenuItem.Click += automoveisMenuItem_Click;
             // 
             // condutoresMenuItem
             // 
             condutoresMenuItem.Name = "condutoresMenuItem";
-            condutoresMenuItem.Size = new Size(193, 22);
+            condutoresMenuItem.Size = new Size(198, 22);
             condutoresMenuItem.Text = "Condutores";
             condutoresMenuItem.Click += condutoresMenuItem_Click;
             // 
