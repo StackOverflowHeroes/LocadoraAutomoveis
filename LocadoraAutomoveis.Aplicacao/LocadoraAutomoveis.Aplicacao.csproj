@@ -12,7 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LocadoraAutomoveis.Infra.Pdf\LocadoraAutomoveis.Infra.Pdf.csproj" />
     <ProjectReference Include="..\LocadoraAutomoveis\LocadoraAutomoveis.Dominio.csproj" />
+    <ProjectReference Include="..\LocadoraAutomovel.Infra.Email\LocadoraAutomovel.Infra.Email.csproj" />
   </ItemGroup>
 
 </Project>

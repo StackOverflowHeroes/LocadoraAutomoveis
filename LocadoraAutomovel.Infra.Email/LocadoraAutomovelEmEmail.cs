@@ -16,6 +16,7 @@ namespace LocadoraAutomovel.Infra.Email
         }
         public void SendEmail(string email, string title="", string message="", Attachment att = null)
         {
+
             MailMessage emailMessage = new MailMessage();
             emailMessage.From = new MailAddress(from);
             emailMessage.Subject = title;

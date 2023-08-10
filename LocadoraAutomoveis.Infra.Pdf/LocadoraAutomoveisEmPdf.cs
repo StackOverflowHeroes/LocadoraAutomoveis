@@ -36,21 +36,25 @@ namespace LocadoraAutomoveis.Infra.Pdf
         {
             PdfFont fontCabecalho = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
 
-            //document.Add(new Paragraph($"Título: {testeSelecionado.Titulo}").SetFont(fontCabecalho));
+            document.Add(new Paragraph($"Aluguel: {aluguel.Id}").SetFont(fontCabecalho));
 
-            //string nomeDisciplina = testeSelecionado.Disciplina == null ? testeSelecionado.Materia.Disciplina.Nome : testeSelecionado.Disciplina.Nome;
+            string clienteAluguel = aluguel.Cliente == null ? aluguel.Cliente.Nome : aluguel.Cliente.Nome;
 
-            //document.Add(new Paragraph($"Disciplina: {nomeDisciplina}").SetFont(fontCabecalho));
+            document.Add(new Paragraph($"Cliente: {aluguel.Cliente.Nome}").SetFont(fontCabecalho));
 
-            //document.Add(new Paragraph($"Matéria: {testeSelecionado.Materia.Nome}").SetFont(fontCabecalho));
+            document.Add(new Paragraph($"Veículo: {aluguel.Automovel.Modelo}").SetFont(fontCabecalho));
+            document.Add(new Paragraph($"Data de locação: {aluguel.DataLocacao}").SetFont(fontCabecalho));
 
             document.Add(new Paragraph("\n\n"));
         }
         private void EscreverConteudo(Document document, Aluguel aluguel)
         {
             PdfFont fontConteudo = PdfFontFactory.CreateFont(StandardFonts.HELVETICA);
+            document.Add(new Paragraph($"O senhor(a), {aluguel.Cliente.Nome}, documento: {aluguel.Cliente.Documento}, registrou o aluguel do Veículo: {aluguel.Automovel.Modelo}, na cor {aluguel.Automovel.Cor}, ano {aluguel.Automovel.Ano}\n" +
+                $"Data de locação: {aluguel.DataLocacao}\n Data prevista para devolução: {aluguel.DataPrevisaoRetorno}\n" +
+                $"Valor estimado do aluguel: {aluguel.ValorTotal}"));
 
-            //for (int i = 0; i < gabarito.AlternativasCorretas.Count; i++)
+            //for (int i = 0; i < aluguel..Count; i++)
             //{
             //    Alternativa alternativaCorreta = gabarito.AlternativasCorretas[i];
 

@@ -8,11 +8,15 @@ using LocadoraAutomoveis.Aplicacao.ModuloPlanoCobranca;
 using LocadoraAutomoveis.Aplicacao.ModuloTaxaServico;
 using LocadoraAutomoveis.Dominio.ModuloAluguel;
 using LocadoraAutomoveis.Dominio.ModuloCondutor;
+using LocadoraAutomoveis.Infra.Pdf;
+using LocadoraAutomovel.Infra.Email;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace LocadoraAutomoveis.Aplicacao.ModuloAluguel
 {
@@ -28,6 +32,7 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloAluguel
         public IServicoCupom servicoCupom;
         public IServicoCondutor servicoCondutor;
         public IServicoAutomovel servicoAutomovel;
+
 
         public ServicoAluguel(IRepositorioAluguel repositorioAluguel, IValidadorAluguel validadorAluguel, IServicoFuncionario servicoFuncionario, IServicoCliente servicoCliente,
             IServicoGrupoAutomovel servicoGrupoAutomovel, IServicoPlanoCobranca servicoPlanoCobranca,
@@ -64,8 +69,10 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloAluguel
             try
             {
                 repositorioAluguel.Editar(aluguel);
+                PegarPDFAluguel(aluguel);
                 Log.Debug("Aluguel {@id : @nome} editado com sucesso!", aluguel.Id, aluguel.Cliente.Nome);
                 return Result.Ok();
+
             }
             catch (Exception excecao)
             {
@@ -122,6 +129,7 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloAluguel
             try
             {
                 repositorioAluguel.Inserir(aluguel);
+                PegarPDFAluguel(aluguel);
                 Log.Debug("Aluguel {@id : @nome} inserido com sucesso!", aluguel.Id, aluguel.Cliente.Nome);
                 return Result.Ok();
             }
@@ -132,6 +140,9 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloAluguel
                 return Result.Fail(msgErro);
             }
         }
+
+        
+
         public List<string> ValidarAluguel(Aluguel aluguel)
         {
             var resultadoValidacao = validadorAluguel.Validate(aluguel);
@@ -160,6 +171,20 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloAluguel
                 }
             }
             return false;
+        }
+        private void PegarPDFAluguel(Aluguel aluguel)
+        {
+            LocadoraAutomoveisEmPdf pdf = new LocadoraAutomoveisEmPdf();
+            pdf.GerarPDF(aluguel, @"C:\Users\Juju\Desktop");
+            Attachment emailCaminho = new Attachment(@"C:\Users\Juju\Desktop");
+            string titulo = "Aluguel em PDF";
+            string msg = "PDF em anexo";
+            MandarEmailUsuario("juan.skalski96@gmail.com",titulo,msg, emailCaminho);
+        }
+        private void MandarEmailUsuario(string email, string titulo, string msg, Attachment emailCaminho)
+        {
+            LocadoraAutomovelEmEmail emailNovo = new LocadoraAutomovelEmEmail();
+            emailNovo.SendEmail(email, titulo, msg, emailCaminho);
         }
     }
 }
