@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocadoraAutomoveis.Infra.Orm.Migrations
 {
     [DbContext(typeof(GeradorTestesDbContext))]
-    [Migration("20230809213015_dbCompleto")]
-    partial class dbCompleto
+    [Migration("20230810001856_db-completo")]
+    partial class dbcompleto
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
