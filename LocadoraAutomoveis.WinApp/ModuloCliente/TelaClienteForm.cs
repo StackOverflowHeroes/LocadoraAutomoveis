@@ -35,8 +35,8 @@ namespace LocadoraAutomoveis.WinApp.ModuloCliente
             txtEmail.Text = cliente.Email;
             txtTelefone.Text = cliente.Telefone;
             rdbJuridica.Checked = cliente.TipoPessoa == Tipo.Juridica;
-            txtCpf.Text = cliente.Documento;
-            txtCnpj.Text = cliente.Documento;
+            txtCpf.Text = cliente.TipoPessoa == Tipo.Fisica ? cliente.Documento : String.Empty;
+            txtCnpj.Text = cliente.TipoPessoa == Tipo.Juridica ? cliente.Documento : String.Empty;
             txtEstado.Text = cliente.Estado;
             txtCidade.Text = cliente.Cidade;
             txtBairro.Text = cliente.Bairro;
@@ -51,30 +51,28 @@ namespace LocadoraAutomoveis.WinApp.ModuloCliente
             {
                 string erro = resultado.Errors[0].Message;
 
-                    TelaPrincipalForm.Instancia.AtualizarRodape(erro, TipoStatusEnum.Erro);
+                TelaPrincipalForm.Instancia.AtualizarRodape(erro, TipoStatusEnum.Erro);
 
-                    DialogResult = DialogResult.None;
-               }
-          }
-
-          private void rdbFisica_CheckedChanged(object sender, EventArgs e)
-          {
-               if (rdbFisica.Checked)
-               {
-                    txtCpf.Enabled = true;
-                    txtCnpj.Enabled = false;
-                    txtCnpj.Text = "";
-               }
-          }
-
-          private void rdbJuridica_CheckedChanged(object sender, EventArgs e)
-          {
-               if (rdbJuridica.Checked)
-               {
-                    txtCnpj.Enabled = true;
-                    txtCpf.Enabled = false;
-                    txtCpf.Text = "";
-               }
-          }
-     }
+                DialogResult = DialogResult.None;
+            }
+        }
+        private void rdbFisica_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbFisica.Checked)
+            {
+                txtCpf.Enabled = true;
+                txtCnpj.Enabled = false;
+                txtCnpj.Text = "";
+            }
+        }
+        private void rdbJuridica_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbJuridica.Checked)
+            {
+                txtCnpj.Enabled = true;
+                txtCpf.Enabled = false;
+                txtCpf.Text = "";
+            }
+        }
+    }
 }
