@@ -229,7 +229,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação.ModuloPlanoCobranca
 
             //assert 
             resultado.Should().BeFailure();
-            resultado.Reasons[0].Message.Should().Be("Falha ao tentar excluir plano cobranca.");
+            resultado.Reasons[0].Message.Should().Be("Este plano de cobrança não pode ser excluída");
         }
 
 

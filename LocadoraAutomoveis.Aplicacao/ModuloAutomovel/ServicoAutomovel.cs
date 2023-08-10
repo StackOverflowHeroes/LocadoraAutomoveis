@@ -80,7 +80,13 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloAutomovel
             }
             catch (Exception excecao)
             {
-                string msgErro = "Falha ao tentar excluir automóvel.";
+
+                List<string> erros = new List<string>();
+
+                string msgErro = ObterMensagemErro(excecao);
+
+                erros.Add(msgErro);
+
                 Log.Error(excecao, msgErro + "{@p}", registro);
 
                 return Result.Fail(msgErro);
@@ -97,7 +103,6 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloAutomovel
 
             return false;
         }
-
         public List<string> ValidarAutomovel(Automovel automovel)
         {
             var resultadoValidacao = validadorAutomovel.Validate(automovel);
@@ -117,6 +122,19 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloAutomovel
 
             return erros;
         }
+        private static string ObterMensagemErro(Exception ex)
+        {
+            string msgErro;
+
+            if (ex.Message.Contains("FK_TBAutomovel_TBGrupoAutomovel"))
+                msgErro = "Esse automóvel está relacionada com uma grupo de automóveis e não pode ser excluído";
+            else
+                msgErro = "Esse automóvel não pode ser excluído";
+
+            return msgErro;
+        }
+
+
 
     }
 }

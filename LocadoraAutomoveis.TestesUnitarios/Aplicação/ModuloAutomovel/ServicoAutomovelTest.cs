@@ -226,7 +226,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação.ModuloAutomovel
 
             //assert 
             resultado.Should().BeFailure();
-            resultado.Reasons[0].Message.Should().Be("Falha ao tentar excluir automóvel.");
+            resultado.Reasons[0].Message.Should().Be("Esse automóvel não pode ser excluído");
         }
 
     }

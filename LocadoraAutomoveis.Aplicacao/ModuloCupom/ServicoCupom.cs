@@ -78,7 +78,12 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloCupom
             }
             catch (Exception excecao)
             {
-                string msgErro = "Falha ao tentar excluir cupom.";
+                List<string> erros = new List<string>();
+
+                string msgErro = ObterMensagemErro(excecao);
+
+                erros.Add(msgErro);
+
                 Log.Error(excecao, msgErro + "{@p}", registro);
 
                 return Result.Fail(msgErro);
@@ -115,6 +120,19 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloCupom
 
             return false;
         }
-       
+
+        private static string ObterMensagemErro(Exception ex)
+        {
+            string msgErro;
+
+            if (ex.Message.Contains("FK_TBCupom_TBParceiro"))
+                msgErro = "Esse cupom está relacionada com um parceiro e não pode ser excluído";
+            else
+                msgErro = "Esse cupom não pode ser excluído";
+
+            return msgErro;
+        }
+
+
     }
 }

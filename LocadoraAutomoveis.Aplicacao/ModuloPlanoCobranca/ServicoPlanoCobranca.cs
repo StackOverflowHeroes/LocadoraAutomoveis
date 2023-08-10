@@ -79,7 +79,11 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloPlanoCobranca
             }
             catch (Exception excecao)
             {
-                string msgErro = "Falha ao tentar excluir plano cobranca.";
+                List<string> erros = new List<string>();
+
+                string msgErro = ObterMensagemErro(excecao);
+
+                erros.Add(msgErro);
                 Log.Error(excecao, msgErro + "{@p}", registro);
 
                 return Result.Fail(msgErro);
@@ -116,5 +120,18 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloPlanoCobranca
 
             return erros;
         }
+
+        private static string ObterMensagemErro(Exception ex)
+        {
+            string msgErro;
+
+            if (ex.Message.Contains("FK_TBPlanoCobranca_TBGrupoAutomovel"))
+                msgErro = "Este plano de cobrança está relacionada com um grupo de automóveis e não pode ser excluído";
+            else
+                msgErro = "Este plano de cobrança não pode ser excluída";
+
+            return msgErro;
+        }
+
     }
 }

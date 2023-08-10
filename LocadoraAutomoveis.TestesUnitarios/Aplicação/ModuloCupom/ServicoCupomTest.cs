@@ -225,7 +225,7 @@ namespace LocadoraAutomoveis.TestesUnitarios.Aplicação.ModuloCupom
 
             //assert 
             resultado.Should().BeFailure();
-            resultado.Reasons[0].Message.Should().Be("Falha ao tentar excluir cupom.");
+            resultado.Reasons[0].Message.Should().Be("Esse cupom não pode ser excluído");
         }
     }
 }
