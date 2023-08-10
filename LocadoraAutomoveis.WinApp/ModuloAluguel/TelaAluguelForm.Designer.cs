@@ -54,9 +54,9 @@
             listTaxas = new CheckedListBox();
             label12 = new Label();
             label11 = new Label();
-            lbValorTotal = new Label();
             btnGravar = new Button();
             btnCancelar = new Button();
+            lbValor = new Label();
             ((System.ComponentModel.ISupportInitialize)txtKmAutomovel).BeginInit();
             tbControlTaxasAdicionadas.SuspendLayout();
             tbTaxas.SuspendLayout();
@@ -154,6 +154,7 @@
             // 
             // cboxFuncionario
             // 
+            cboxFuncionario.DisplayMember = "Nome";
             cboxFuncionario.FormattingEnabled = true;
             cboxFuncionario.Location = new Point(12, 27);
             cboxFuncionario.Name = "cboxFuncionario";
@@ -162,29 +163,31 @@
             // 
             // cboxCliente
             // 
+            cboxCliente.DisplayMember = "Nome";
             cboxCliente.FormattingEnabled = true;
             cboxCliente.Location = new Point(12, 71);
             cboxCliente.Name = "cboxCliente";
             cboxCliente.Size = new Size(154, 23);
             cboxCliente.TabIndex = 11;
-            cboxCliente.SelectedIndexChanged += cboxCliente_SelectedIndexChanged;
             // 
             // cboxGrupoAutomoveis
             // 
+            cboxGrupoAutomoveis.DisplayMember = "Nome";
             cboxGrupoAutomoveis.FormattingEnabled = true;
             cboxGrupoAutomoveis.Location = new Point(12, 115);
             cboxGrupoAutomoveis.Name = "cboxGrupoAutomoveis";
             cboxGrupoAutomoveis.Size = new Size(154, 23);
             cboxGrupoAutomoveis.TabIndex = 12;
-            cboxGrupoAutomoveis.SelectedIndexChanged += cboxGrupoAutomoveis_SelectedIndexChanged;
             // 
             // cmbPlanoCobranca
             // 
+            cmbPlanoCobranca.DisplayMember = "Nome";
             cmbPlanoCobranca.FormattingEnabled = true;
             cmbPlanoCobranca.Location = new Point(12, 159);
             cmbPlanoCobranca.Name = "cmbPlanoCobranca";
             cmbPlanoCobranca.Size = new Size(154, 23);
             cmbPlanoCobranca.TabIndex = 13;
+            cmbPlanoCobranca.SelectedIndexChanged += cmbPlanoCobranca_SelectedIndexChanged;
             // 
             // dateLocacao
             // 
@@ -196,6 +199,7 @@
             // 
             // cboxCondutor
             // 
+            cboxCondutor.DisplayMember = "Nome";
             cboxCondutor.FormattingEnabled = true;
             cboxCondutor.Location = new Point(200, 27);
             cboxCondutor.Name = "cboxCondutor";
@@ -204,6 +208,7 @@
             // 
             // cboxAutomovel
             // 
+            cboxAutomovel.DisplayMember = "Placa";
             cboxAutomovel.FormattingEnabled = true;
             cboxAutomovel.Location = new Point(200, 71);
             cboxAutomovel.Name = "cboxAutomovel";
@@ -227,6 +232,7 @@
             dateDevolucao.Name = "dateDevolucao";
             dateDevolucao.Size = new Size(121, 23);
             dateDevolucao.TabIndex = 20;
+            dateDevolucao.ValueChanged += dateDevolucao_ValueChanged;
             // 
             // txtCupom
             // 
@@ -243,6 +249,7 @@
             btnCupom.TabIndex = 22;
             btnCupom.Text = "Aplicar Cupom";
             btnCupom.UseVisualStyleBackColor = true;
+            btnCupom.Click += btnCupom_Click;
             // 
             // tbControlTaxasAdicionadas
             // 
@@ -266,12 +273,14 @@
             // 
             // listTaxas
             // 
+            listTaxas.CheckOnClick = true;
             listTaxas.Dock = DockStyle.Fill;
             listTaxas.FormattingEnabled = true;
             listTaxas.Location = new Point(3, 3);
             listTaxas.Name = "listTaxas";
             listTaxas.Size = new Size(384, 157);
             listTaxas.TabIndex = 0;
+            listTaxas.Click += listTaxas_ItemCheck;
             // 
             // label12
             // 
@@ -290,18 +299,6 @@
             label11.Size = new Size(20, 15);
             label11.TabIndex = 92;
             label11.Text = "R$";
-            // 
-            // lbValorTotal
-            // 
-            lbValorTotal.AutoSize = true;
-            lbValorTotal.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            lbValorTotal.ForeColor = Color.Green;
-            lbValorTotal.Location = new Point(151, 469);
-            lbValorTotal.Name = "lbValorTotal";
-            lbValorTotal.Size = new Size(15, 17);
-            lbValorTotal.TabIndex = 93;
-            lbValorTotal.Text = "0";
-            lbValorTotal.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // btnGravar
             // 
@@ -326,14 +323,23 @@
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
+            // lbValor
+            // 
+            lbValor.AutoSize = true;
+            lbValor.Location = new Point(153, 474);
+            lbValor.Name = "lbValor";
+            lbValor.Size = new Size(13, 15);
+            lbValor.TabIndex = 96;
+            lbValor.Text = "0";
+            // 
             // TelaAluguelForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(445, 541);
+            Controls.Add(lbValor);
             Controls.Add(btnCancelar);
             Controls.Add(btnGravar);
-            Controls.Add(lbValorTotal);
             Controls.Add(label11);
             Controls.Add(label12);
             Controls.Add(tbControlTaxasAdicionadas);
@@ -396,8 +402,8 @@
         private CheckedListBox listTaxas;
         private Label label12;
         private Label label11;
-        private Label lbValorTotal;
         private Button btnGravar;
         private Button btnCancelar;
+        private Label lbValor;
     }
 }

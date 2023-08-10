@@ -12,8 +12,8 @@ namespace LocadoraAutomoveis.WinApp.ModuloAluguel
 
         public override string TooltipInserir => "Inserir novo aluguel";
 
-        public override string TooltipEditar => "Editar aluguel existente";
+        public override string TooltipEditar => "Editar aluguel";
 
-        public override string TooltipExcluir => "Excluir aluguel existente";
+        public override string TooltipExcluir => "Excluir aluguel";
     }
 }

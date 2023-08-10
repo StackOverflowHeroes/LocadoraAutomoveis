@@ -92,7 +92,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloAluguel
             TelaAluguelForm telaAluguel = new TelaAluguelForm();
 
             telaAluguel.PopularComboBox(repositorioFuncionario.SelecionarTodos(), repositorioCliente.SelecionarTodos(), repositorioGrupoAutomovel.SelecionarTodos(),
-            repositorioPlanoCobranca.SelecionarTodos(), repositorioCondutor.SelecionarTodos(), repositorioAutomovel.SelecionarTodos(), repositorioTaxaServico.SelecionarTodos());
+            repositorioPlanoCobranca.SelecionarTodos(), repositorioCondutor.SelecionarTodos(), repositorioAutomovel.SelecionarTodos(), repositorioTaxaServico.SelecionarTodos(),repositorioCupom.SelecionarTodos());
 
             telaAluguel.Text = "Editar um aluguel";
             telaAluguel.onGravarRegistro += servicoAluguel.Editar;
@@ -110,7 +110,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloAluguel
         {
             TelaAluguelForm telaAluguel = new TelaAluguelForm();
             telaAluguel.PopularComboBox(repositorioFuncionario.SelecionarTodos(), repositorioCliente.SelecionarTodos(), repositorioGrupoAutomovel.SelecionarTodos(),
-            repositorioPlanoCobranca.SelecionarTodos(), repositorioCondutor.SelecionarTodos(), repositorioAutomovel.SelecionarTodos(), repositorioTaxaServico.SelecionarTodos());
+            repositorioPlanoCobranca.SelecionarTodos(), repositorioCondutor.SelecionarTodos(), repositorioAutomovel.SelecionarTodos(), repositorioTaxaServico.SelecionarTodos(), repositorioCupom.SelecionarTodos());
             telaAluguel.ConfigurarTelaAluguel(new Aluguel());
             telaAluguel.Text = "Cadastro de Aluguel";
             telaAluguel.onGravarRegistro += servicoAluguel.Inserir;
