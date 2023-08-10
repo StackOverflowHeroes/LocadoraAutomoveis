@@ -38,7 +38,7 @@ namespace LocadoraAutomoveis.WinApp.ModuloAluguel
                 gridAluguel.Rows.Add(aluguel.Id,
                                     aluguel.Condutor.Nome,
                                     aluguel.Automovel.Placa,
-                                    aluguel.PlanoCobranca,
+                                    aluguel.PlanoCobranca.Plano,
                                     aluguel.DataLocacao,
                                     aluguel.DataPrevisaoRetorno,
                                     aluguel.DataDevolucao,

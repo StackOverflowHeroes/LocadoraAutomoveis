@@ -35,6 +35,9 @@ namespace LocadoraAutomoveis.Dominio.ModuloAluguel
 
         public Aluguel()
         {
+            DataLocacao = DateTime.Now;
+            DataPrevisaoRetorno = DateTime.Now;
+            DataDevolucao = DateTime.Now;
         }
 
         public Aluguel(Funcionario funcionario, Cliente cliente, GrupoAutomovel grupoAutomovel,
